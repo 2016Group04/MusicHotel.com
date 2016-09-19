@@ -1,0 +1,46 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	">
+
+	<context:property-placeholder location="src/db.properties" />
+
+	<!--创建jdbc数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${driver}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />
+
+		<property name="maxActive" value="${maxActive}" />
+		<property name="maxIdle" value="${maxIdle}" />
+		<property name="maxWait" value="${maxWait}" />
+	</bean>
+
+	<!-- 创建SqlSessionFactory，同时指定数据源 -->
+    <!-- SqlSessionFactoryBean相当于SqlSessionFactoryBuilder-->
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 指定mybtis总配置文件，订制的environment在spring容器中不在生效 -->
+		<property name="configLocation" value="classpath:conf.xml" />
+
+	</bean>
+<!--SqlSessionTemplate 是对SqlSession接口的一个实现 以前使用纯mybatis时
+  使用的是DefaultSqlSession这个类
+-->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="userDaoImpl" class="com.dao.impl.UserDaoImpl">
+		
+		<property name="session" ref="sqlSession"/>
+		
+	</bean> 
+</beans>

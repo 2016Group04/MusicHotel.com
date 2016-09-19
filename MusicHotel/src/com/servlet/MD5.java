@@ -43,6 +43,6 @@ public class MD5 {
 	}
 	
 	 public static void main(String[] args) {  
-	        System.out.println(getHash("zyy06057727").equals(getHash("zyy06057727"))); 
+	        System.out.println(getHash("zyy06057727")); 
 	 }
 }
