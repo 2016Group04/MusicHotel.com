@@ -7,4 +7,16 @@
 		INSERT INTO users(user_id,nickname,email,password_MD5) VALUE(NULL,#{nickname},#{email},#{passwordMD5})
 	</insert>
 	
+	<delete id="deleteUserByUserId" parameterType="int">
+		DELETE FROM users WHERE user_id=#{userId}
+	</delete>
+	
+	<select id="getUserByUserId" parameterType="int" resultType="com.po.User">
+		SELECT * FROM users WHERE user_id=#{userId}
+	</select>
+	
+	<select id="getUserBySql" parameterType="java.lang.String" resultType="com.po.User">
+		${value}
+	</select>
+	
 </mapper>

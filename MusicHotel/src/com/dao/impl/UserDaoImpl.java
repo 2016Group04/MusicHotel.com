@@ -35,8 +35,9 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public int deleteUser(int userId) {
 		
-		int count = 0;
+		String statement = "com.po.UserMapper.deleteUserByUserId";
 		
+		int count = session.delete(statement,userId);
 		return count;
 	}
 
@@ -50,8 +51,10 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User getUserByUserId(int userId) {
-		User user = null;
+
+		String statement = "com.po.UserMapper.getUserByUserId";
 		
+		User user = session.selectOne(statement, userId);
 		return user;
 		
 	}
@@ -61,6 +64,8 @@ public class UserDaoImpl implements UserDao {
 		
 		List<User> list = new ArrayList<User>();
 		
+		String statement = "com.po.UserMapper.getUserBySql";
+		list = session.selectList(statement, sql);
 		
 		return list;
 	}

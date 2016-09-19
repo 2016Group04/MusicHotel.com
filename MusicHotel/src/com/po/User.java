@@ -136,27 +136,14 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "Users [userId=" + userId + ", email=" + email
-				+ ", passwordMD5=" + passwordMD5 + ", nickname=" + nickname
-				+ ", profileText=" + profileText + ", profileImg=" + profileImg
-				+ ", signupDate=" + signupDate + ", listenedSum=" + listenedSum
-				+ ", accountQq=" + accountQq + ", accountWeibo=" + accountWeibo
+		return "User [userId=" + userId + ", email=" + email + ", passwordMD5="
+				+ passwordMD5 + ", nickname=" + nickname + ", profileText="
+				+ profileText + ", profileImg=" + profileImg + ", signupDate="
+				+ signupDate + ", listenedSum=" + listenedSum + ", accountQq="
+				+ accountQq + ", accountWeibo=" + accountWeibo
 				+ ", accountDouban=" + accountDouban + ", gender=" + gender
 				+ ", age=" + age + ", address=" + address + ", occupation="
-				+ occupation + ", autoPlay=" + autoPlay + ", getUserId()="
-				+ getUserId() + ", getEmail()=" + getEmail()
-				+ ", getPasswordMD5()=" + getPasswordMD5() + ", getNickname()="
-				+ getNickname() + ", getProfileText()=" + getProfileText()
-				+ ", getProfileImg()=" + getProfileImg() + ", getSignupDate()="
-				+ getSignupDate() + ", getListenedSum()=" + getListenedSum()
-				+ ", getAccountQq()=" + getAccountQq() + ", getAccountWeibo()="
-				+ getAccountWeibo() + ", getAccountDouban()="
-				+ getAccountDouban() + ", getGender()=" + getGender()
-				+ ", getAge()=" + getAge() + ", getAddress()=" + getAddress()
-				+ ", getOccupation()=" + getOccupation() + ", getAutoPlay()="
-				+ getAutoPlay() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+				+ occupation + ", autoPlay=" + autoPlay + "]";
 	}
 	
 	
