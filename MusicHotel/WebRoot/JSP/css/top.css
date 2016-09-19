@@ -1,0 +1,458 @@
+* {
+	margin:0px;
+}
+
+input {
+	outline:none;
+}
+
+/*顶部最外面的div*/
+div#wholeTop {
+	width: 1350px;
+	height: 50px;
+	background-color: #F2F2F2;
+	border-top:2px solid #DD5862;
+	border-bottom: 1px solid #E9E8E8;
+}
+
+/*顶栏下所有的div都是水平排列*/
+#wholeTop div{
+	float: left;
+}
+/*logo*/
+#logo {
+	background: url(../img/icon-common.png) no-repeat;
+	background-position: 0px -300px;
+	display: inline-block;
+	width: 30px;
+	height: 35px;
+}
+
+div.logo{
+	padding-top:10px ;
+	padding-left: 195px;
+	padding-right: 22px;
+}
+/*选择进入什么模块*/
+#yourSelection{
+	
+}
+
+.selection{
+	margin: 17px 13px;
+	color: #2D2D2D;
+	font: 16px Verdana, 微软雅黑, 'Microsoft YaHei', Helvetica, Arial;
+}
+
+.selection>a:hover{
+	color: #DD5862;
+	cursor: pointer;
+}
+/*搜索框*/
+.search{
+	margin: 13px 5px;
+	border-radius: 20px;
+	border: 1px solid #E5E5E5;
+	height: 25px;
+	cursor: text;
+	width: 105px;
+	
+}
+
+#searchAll{
+	width: 150px;
+}
+
+.searchBlur{
+	background-color: #EDEDED;
+}
+
+.searchFocus{
+	background-color: white;
+}
+
+#searchMirror{
+	display: block;
+	width: 19px;
+	height: 20px;
+	background: url(../img/icon-common.png) no-repeat;
+	background-position: -110px -240px;
+	margin-top:3px;
+	margin-left: 3px;
+	cursor: pointer;
+}
+
+#searchEverything {
+	width:75px;
+	border: 0px;
+	position: relative;
+	top:-23px;
+	left:20px;
+	height: 22px;
+}
+
+#all{
+	position: absolute;
+	right: 1365px;
+	top:0px;
+}
+
+/*注册和登录框*/
+#loginAngRegiste{
+	width: 100px;
+	margin-top: 16px;
+	font: 13px Verdana, 微软雅黑, 'Microsoft YaHei', Helvetica, Arial;
+	color: #595959;
+	margin-left: 410px;;
+}
+
+#longinAregiste:hover{
+	cursor: pointer;
+}
+
+#loginOrResite>div#login,#loginOrResite>div#registe{
+	width: 235px;
+	position: absolute;
+	border: 2px solid #E5E5E5;
+	top:53px;
+	left: 1013px;
+	border-radius: 5px;
+}
+
+#loginOrResite>div#login{
+	height: 275px;
+}
+
+#loginOrResite>div#registe{
+	height:300px;
+}
+
+#login,#registe{
+	width: 99%;
+	height: 100%;
+	border-radius: 5px;
+	background-color: white;
+}
+
+#tip{
+	width: 100%;
+	height: 9px;
+	text-align: center;
+	position:relative;
+	z-index: 3;
+	top: 43px;
+	left: 1125px;
+}
+
+/*登录对话框和注册对话框*/
+#loginTop,#registeTop{
+	margin-top: 18px;
+}
+
+#loginTop .label1,#registeTop .label1{
+	font-weight: 600;
+	margin-left: 13px;
+	text-align: center;
+	cursor: text;
+}
+
+#loginTop .label2,#registeTop .label2{
+	text-align: center;
+	color: #7D7D7D;
+	cursor: text;
+}
+
+#loginTop .label2{
+	margin-left: 70px;
+}
+
+#registeTop .label2{
+	margin-left: 120px;
+}
+
+#registeTop .label2:hover{
+	cursor: pointer;
+}
+
+
+#loginTop .label2 a{
+	color: #DD5862;
+	cursor: pointer;
+}
+
+/*表单部分*/
+#Email,#Password,#AccountRegiste,#EmailRegiste,#PasswordRegiste,#AuthRegiste{
+	width: 205px;
+	height: 30px;
+	border: 1px solid #E5E5E5;
+	border-radius: 3px;
+	color: #000;
+}
+
+#Email{
+	margin: 12px;
+}
+
+#Password{
+	margin: 0px 12px;
+}
+
+#AccountRegiste,#EmailRegiste,#PasswordRegiste,#AuthRegiste{
+	margin-top: 7px;
+	margin-left: 12px;
+	margin-bottom:7px ;
+}
+
+#AccountRegiste label,#EmailRegiste label,#PasswordRegiste label,#AuthRegiste label,#protocal label{
+	cursor: text;
+}
+
+#Email label,#Password label,#AccountRegiste .label1,#EmailRegiste .label1,#PasswordRegiste .label1,#AuthRegiste .label1{
+	display: inline-block;
+	height: 30px;
+	text-align: left;
+	line-height: 30px;
+	margin-left: 7px;
+}
+
+#Email label,#Password label,#AccountRegiste .label1,#EmailRegiste .label1,#PasswordRegiste .label1{
+	width: 30px;
+}
+
+#AuthRegiste .label1{
+	width: 40px;
+}
+
+#Email input,#Password input{
+	width: 150px;
+	margin-left: 4px;
+	margin-top: 4px;
+	border: none;
+}
+
+#tijiao{
+	margin: 20px auto;
+}
+
+#register{
+	margin: 10px auto;
+}
+
+#Submit,#Registe{
+	display: inline-block;
+	width: 206px;
+	height: 27px;
+	color: white;
+	text-align: center;
+	line-height: 27px;
+	margin-left: 12px;
+	border-radius: 3px;
+}
+/*自动登录*/
+#option{
+	width: 205px;
+	height: 30px;
+	margin-left: 12px;
+	margin-bottom: 8px;
+}
+
+#option div input{
+	margin-top: 3px;
+	margin-right: 5px;
+}
+
+#getBackPasseord{
+	float: right;
+	color: #DD5862;
+}
+
+#loginMiddle{
+	border-bottom: 1px solid #E5E5E5;
+}
+/*第三方登录方式*/
+#otherLogin{
+	width: 140px;
+	margin: 10px 60px;
+}
+
+#otherLogin a{
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	background: url("../img/icon-common.png") no-repeat;
+	margin-right: 8px;
+}
+
+a#QQ{
+	background-position: -110px -60px;
+}
+
+a#DOU{
+	background-position: -110px -90px;
+}
+
+a#WEIBO{
+	background-position: -110px -30px;
+}
+
+#AccountRegiste input,#EmailRegiste input,#PasswordRegiste input{
+	width: 140px;
+	margin-left: 4px;
+	margin-top: 4px;
+	border: none;
+}
+
+#AuthRegiste input{
+	width: 60px;
+	margin-left: 4px;
+	margin-top: 4px;
+	border: none;
+}
+
+/*同意协议部分*/
+#protocal{
+	margin-top: 10px;
+	color:#706F6F ;
+}
+
+#agreePro{
+	margin-left: 40px;
+}
+
+#agree{
+	margin-top: 2px;
+	margin-right: 3px;
+}
+
+/*注册框里的label提示*/
+label.labelTishi{
+	position: relative;
+	display: block;
+	width: 120px;
+	color: #7D7D7D;
+}
+
+label.accountRegiste,label.emailRegiste,label.passwordRegiste{
+	top: -23px;
+	left: 45px;
+}
+
+#AuthRegiste img{
+	float: right;
+	cursor: pointer;
+}
+
+#protocal a{
+	cursor: pointer;
+}
+
+#Submit,#Registe{
+	cursor: pointer;
+}
+
+.null{
+	background-color: #F2C5C3;
+}
+
+.Submit,.Registe{
+	background-color: #DD5862;
+}
+
+/*登录上之后显示的*/
+#message{
+	width: 18px;
+	height: 15px;
+	background: url(../img/icon-common.png) no-repeat;
+	background-position: -110px -210px;
+	margin-top: 20px;
+	margin-left: 350px;
+	cursor: pointer;
+}
+
+#touXiang{
+	margin-top: 16px;
+	margin-left: 30px;
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+#account{
+	display: inline-block;
+	margin-top: 16px;
+	font-size: 13px;
+	color: #807D7D;
+	cursor: pointer;
+}
+
+#messageDetail{
+	border: 2px solid #E5E5E5;
+	position: absolute;
+	width: 270px;
+	background-color: white;
+	top: 50px;
+	left:910px;
+}
+
+#bottom{
+	width: 100%;
+	height: 35px;
+	background-color: #F2F2F2;
+	text-align: center;
+	line-height: 35px;
+	font-size: 14px;
+	color: #8A8A8A;
+}
+
+.message{
+	width: 220px;
+	border-bottom: 1px solid #E5E5E5;
+	font-size: 12px;
+	color:#E06B73;
+	padding: 10px 25px;
+}
+
+.message:hover,#bottom:hover,#information:hover,#cc a:hover{
+	cursor:pointer;
+}
+
+/*我的账号*/
+#operate{
+	width: 105px;
+	height: 110px;
+	position: absolute;
+	top: 50px;
+	left: 1090px;
+	color: #7D7D7D;
+	font-size: 13px;
+	border: 2px solid #E5E5E5;
+	background-color: white;
+}
+
+.myLabel{
+	display: inline-block;
+	width: 18px;
+	height: 13px;
+	background: url(../img/icon-common.png) no-repeat;
+	margin-right: 2px;
+}
+
+#my{
+	background-position: -110px -120px;
+}
+
+#setting{
+	background-position: -110px -150px;
+}
+
+#logout{
+	background-position: -110px -180px;
+}
+
+#cc a{
+	height: 20px;
+	display: block;
+	padding: 10px 5px;	
+	line-height: 20px;
+	margin-left: 10px;
+}
+
