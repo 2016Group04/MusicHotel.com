@@ -6,9 +6,9 @@
     http://www.springframework.org/schema/context/spring-context-2.5.xsd
 	">
 
-	<context:property-placeholder location="src/db.properties" />
+	<context:property-placeholder location="classpath:db.properties" />
 
-	<!--创建jdbc数据源 -->
+	<!--创建mysql数据源 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${driver}" />

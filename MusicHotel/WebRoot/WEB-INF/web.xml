@@ -32,7 +32,7 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 
-<listener>
+	<listener>
   		<listener-class>
    			org.springframework.web.context.ContextLoaderListener
   		</listener-class>
