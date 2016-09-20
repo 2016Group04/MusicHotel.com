@@ -16,7 +16,7 @@
 	</typeAliases>
 
 	<mappers>
-		<mapper resource="com/po/UserMapper.xml"/>
+		<mapper resource="com/po/userMapper.xml"/>
 
 	</mappers>
 	
