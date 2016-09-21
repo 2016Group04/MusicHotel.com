@@ -13,6 +13,13 @@
     <servlet-name>CheckAuth</servlet-name>
     <servlet-class>com.servlet.CheckAuth</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DegisteServlet</servlet-name>
+    <servlet-class>com.servlet.DegisteServlet</servlet-class>
+  </servlet>
+	
 
 
   <servlet-mapping>
@@ -23,13 +30,13 @@
     <servlet-name>CheckAuth</servlet-name>
     <url-pattern>/JSP/CheckAuth</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DegisteServlet</servlet-name>
+    <url-pattern>/JSP/DegisteServlet</url-pattern>
+  </servlet-mapping>
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
+		
 	</welcome-file-list>
 
 	<listener>
@@ -37,4 +44,19 @@
    			org.springframework.web.context.ContextLoaderListener
   		</listener-class>
  	</listener>
+ 	
+ 	<servlet>
+		<servlet-name>springMVC</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:SpringMVC.xml</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>springMVC</servlet-name>
+		<url-pattern>*.action</url-pattern>
+	</servlet-mapping>
 </web-app>

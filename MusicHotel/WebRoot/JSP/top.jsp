@@ -297,6 +297,7 @@
 						
 						if(checkEmail(email)){
 							
+							
 							//发送ajax  验证是否是正确的用户名和密码
 						}else{
 							
@@ -390,6 +391,12 @@
 					}else{
 						
 						//发送ajax  验证该昵称是否已被注册
+						$.post("DegisteServlet",{
+							"action":"checkAccount",
+							"account":accountR
+						},function(data,status){
+						
+						});
 					}
 				});
 				
