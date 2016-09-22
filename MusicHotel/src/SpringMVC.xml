@@ -16,15 +16,7 @@
     http://www.springframework.org/schema/tx
     http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
  
- 
- 	<!-- 配置处理器适配器 -->
+ 	<context:component-scan base-package="com.controller"></context:component-scan>
+ 	<mvc:annotation-driven></mvc:annotation-driven>
  	
- 	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
- 	
- 	<!-- 配置处理器映射器 -->
- 	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
- 	<bean name="/jsp/category/category.action" class="com.controller.CategoryController"/>
- 	
- 	<!-- 配置视图解析器 -->
- 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
  </beans>
