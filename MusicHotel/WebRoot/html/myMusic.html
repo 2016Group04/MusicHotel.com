@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>落网 - 独立音乐推荐</title>
+		<meta charset="utf-8">
+		<link type="text/css" rel="stylesheet" href="css/main.css">
+
+	</head>
+
+	<body>
+		<div class="header">
+			<div class="header-ct">
+				<a class="logo" href=#>
+					<span class="icon-logo"></span> 落网
+				</a>
+				<div class="nav">
+					<ul class="clearfix">
+						<li>
+							<a href=#>期刊</a>
+						</li>
+						<li>
+							<a href=#>单曲</a>
+						</li>
+						<li>
+							<a href=#>专栏</a>
+						</li>
+						<li>
+							<a href=#>活动</a>
+						</li>
+						<li>
+							<a href=#>APP</a>
+						</li>
+					</ul>
+				</div>
+				<div class="head-search">
+					<form id="headSearchForm" class="search-form">
+						<input class="search-input" type="text" name="q">
+						<button class="search-btn" type="submit">
+							<span class="icon-search"></span>
+						</button>
+					</form>
+				</div>
+				<div id="loggedInWrapper" class="logged-in-wrapper" style="display: block;">
+					<a id="lnMessage" class="ln-message" data-adjusty="-10" data-width="270" data-tipid="messageDialog" data-remote="http://www.luoo.net/message/latest" data-show="mouseenter" rel="nofollow" href="javascript:;" data-hasqtip="11" aria-describedby="qtip-11">
+						<span class="icon-message"></span>
+					</a>
+					<div class="account-more">
+						<a id="lnAccountMore" class="ln-account" data-adjusty="-10" data-tipid="accountMoreDialog" data-show="mouseenter" data-ct="accountMoreWrapper" rel="nofollow" href="javascript:;" data-hasqtip="accountMoreDialog" aria-describedby="qtip-accountMoreDialog">
+							<img class="avatar" alt="admin007" src="http://7xkszy.com2.z0.glb.qiniucdn.com/pics/avatars/u10873571474162594.jpg?imageView2/1/w/128/h/128"> admin007
+						</a>
+						<div id="accountMoreWrapper" style="display: none;">
+							<div id="accountLinks" class="account-links rounded">
+								<a class="account-link link-uc" rel="nofollow" href="http://www.luoo.net/user/1087357">
+									<span class="icon-account"></span> 我的落网
+								</a>
+								<a class="account-link link-setting" rel="nofollow" href="http://www.luoo.net/user/profile">
+									<span class="icon-setting"></span> 账号设置
+								</a>
+								<a class="account-link link-logout" rel="nofollow" href="http://www.luoo.net/user/logout">
+									<span class="icon-logout"></span> 退出
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="loggedOutWrapper" class="logged-out-wrapper" data-adjusty="-12" data-show="mouseenter" data-width="235" data-tipid="headLoginDialog" data-remote="http://www.luoo.net/login/dialog" style="display: none;">
+					<a class="ln-top-login" rel="nofollow" href="javascript:;"> 注册/登录 </a>
+				</div>
+			</div>
+		</div>
+		<div class="container ct-sm" style="">
+			<div class="uc-head clearfix">
+				<div id="avatarEditWrapper" class="avatar-wrapper">
+					<img class="avatar" alt="绿水无忧" src="img/u10873571474162594.jpg">
+					<a id="lnEditAvatar" class="ln-edit-avatar" rel="nofollow" href="javascript:;">修改头像</a>
+				</div>
+				<div class="uinfo">
+					<div class="clearfix">
+						<h1 class="uname">绿水无忧</h1>
+						<p class="join">2016-09-18</p>
+					</div>
+					<div class="sign">
+						<div id="textMood" style="display: block;">
+							<span id="txtMoodCt" class="mood-ct" data-editable="true">说两句吧...</span>
+							<a id="lnEditMood" class="ln-edit-mood" href="javascript:;">编辑</a>
+						</div>
+						<div id="formMood" class="form-mood" style="display: none;">
+							<form class="form-ajax" callback="add_mood_cback" method="post" action="http://www.luoo.net/mood/add">
+								<input id="txtContent" type="text" maxlength="70" data-value="" value="" style="width:355px;" name="content">
+								<a id="lnSaveMood" class="helper" href="javascript:;">保存</a>
+								<a id="lnCancleMood" class="helper" href="javascript:;">取消</a>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="ainfo">
+					<span class="playcnt">已经在落网上累计听过 0 首音乐。</span>
+					<div class="sns-account">
+						<a class="sns-item icon-open-weibo-grey" title="绑定微博账号" target="_blank" href="http://www.luoo.net/login/oauth/site/weibo/act/bind"></a>
+						<a class="sns-item icon-open-douban-grey" title="绑定豆瓣账号" target="_blank" href="http://www.luoo.net/login/oauth/site/douban/act/bind"></a>
+						<a class="sns-item icon-open-qq margin-right-0" href="javascript:;"></a>
+					</div>
+				</div>
+			</div>
+			<div calss="uc-nav rounded clearfix">
+				<a class="nav-item actived" rel="nofollow" href="javascript:;">音乐</a>
+				<a class="nav-item" href="http://www.luoo.net/user/vols/1087357">期刊</a>
+				<a class="nav-item" href="http://www.luoo.net/user/essays/1087357">文章</a>
+				<a class="btn-play" href="http://www.luoo.net/radio/?user=1087357"> 我的电台 </a>
+			</div>
+			<div id="editAvatarWrapper" style="display:none;">
+				<div class="edit-avatar-wrapper">
+					<form id="frmAvatar" class="form-ajax" callback="avatar_cback" method="post" action="http://www.luoo.net/user/avatar">
+						<div id="msgHolder" class="msg-holder"> </div>
+						<div id="uploadHolder" class="pic-holder">
+							<a id="btnAvatarUploader" class="btn btn-positive" href="javascript::"></a>
+							<span id="btnAvatarUploading" class="btn btn-positive btn-uploading">
+<img src="http://s.luoo.net/img/loading_32x32.gif">
+上传中...
+</span>
+							<p id="uploadMsg" class="upload-msg">支持JPG、GIF、PNG格式，文件小于2M。</p>
+						</div>
+						<div id="resizeHolder" class="resize-holder" style="display: none;">
+							<img id="resizePic" class="resize-pic" src="">
+						</div>
+						<div class="clearfix">
+							<div class="preview">
+								<p class="preview-title">预览</p>
+								<div class="clearfix">
+									<div class="preview-pic-wrapper">
+										<img id="previewPic" class="preview-pic rounded" src="img/u10873571474162594.jpg">
+									</div>
+									<span class="preview-desc">预览框中图片将会是最终头像效果,请确认头像是否清晰.</span>
+								</div>
+							</div>
+							<div class="submit-btns">
+								<a id="btnSubmitAvatar" class="btn btn-positive" href="javascript:;">保存</a>
+								<a id="btnCancleAvatar" class="btn btn-negative" href="javascript:;">取消</a>
+							</div>
+							<input id="txtAvatar" type="hidden" name="avatar">
+							<input id="x" type="hidden" value="0" name="x">
+							<input id="y" type="hidden" value="0" name="y">
+							<input id="w" type="hidden" name="width">
+							<input id="h" type="hidden" name="height">
+						</div>
+					</form>
+				</div>
+				<script>
+					$(function() {
+						init_uploader();
+					})
+				</script>
+			</div>
+			<script id="qq-template" type="text/template">
+
+				<div class="qq-uploader-selector qq-uploader">
+					<div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container" style="display: none;">
+						<div class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
+					</div>
+					<div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone style="display: none;">
+						<span>Drop files here to upload</span>
+					</div>
+					<div class="qq-upload-button-selector qq-upload-button">
+						<div>选择图片</div>
+					</div>
+					<span class="qq-drop-processing-selector qq-drop-processing" style="display: none;">
+                    	<span>Processing dropped files...</span>
+					<span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>
+					</span>
+					<ul class="qq-upload-list-selector qq-upload-list" style="display: none;">
+						<li>
+							<div class="qq-progress-bar-container-selector">
+								<div class="qq-progress-bar-selector qq-progress-bar"></div>
+							</div>
+							<span class="qq-upload-spinner-selector qq-upload-spinner"></span>
+							<span class="qq-edit-filename-icon-selector qq-edit-filename-icon"></span>
+							<span class="qq-upload-file-selector qq-upload-file"></span>
+							<input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">
+							<span class="qq-upload-size-selector qq-upload-size"></span>
+							<a class="qq-upload-cancel-selector qq-upload-cancel" href="#">Cancel</a>
+							<a class="qq-upload-retry-selector qq-upload-retry" href="#">Retry</a>
+							<a class="qq-upload-delete-selector qq-upload-delete" href="#">Delete</a>
+							<span class="qq-upload-status-text-selector qq-upload-status-text"></span>
+						</li>
+					</ul>
+				</div>
+			</script>
+			<script>
+				var uploadToken = 'oV5QBAOcOnUsn9ztUvsuuf7HF88ZEply_FhMdvxa:QAPPbt043cuRDr5H6y4Y4c7IOMQ=:eyJyZXR1cm5Cb2R5Ijoie1wia2V5XCI6ICQoa2V5KX0iLCJzYXZlS2V5IjoicGljc1wvYXZhdGFyc1wvdTEwODczNTcxNDc0MTY4NjA0LmpwZyIsInNjb3BlIjoibHVvby1pbWciLCJkZWFkbGluZSI6MTQ3NDE3MjIwNH0=';
+				var key = 'pics/avatars/u10873571474168604.jpg';
+				var CONST = {
+					host: 'http://www.luoo.net',
+					static: 'http://s.luoo.net',
+					cloud_img: 'http://7xkszy.com2.z0.glb.qiniucdn.com'
+				};
+			</script>
+			<div class="uc-ct">
+				<div id="luooPlayerPlaylist" class="fav-singles">
+					<div class="uc-ct-empty">暂无收藏</div>
+					<ul> </ul>
+					<div>
+						<div id="luooPlayerContent"></div>
+						<div class="jp-playlist" style="display:none;">
+							<ul>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="paginator"> </div>
+			</div>
+		</div>
+		<script>
+			try {
+				var pl = "0";
+			} catch(e) {}
+		</script>
+		<div class="footer">
+			<div class="foot-ct clearfix">
+				<div class="about-wrapper">
+					<h4 class="foot-item-head">关于</h4>
+					<p>
+						<a class="ln-about" href="http://www.luoo.net/about/">关于落网</a>
+					</p>
+					<p>
+						<a class="ln-about" href="http://www.luoo.net/jobs/">加入我们</a>
+					</p>
+					<p>
+						<a class="ln-about" href="http://www.luoo.net/contact/">联系合作</a>
+					</p>
+					<p>
+						<a id="feedback" class="ln-about" href="javascript:;">反馈建议</a>
+					</p>
+					<p>
+						<a class="ln-about" href="http://www.luoo.net/links/">友情链接</a>
+					</p>
+				</div>
+				<div class="app-wrapper">
+					<h4 class="foot-item-head">APP</h4>
+					<p>
+						<a class="ln-app" href="http://www.luoo.net/app/">
+							<span class="icon-ios"></span> for iPhone
+						</a>
+					</p>
+					<p>
+						<a class="ln-app" href="http://www.luoo.net/app/">
+							<span class="icon-android"></span> for Android
+						</a>
+					</p>
+					<p>
+						<a class="ln-app" href="http://www.luoo.net/app/">
+							<span class="icon-wp"></span> for Windows Phone 8
+						</a>
+					</p>
+				</div>
+				<div class="sns-wrapper">
+					<h4 class="foot-item-head">关注落网</h4>
+					<div class="sns-items">
+						<a id="luooQqAccount" class="icon-sns-qq">
+							<span class="qq-group">
+                                                                落网QQ官方群 ·324063420
+                                <br>
+                                ·55728744
+                            </span>
+						</a>
+						<a id="luooWechatAccount" class="icon-sns-wechat" target="_blank" href="http://s.luoo.net/img/wechat-qr.gif">
+							<img class="wechat-qr" alt="wechat" src="img/wechat-qr.gif">
+						</a>
+						<a class="icon-sns-weibo" target="_blank" href="http://weibo.com/luoofm"></a>
+						<a class="icon-sns-douban" target="_blank" href="http://www.douban.com/group/luoo/"></a>
+					</div>
+					<p class="icp">© 2016 落网</p>
+					<p class="slogan">
+						<span class="icon-slogan"></span>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="backTop" style="left: 1174.5px;"> </div>
+		<div id="feedbackWrapper" style="display:none;">
+			<div class="common-dialog-wrapper">
+				<form id="frmFeedback" class="form-ajax" callback="feedback_cback" action="http://www.luoo.net/feedback/">
+					<p class="fb-group">
+						<textarea class="rounded" name="content"></textarea>
+					</p>
+					<p id="feedbackMsg" class="fb-group helper">※ 请具体描述你的问题或建议</p>
+					<p class="fb-group">
+						<span class="label">联系方式</span>
+						<input type="text" name="contact">
+					</p>
+					<p class="fb-group">
+						<span class="label">验证码</span>
+						<input class="code" type="text" maxlength="4" name="code">
+						<a class="captcha-wrapper luoo-captcha-wrapper" rel="nofollow" href="javascript:;">
+							<img class="captcha" src="" data-src="http://www.luoo.net/data/captcha">
+						</a>
+						<a id="btnFeedbackSubmit" class="btn btn-positive" rel="nofollow" href="javascript:;">提交</a>
+						<a id="btnFeedbackCancle" class="btn btn-negative" rel="nofollow" href="javascript:;">取消</a>
+						<input id="txtFeedbackRef" type="hidden" name="ref" value="http://www.luoo.net/user/1087357">
+					</p>
+				</form>
+				<div id="feedbackResult" class="ajax-result">
+					提交成功，非常感谢你的反馈，必要时我们将联系你。
+					<br>
+					<br>
+					<span class="helper">窗口将在3秒后关闭。</span>
+				</div>
+			</div>
+		</div>
+		<div id="mailWrapper" style="display:none;">
+			<div class="common-dialog-wrapper">
+				<form id="frmMail" class="form-ajax" callback="send_mail_cback" action="http://www.luoo.net/mail/send">
+					<p class="fb-group helper">
+						给"
+						<span id="mailUserName"></span> "发私信
+					</p>
+					<p class="fb-group">
+						<textarea class="rounded" name="content"></textarea>
+					</p>
+					<p id="sendMailMsg" class="fb-group helper"></p>
+					<p class="fb-group">
+						<span class="label">验证码</span>
+						<input class="code" type="text" maxlength="4" name="code">
+						<a class="captcha-wrapper luoo-captcha-wrapper" rel="nofollow" href="javascript:;">
+							<img class="captcha" src="" data-src="http://www.luoo.net/data/captcha">
+						</a>
+						<a id="btnSendMail" class="btn btn-positive" rel="nofollow" href="javascript:;">发送</a>
+						<a id="btnCancleMail" class="btn btn-negative" rel="nofollow" href="javascript:;">取消</a>
+						<input id="mailUserId" type="hidden" name="uid">
+					</p>
+				</form>
+				<div id="sendMailResult" class="ajax-result">
+					发送成功。
+					<br>
+					<br>
+					<span class="helper">窗口将在3秒后关闭。</span>
+				</div>
+			</div>
+		</div>
+		<img style="display:none;" src="img/loading_W.gif">
+		<div id="qrcodeWrapper" style="display: none;">
+			<div id="qrcodeContent" class="qrcode-content" title="http://www.luoo.net/">
+				<canvas width="240" height="240" style="display: none;"></canvas>
+				<img style="display: block;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwCAYAAAA+VemSAAANQklEQVR4nO2aQY4sSQhD//0vHbMpqWt6U1RjbAdpS2wDY3i5yn///v072wuhLT26YuwDkYP65oglNzBeCG3p0RVjH4gc1DdHLLmB8UJoS4+uGPtA5KC+OWLJDYwXQlt6dMXYByIH9c0RS25gvBDa0qMrxj4QOahvjlhyA+OF0JYeXTH2gchBfXPEkhsYL4S29OiKsQ9EDuqbI5bcwHghtKVHV4x9IHJQ3xyx/I/mk26ZweGw1R4RxZjDQQHYbIYAHIC/UQA2myEAB+BvFIDNZgjAAfgbBWCzGQJwAP5GAdhshgAcgL9RADabIQAH4G8UgM1mCMAB+BtRAHZYmMNhM+bYcJQVOQB8w10H4C/kMEcADsAB+I9ymCMAB+AA/Ec5zBGAA3AA/qMc5gjAATgA/1EOcwTgAByA/yiHOQJwAA7Af5TDHAE4AAfgI...PoU78wkyAC8AnATnMUfeoXZhJEAD4B2GmOok/9wkyCCMAnADvNUfSpX5hJEAH4BGCnOYo+9QszCUI+R1cOWbvANS2jrPULnfbAWkiOKgALstYvdNoDayE5qgAsyFq/0GkPrIXkqAKwIGv9Qqc9sBaSowrAgqz1C532wFpIjioAC7LWL3TaA2shOaoALMhav9BpD6yF5KgCsCBrbRAIMWZw6LHhI8PSDR8qxC4C8EU9AnBdAfiihTrAxegRgOsKwBct1AEuRo8AXFcAvmihDnAxegTgugLwRQt1gIvRIwDXFYAvWqgDXIweAbiuAHzRQh3gYvQIwHUF4EWFkMPhO3j4JMZh33Iz3TmLb+jDumEZWxY+rQBcVwAOwAHY+Ga6cxbf0Id1wzK2LHxaAbiuAByAA7DxzXTnLL6hD+uGZWxZ+LQCcF0BOAAHYOOb6c5ZfEMf1g3L2LLwaQXgugJwAA7AxjfTnbOi/wDhIMyQDcBPoQAAAABJRU5ErkJggg==">
+			</div>
+		</div>
+		<script>
+			$.luoo.init({
+				root: 'http://www.luoo.net',
+				url_static: 'http://s.luoo.net',
+				res: {
+					"app": {
+						"vol": 1,
+						"essay": 2,
+						"single": 3,
+						"users": 4,
+						"comment": 5,
+						"lyric": 6,
+						"note": 7,
+						"ios": 8,
+						"android": 9,
+						"wp": 10,
+						"event": 11,
+						"livehouse": 12,
+						"app_ad": 13,
+						"musician": 14,
+						"forum": 15,
+						"forum_post": 16,
+						"indie": 17,
+						"indie_album": "18",
+						"indie_song": 19,
+						"message": 20,
+						"video": 21
+					},
+					"uid": "1087357",
+					"sessid": "bkhga3jhg967m2vrlvt4qn7to4"
+				},
+				cfg: {
+					"auto_play": true,
+					"aes": "b6ce159334e155d8"
+				}
+			});
+			$('#txtFeedbackRef').val(document.location.href);
+		</script>
+		<div id="qtip-accountMoreDialog" class="qtip qtip-default qtip-luoo qtip-pos-tc qtip-focus" tracking="false" role="alert" aria-live="polite" aria-atomic="false" aria-describedby="qtip-accountMoreDialog-content" aria-hidden="false" data-qtip-id="accountMoreDialog" style="z-index: 15001; display: block; top: 51.25px; left: 1224.12px;">
+			<div class="qtip-tip" style="background-color: transparent ! important; border: 0px none ! important; width: 11px; height: 11px; line-height: 11px; left: 50%; margin-left: -6px; top: -11px;">
+				<canvas style="background-color: transparent ! important; border: 0px none ! important; width: 11px; height: 11px;" width="11" height="11"></canvas>
+			</div>
+			<div id="qtip-accountMoreDialog-content" class="qtip-content" aria-atomic="true">
+				<div id="accountLinks" class="account-links rounded">
+					<a class="account-link link-uc" rel="nofollow" href="http://www.luoo.net/user/1087357">
+						<span class="icon-account"></span> 我的落网
+					</a>
+					<a class="account-link link-setting" rel="nofollow" href="http://www.luoo.net/user/profile">
+						<span class="icon-setting"></span> 账号设置
+					</a>
+					<a class="account-link link-logout" rel="nofollow" href="http://www.luoo.net/user/logout">
+						<span class="icon-logout"></span> 退出
+					</a>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
