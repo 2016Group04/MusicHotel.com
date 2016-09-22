@@ -200,7 +200,7 @@ $(function() {
 						$("#Registe").text("请输入6-16位密码");
 						$("#Registe").removeClass("Registe").addClass("null");
 						changeImg();
-					}else if(checkAuth(authR)=="错误"){//进行验证码的比较，是不是相等
+					}else if(checkAuth(authR)=="0"){//进行验证码的比较，是不是相等
 						$("#Registe").text("验证码错误");
 						$("#Registe").removeClass("Registe").addClass("null");
 						changeImg();
@@ -212,6 +212,20 @@ $(function() {
 					}else{
 						
 						//发送ajax  验证该昵称是否已被注册
+						//发送ajax  验证该昵称是否已被注册
+						$.post("checkAccount.action",{
+							"account":accountR
+						},function(data,status){
+						
+							alert(data + "1：该昵称已被使用  0：没有使用，可以注册");
+							if(data=="1"){
+								
+								$("#Registe").text("该昵称已存在");
+								$("#Registe").removeClass("Registe").addClass("null");
+							}else{
+								alert("submit");
+							}
+						});
 					}
 				});
 				
@@ -283,11 +297,10 @@ $(function() {
 		    //
 		    function checkAuth(authR){
 		    	
-		    	$.post("CheckAuth",{
-		    		"action":"checkAuth",
+		    	$.post("checkAuth.action",{
 		    		"auth":(""+authR)
 		    	},function(data,status){
-		    		alert(data);
+		    		alert(data+"---0：错误，1：正确");
 		    		return data;
 		    	},"text");
 		    }
