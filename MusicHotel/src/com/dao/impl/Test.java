@@ -1,20 +1,17 @@
 package com.dao.impl;
 
-import java.util.List;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import com.po.User;
+import com.service.UserService;
 
 public class Test {
 
 	public static void main(String[] args) {
 		
 		ApplicationContext context = new FileSystemXmlApplicationContext("WebRoot/WEB-INF/applicationContext.xml");
-		UserDaoImpl userDao = (UserDaoImpl)context.getBean("userDaoImpl");
 		
-		System.out.println(userDao);
 		
 		/*User user = new User();
 		user.setNickname("zyy22");
@@ -29,11 +26,9 @@ public class Test {
 		/*User user = (User)userDao.getUserByUserId(1);
 		System.out.println("getOneUserById" + user);*/
 		
-		String sql = "SELECT * FROM users";
-		List<User> list = userDao.getUserBySql(sql);
+		UserService service = (UserService)context.getBean("userService");
 		
-		for(User user:list){
-			System.out.println("getUserBySql" + user);
-		}
+		int count = service.getUserByNickName("AndrewJoe");
+		System.out.println("count=======" + count);
 	}
 }
