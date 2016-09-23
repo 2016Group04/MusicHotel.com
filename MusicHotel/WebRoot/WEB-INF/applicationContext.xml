@@ -43,4 +43,9 @@
 		<property name="session" ref="sqlSession"/>
 		
 	</bean> 
+	<bean id="musicDaoImpl" class="com.dao.impl.MusicDaoImpl">
+		
+		<property name="session" ref="sqlSession"/>
+		
+	</bean> 
 </beans>

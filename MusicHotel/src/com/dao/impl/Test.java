@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
+import com.po.Music;
 import com.po.User;
 
 public class Test {
@@ -13,8 +14,14 @@ public class Test {
 		
 		ApplicationContext context = new FileSystemXmlApplicationContext("WebRoot/WEB-INF/applicationContext.xml");
 		UserDaoImpl userDao = (UserDaoImpl)context.getBean("userDaoImpl");
-		
 		System.out.println(userDao);
+		
+		
+		MusicDaoImpl musicDao=(MusicDaoImpl)context.getBean("musicDaoImpl");
+		System.out.println(musicDao);
+		
+		
+		Music music=new Music();
 		
 		/*User user = new User();
 		user.setNickname("zyy22");
