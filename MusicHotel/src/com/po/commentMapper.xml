@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 定义sql文件的唯一标示  通过namespace这个标示 找到这个xml文件 -->
+<mapper namespace="com.po.commentMapper">
+	<!--增  -->
+	<insert id="addComment" parameterType="com.po.Comment">
+		
+	</insert>
+	<!-- 删 -->
+	<delete id="deleteCommentByCommentId" parameterType="int">
+		
+	</delete>
+	<!-- 查 最新评论 -->
+	<select id="getCommentByCommentId" parameterType="int" resultType="com.po.User">
+		
+	</select>
+	
+	<select id="getUserBySql" parameterType="java.lang.String" resultType="com.po.User">
+		${value}
+	</select>
+	
+</mapper>
