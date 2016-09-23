@@ -33,7 +33,7 @@
 <!--SqlSessionTemplate 是对SqlSession接口的一个实现 以前使用纯mybatis时
   使用的是DefaultSqlSession这个类
 -->
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" >
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
@@ -56,4 +56,9 @@
 		
 	</bean>
 	
+	<bean id="musicDaoImpl" class="com.dao.impl.MusicDaoImpl">
+		
+		<property name="session" ref="sqlSession"/>
+		
+	</bean> 
 </beans>
