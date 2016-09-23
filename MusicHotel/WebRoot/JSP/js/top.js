@@ -215,17 +215,18 @@ $(function() {
 						//发送ajax  验证该昵称是否已被注册
 						$.post("checkAccount.action",{
 							"account":accountR
-						},function(data,status){
-						
-							alert(data + "1：该昵称已被使用  0：没有使用，可以注册");
+						},function(data){
+							alert(data);
+							alert(data + "    1：该昵称已被使用  0：没有使用，可以注册");
 							if(data=="1"){
 								
 								$("#Registe").text("该昵称已存在");
 								$("#Registe").removeClass("Registe").addClass("null");
 							}else{
 								alert("submit");
+								$("#submitForm").submit();
 							}
-						});
+						},"text");
 					}
 				});
 				

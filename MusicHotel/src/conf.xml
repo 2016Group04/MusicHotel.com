@@ -15,10 +15,4 @@
 		<package name="com.po"/>
 	</typeAliases>
 
-	<mappers>
-		<mapper resource="com/po/userMapper.xml"/>
-		<!-- 评论commentMapper -->
-		<mapper  resource="com/po/commentMapper.xml"/>
-	</mappers>
-	
 </configuration>

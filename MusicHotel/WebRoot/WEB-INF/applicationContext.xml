@@ -8,6 +8,9 @@
 
 	<context:property-placeholder location="classpath:db.properties" />
 
+	<context:component-scan base-package="com.service"/>
+	<context:component-scan base-package="com.dao"/>	
+
 	<!--创建mysql数据源 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
@@ -28,37 +31,13 @@
 		<property name="dataSource" ref="dataSource" />
 		<!-- 指定mybtis总配置文件，订制的environment在spring容器中不在生效 -->
 		<property name="configLocation" value="classpath:conf.xml" />
-
-	</bean>
-<!--SqlSessionTemplate 是对SqlSession接口的一个实现 以前使用纯mybatis时
-  使用的是DefaultSqlSession这个类
--->
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-
-		<constructor-arg index="0" ref="sqlSessionFactory" />
-	</bean>
-
-	<bean id="userDaoImpl" class="com.dao.impl.UserDaoImpl">
-		
-		<property name="session" ref="sqlSession"/>
-		
-	</bean> 
-	
-	<bean id="userService" class="com.service.impl.UserServiceImpl">
-		
-		<property name="dao" ref="userDaoImpl"/>
-		
+		<property name="mapperLocations" value="classpath:com/dao/*.xml"/>
 	</bean>
 	
-	<bean id="userController" class="com.controller.DegisteController">
-		
-		<property name="service" ref="userService"/>
-		
-	</bean>
+	 <!-- 扫描并加载DAO接口 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
 	
-	<bean id="musicDaoImpl" class="com.dao.impl.MusicDaoImpl">
-		
-		<property name="session" ref="sqlSession"/>
-		
-	</bean> 
 </beans>

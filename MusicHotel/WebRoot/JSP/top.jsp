@@ -89,7 +89,7 @@
 							</div>
 
 							<div id="loginMiddle">
-								<form action="#" method="post">
+								<form action="#" method="post" id="loginForm">
 
 									<div id="Email">
 										<label>邮箱</label>
@@ -131,7 +131,7 @@
 							</div>
 
 							<div id="registeMiddle">
-								<form action="#" method="post">
+								<form action="submit.action" method="post" id="submitForm">
 
 									<div id="AccountRegiste">
 										<label class="label1">昵称</label>

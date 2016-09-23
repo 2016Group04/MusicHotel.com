@@ -2,8 +2,10 @@ package com.dao;
 
 import java.util.List;
 
-import com.po.User;
+import org.springframework.stereotype.Repository;
 
+import com.po.User;
+@Repository
 public interface UserDao {
 	
 	//增加一个用户
