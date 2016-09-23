@@ -10,16 +10,16 @@ import com.po.User;
 
 public class UserDaoImpl implements UserDao {
 
-	private SqlSession session = null;
+	private SqlSession session;
 	
-	
-	
-	public SqlSession getSession() {
-		return session;
-	}
 
 	public void setSession(SqlSession session) {
+		System.out.println("使用set方法把session注入到UserDaoImpl对象");
 		this.session = session;
+	}
+	
+	public UserDaoImpl(){
+		System.out.println("创建了一个UserDaoImpl对象");
 	}
 
 	@Override
@@ -27,8 +27,9 @@ public class UserDaoImpl implements UserDao {
 		
 		
 		String statement = "com.po.UserMapper.addUser";
-		int count = session.insert(statement, user);
-		return count;
+		
+			int count = session.insert(statement, user);
+			return count;
 		
 	}
 
@@ -37,8 +38,11 @@ public class UserDaoImpl implements UserDao {
 		
 		String statement = "com.po.UserMapper.deleteUserByUserId";
 		
-		int count = session.delete(statement,userId);
-		return count;
+		
+			int count = session.delete(statement,userId);
+			return count;
+		
+		
 	}
 
 	@Override
@@ -54,8 +58,11 @@ public class UserDaoImpl implements UserDao {
 
 		String statement = "com.po.UserMapper.getUserByUserId";
 		
-		User user = session.selectOne(statement, userId);
-		return user;
+		
+			User user = session.selectOne(statement, userId);
+			return user;
+		
+		
 		
 	}
 
@@ -63,11 +70,13 @@ public class UserDaoImpl implements UserDao {
 	public List<User> getUserBySql(String sql) {
 		
 		List<User> list = new ArrayList<User>();
-		
+		System.out.println("session======"+session);
 		String statement = "com.po.UserMapper.getUserBySql";
-		list = session.selectList(statement, sql);
 		
-		return list;
+			list = session.selectList(statement, sql);
+			return list;
+		
+		
 	}
 
 }

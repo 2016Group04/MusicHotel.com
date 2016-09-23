@@ -43,6 +43,19 @@
 		<property name="session" ref="sqlSession"/>
 		
 	</bean> 
+	
+	<bean id="userService" class="com.service.impl.UserServiceImpl">
+		
+		<property name="dao" ref="userDaoImpl"/>
+		
+	</bean>
+	
+	<bean id="userController" class="com.controller.DegisteController">
+		
+		<property name="service" ref="userService"/>
+		
+	</bean>
+	
 	<bean id="musicDaoImpl" class="com.dao.impl.MusicDaoImpl">
 		
 		<property name="session" ref="sqlSession"/>
