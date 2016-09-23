@@ -10,7 +10,7 @@
 	<delete id="deleteCommentByCommentId" parameterType="int">
 		
 	</delete>
-	
+	<!-- 查 最新评论 -->
 	<select id="getCommentByCommentId" parameterType="int" resultType="com.po.User">
 		
 	</select>
