@@ -162,71 +162,114 @@ $(function() {
 					var emailR = $("#emailRegiste").val();
 					var passwordR = $("#passwordRegiste").val();
 					var authR = $("#authRegiste").val();
-					
+			
 					if(accountR.trim()==""&&emailR.trim()==""&&passwordR.trim()==""&&authR.trim()==""){
 						
 						$("#Registe").text("请完善未填项目");
 						$("#Registe").removeClass("Registe").addClass("null");
 						changeImg();
-					}else if(accountR.trim()==""){
+					}else {
 						
-						$("#Registe").text("请输入昵称");
-						$("#Registe").removeClass("Registe").addClass("null");
-						changeImg();
-					}else if(emailR.trim()==""){
+						if(accountR.trim()==""){
+							
+							$("#Registe").text("请输入昵称");
+							$("#Registe").removeClass("Registe").addClass("null");
+							changeImg();
+						}else {
+							
+							if(emailR.trim()==""){
+							
+							$("#Registe").text("请输入邮箱");
+							$("#Registe").removeClass("Registe").addClass("null");
+							changeImg();
+						}else {
+							if(passwordR.trim()==""){
+							
+							$("#Registe").text("请输入密码");
+							$("#Registe").removeClass("Registe").addClass("null");
+							changeImg();
+						}else {
+							if(authR.trim()==""){
+							
+							$("#Registe").text("请输入验证码");
+							$("#Registe").removeClass("Registe").addClass("null");
+							changeImg();
+						}else {
+							if(!checkName(accountR)){
+							$("#Registe").text("昵称为中英文数字的组合");
+							$("#Registe").removeClass("Registe").addClass("null");
+							changeImg();
+						}else {
+							if(!checkEmail(emailR)){
+							$("#Registe").text("请输入正确的邮箱");
+							$("#Registe").removeClass("Registe").addClass("null");
+							changeImg();
+						}else {
+							if(passwordR.length<6||passwordR.length>16){
+							$("#Registe").text("请输入6-16位密码");
+							$("#Registe").removeClass("Registe").addClass("null");
+							changeImg();
+						}else {
+							
+							$.post("checkAuth.action",{
+					    		"auth":(""+authR)
+					    	},function(data,status){
+					    		alert(data+"---0：错误，1：正确");
+					    		if(data=="0"){
+					    			$("#Registe").text("验证码错误");
+									$("#Registe").removeClass("Registe").addClass("null");
+									changeImg();
+									//换一个验证码
+					    		}else{
+					    			if(!$("#agree").is(":checked")){
+										$("#Registe").text("请同意该网站的协议");
+										$("#Registe").removeClass("Registe").addClass("null");
+										changeImg();
+									}else{
+										
+										//发送ajax  验证该昵称是否已被注册
+										//发送ajax  验证该昵称是否已被注册
+										$.post("checkAccount.action",{
+											"account":accountR
+										},function(data){
+											alert(data);
+											alert(data + "    1：该昵称已被使用  0：没有使用，可以注册");
+											if(data=="1"){
+												
+												$("#Registe").text("该昵称已存在");
+												$("#Registe").removeClass("Registe").addClass("null");
+											}else{
+												$("#Registe").text("注册成功");
+												$("#Registe").removeClass("Registe").addClass("null");
+												
+												//发送ajax进行注册
+												$.post("submit.action",{
+													"nickname":accountR,
+													"email":emailR,
+													"password":passwordR
+												},function(data){
+													
+													
+													$("#loginAngRegiste").hide();
+													$("#account").text(accountR);
+													$("#loginAfter").show();
+												});
+											}
+										},"text");
+									}
+									
+					    			
+					    		}
+					    	},"text");
+							
 						
-						$("#Registe").text("请输入邮箱");
-						$("#Registe").removeClass("Registe").addClass("null");
-						changeImg();
-					}else if(passwordR.trim()==""){
-						
-						$("#Registe").text("请输入密码");
-						$("#Registe").removeClass("Registe").addClass("null");
-						changeImg();
-					}else if(authR.trim()==""){
-						
-						$("#Registe").text("请输入验证码");
-						$("#Registe").removeClass("Registe").addClass("null");
-						changeImg();
-					}else if(!checkName(accountR)){
-						$("#Registe").text("昵称为中英文数字的组合");
-						$("#Registe").removeClass("Registe").addClass("null");
-						changeImg();
-					}else if(!checkEmail(emailR)){
-						$("#Registe").text("请输入正确的邮箱");
-						$("#Registe").removeClass("Registe").addClass("null");
-						changeImg();
-					}else if(passwordR.length<6||passwordR>16){
-						$("#Registe").text("请输入6-16位密码");
-						$("#Registe").removeClass("Registe").addClass("null");
-						changeImg();
-					}else if(checkAuth(authR)=="0"){//进行验证码的比较，是不是相等
-						$("#Registe").text("验证码错误");
-						$("#Registe").removeClass("Registe").addClass("null");
-						changeImg();
-						//换一个验证码
-					}else if(!$("#agree").is(":checked")){
-						$("#Registe").text("请同意该网站的协议");
-						$("#Registe").removeClass("Registe").addClass("null");
-						changeImg();
-					}else{
-						
-						//发送ajax  验证该昵称是否已被注册
-						//发送ajax  验证该昵称是否已被注册
-						$.post("checkAccount.action",{
-							"account":accountR
-						},function(data){
-							alert(data);
-							alert(data + "    1：该昵称已被使用  0：没有使用，可以注册");
-							if(data=="1"){
-								
-								$("#Registe").text("该昵称已存在");
-								$("#Registe").removeClass("Registe").addClass("null");
-							}else{
-								alert("submit");
-								$("#submitForm").submit();
-							}
-						},"text");
+						}
+						}
+						}
+						}
+						}
+						}
+						}
 					}
 				});
 				

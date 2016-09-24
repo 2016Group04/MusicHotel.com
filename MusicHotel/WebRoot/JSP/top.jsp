@@ -42,24 +42,19 @@
 				</div>
 			</div>
 			<!-- 登录上之后出现的 -->
-			<div id="loginAfter"  style="display:none">
+			<div id="loginAfter" style="display:none">
 				<div id="message"></div>
 				<div id="messageDetail" style="display:none">
 					<div class="message">
-						这是一个系统消息
+						系统通知：请前去邮箱进行验证
 					</div>
-					<div class="message">
-						这是一个系统消息
-					</div>
-					<div class="message">
-						这是一个系统消息
-					</div>
+				
 					<div id="bottom">
 						查看全部消息
 					</div>
 				</div>
 				<div id="information">
-					<img src="img/autho.png" width="16px" height="16px" id="touXiang"/>
+					<img src="img/autho.jpg" width="16px" height="16px" id="touXiang"/>
 					<label id="account">这是昵称</label>
 					
 				</div>
@@ -73,6 +68,7 @@
 					</div>
 				</div>
 			</div>
+			
 			
 			<div id="loginAngRegiste" class="searchAfter">
 				<span id="longinAregiste">注册/登录</span>
@@ -131,7 +127,7 @@
 							</div>
 
 							<div id="registeMiddle">
-								<form action="submit.action" method="post" id="submitForm">
+								<form action="submit.action" method="post" id="submitForm" target="after">
 
 									<div id="AccountRegiste">
 										<label class="label1">昵称</label>
@@ -178,6 +174,9 @@
 		</div>
 		<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/top.js" type="text/javascript" charset="utf-8"></script>
+		
+		
+		
 		
 	</body>
 
