@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.po.articleMapper">
+
+	<!--根据id查一个-->
+	<select id="getArticleByArticleId" parameterType="int" resultType="com.po.Article">
+		SELECT * FROM Article WHERE Article_id=#{articleId}
+	</select>
+	
+	<!--根据sqly语句查-->
+	<select id="getArticleBySql" parameterType="java.lang.String" resultType="com.po.Article">
+		${value}
+	</select>
+</mapper>
