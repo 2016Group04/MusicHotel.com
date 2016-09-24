@@ -68,7 +68,7 @@
 						
 					<div id="cc">
 						<a><label class="myLabel" id="my"></label>我的落网</a>
-						<a><label class="myLabel" id="setting"></label>账号设置</a>
+						<a herf="getMyInfo.action?userId=1"><label class="myLabel" id="setting"></label>账号设置</a>
 						<a><label class="myLabel" id="logout"></label>退出</a>
 					</div>
 				</div>
