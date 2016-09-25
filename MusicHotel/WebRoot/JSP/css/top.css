@@ -464,3 +464,9 @@ img#touXiang{
 iframe{
 	margin-left:300px;
 }
+
+/* 退出的a标签样式 */
+#cc a{
+	color:#7D7D7D;
+	underline:none;
+}

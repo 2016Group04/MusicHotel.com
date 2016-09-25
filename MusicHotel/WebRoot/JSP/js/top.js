@@ -1,5 +1,6 @@
 ﻿;
 $(function() {
+	
 				//得到所有的输入框
 				var inputR = $("#registeMiddle input");
 				var inputL = $("#login input");
@@ -125,6 +126,7 @@ $(function() {
 					
 					var email = $("#email").val();
 					var passwordV = $("#password").val();
+					var auto = $("#autoLogin").is(":checked");
 					
 					if(email.trim()==""&&passwordV.trim()==""){
 						
@@ -158,11 +160,13 @@ $(function() {
 									$("#Submit").removeClass("Submit").addClass("null");
 								}else{
 									
+									
 									$("#Submit").text("登录成功");
 									$("#Submit").removeClass("Submit").addClass("null");
 									$.post("login.action",{
 										"email":email,
-										"password":passwordV
+										"password":passwordV,
+										"auto":auto
 									},function(data){
 										
 							             var json = eval(data);  
@@ -170,6 +174,17 @@ $(function() {
 							             $("#touXiang").src = "img/profile/" + json.profileImg;
 							             $("#loginAngRegiste").hide();
 										 $("#loginAfter").show();
+										 
+										 //接收发过来的消息，进行填充
+										 var div = $("#bottom");
+											//"<div class='message'>系统通知："
+											//请前去邮箱进行验证
+											//"</div>"
+											var replaceS = "<div class='message'>系统通知：";
+											for(var i=0;i<data[2].length;i++){
+												replaceS = replaceS + data[2][i].title + "</div>";
+											}
+											div.before($(replaceS));
 									},"json");
 								}
 							});
@@ -315,11 +330,21 @@ $(function() {
 															"password":passwordR
 														},function(data){
 															
-															
+															//注册成功
 															$("#loginAngRegiste").hide();
 															$("#account").text(accountR);
 															$("#loginAfter").show();
-											
+															$("#touXiang").src = "img/profile/default.jpg";
+															
+															var div = $("#bottom");
+															//"<div class='message'>系统通知："
+															//请前去邮箱进行验证
+															//"</div>"
+															var replaceS = "<div class='message'>系统通知：";
+															for(var i=0;i<data.length;i++){
+																replaceS = replaceS + data[i].title + "</div>";
+															}
+															div.before($(replaceS));
 														});
 								    				}
 								    			});
@@ -420,3 +445,5 @@ $(function() {
 		    		return data;
 		    	},"text");
 		    }
+		    
+		   

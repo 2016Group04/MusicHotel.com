@@ -1,14 +1,17 @@
 package com.controller;
-
+//对用户的登录和注册进行处理的控制器
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,18 +21,31 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.google.gson.Gson;
+import com.po.Msg;
+import com.po.Notification;
 import com.po.User;
 import com.service.impl.JavaMailServiceImpl;
+import com.service.impl.MsgServiceImpl;
+import com.service.impl.NotificationServiceImpl;
 import com.service.impl.UserServiceImpl;
 import com.util.MD5;
 
 @Controller
+@RequestMapping("/JSP")
 public class RegisteController{
 	
 	@Autowired
 	private UserServiceImpl service;
 	@Autowired
 	private JavaMailServiceImpl mailService;
+	
+	@Autowired
+	private NotificationServiceImpl notificationService;
+	
+	@Autowired
+	private MsgServiceImpl msgService;
+	
+	private static long expires = 24 * 60 * 60;//时间是：一天
 	
 	/**
 	 * 功能：验证用户注册时输入的昵称是否存在
@@ -38,7 +54,7 @@ public class RegisteController{
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	@RequestMapping("/JSP/checkAccount.action")
+	@RequestMapping("/checkAccount.action")
 	public void checkAccount(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -49,14 +65,14 @@ public class RegisteController{
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 		
-		int count = service.getUserByNickName(account);//1:找到该用户   0：没有找到该用户可以注册
+		User user = service.getUserByNickName(account);//1:找到该用户   0：没有找到该用户可以注册
 		
 		
 		PrintWriter out = response.getWriter();
-		System.out.println("count================" + count);
-		if(count==1){
+	
+		if(user!=null){
 			out.write("1");
-		}else if(count==0){
+		}else if(user==null){
 			out.write("0");
 		}
 		
@@ -71,7 +87,7 @@ public class RegisteController{
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	@RequestMapping("/JSP/checkEmail.action")
+	@RequestMapping("/checkEmail.action")
 	public void checkEmail(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -81,13 +97,13 @@ public class RegisteController{
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 		
-		int count = service.getUserByEmail(email);//1:找到该用户   0：没有找到该用户可以注册
+		User user = service.getUserByEmail(email);//1:找到该用户   0：没有找到该用户可以注册
 		
 		
 		PrintWriter out = response.getWriter();
-		if(count==1){
+		if(user!=null){
 			out.write("1");
-		}else if(count==0){
+		}else if(user==null){
 			out.write("0");
 		}
 		
@@ -101,7 +117,7 @@ public class RegisteController{
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	@RequestMapping("/JSP/submit.action")
+	@RequestMapping("/submit.action")
 	public void register(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -123,6 +139,7 @@ public class RegisteController{
 		//注册成功
 		int count = service.addUser(user);
 		
+		user = service.getUserByNickName(nickname);
 		HttpSession session = request.getSession(true);
 		//将当前用户放在session中
 		session.setAttribute("user", user);
@@ -163,10 +180,16 @@ public class RegisteController{
 		
 		if(count==1){
 			
-			//添加成功
+			//注册成功
+			//返回系统通知
+			List<Notification> list = notificationService.getAllNotification();
+			Gson gson = new Gson();
+			String json = gson.toJson(list);
+			System.out.println(json);
 			PrintWriter out = response.getWriter();
-			out.write("1");
+			out.write(json);
 			out.flush();
+			
 			
 		}
 		
@@ -179,7 +202,7 @@ public class RegisteController{
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	@RequestMapping("JSP/checkLogin.action")
+	@RequestMapping("/checkLogin.action")
 	public void checkLogin(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -209,7 +232,7 @@ public class RegisteController{
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	@RequestMapping("JSP/login.action")
+	@RequestMapping("/login.action")
 	public void login(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -217,6 +240,7 @@ public class RegisteController{
 		
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		String auto = request.getParameter("auto");
 		
 		String passwordMD5 = MD5.getHash(password);
 		
@@ -225,6 +249,47 @@ public class RegisteController{
 		String nickname = user.getNickname();
 		String profileImg = user.getProfileImg();
 		
+		//实现下次的自动登陆
+		if("true".equals(auto)){
+			
+			System.out.println("in autoLogin");
+			
+			// 声明cookie  
+            Cookie autoCookie = null;  
+            // 获取所有cookie  
+            Cookie[] cookies = request.getCookies();  
+            boolean hasAutologinCookie = false;
+            for(Cookie cookie:cookies){
+            	
+            	//判断是否存在自动登陆的记录
+            	if("autoLogin".equals(cookie.getName())){
+            		
+            		hasAutologinCookie = true;
+            		autoCookie = cookie;
+            		
+            		//cookie存在，需要重新进行赋值
+            		long time = (System.currentTimeMillis() + expires * 7);
+            		//cookie拼接的value值
+            		
+            		String cookieValue = email + ":" +time + ":" + MD5.getHash(email + ":" + time + ":" + passwordMD5);
+            		
+            		autoCookie.setValue(cookieValue);
+            	}
+            }
+            
+            if(!hasAutologinCookie){
+            	
+            	long time = System.currentTimeMillis() + expires * 7;
+            	
+            	String cookieValue = email + ":" + time + ":" + passwordMD5;
+            }
+            
+            autoCookie.setMaxAge((int)expires);
+            autoCookie.setPath("/MusicHotel/");
+            response.addCookie(autoCookie);
+            
+		}
+		
 		HttpSession session = request.getSession(true);
 		//将当前用户放在session中
 		session.setAttribute("user", user);
@@ -232,11 +297,18 @@ public class RegisteController{
 		Gson gson = new Gson();
 		
 		
-		Map<String,String> map = new HashMap<String,String>();
+		Map<String,Object> map = new LinkedHashMap<String,Object>();
 		
 		map.put("nickname", nickname);
 		map.put("profileImg", profileImg);
 		
+		//得到所有的系统通知
+		List<Notification> listNotification = notificationService.getAllNotification();
+		
+		List<Msg> listMsg = msgService.getAllMsg(user.getUserId());
+		
+		map.put("notification", listNotification);
+		map.put("msg", listMsg);
 		
 		//得到相应的用户消息，放到map中，然后转换成json
 		String s = gson.toJson(map);
@@ -254,7 +326,7 @@ public class RegisteController{
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	@RequestMapping("JSP/logout.action")
+	@RequestMapping("/logout.action")
 	public void logout(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		

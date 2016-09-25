@@ -1,7 +1,5 @@
 package com.service;
 
-import java.util.List;
-
 import com.po.User;
 
 public interface UserService {
@@ -20,10 +18,10 @@ public interface UserService {
 	public User getUserByUserId(int userId);
 	
 	//使用用户的昵称来查找是否存在该用户
-	public int getUserByNickName(String account);
+	public User getUserByNickName(String account);
 	
 	//使用用户的邮箱来查找是否存在该用户
-	public int getUserByEmail(String email);
+	public User getUserByEmail(String email);
 	
 	//用户登录的时候验证用户的邮箱和密码
 	public User checkLogin(String email,String password);

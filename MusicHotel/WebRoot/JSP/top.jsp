@@ -46,7 +46,7 @@
 				<div id="message"></div>
 				<div id="messageDetail" style="display:none">
 					<div class="message">
-						系统通知：请前去邮箱进行验证
+						期刊 
 					</div>
 				
 					<div id="bottom">
@@ -89,12 +89,12 @@
 
 									<div id="Email">
 										<label>邮箱</label>
-										<input type="text" id="email" />
+										<input type="text" id="email" title="请填写此字段"/>
 									</div>
 
 									<div id="Password">
 										<label>密码</label>
-										<input type="password" id="password" />
+										<input type="password" id="password"  title="请填写此字段"/>
 									</div>
 
 									<div id="tijiao">
@@ -174,9 +174,6 @@
 		</div>
 		<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/top.js" type="text/javascript" charset="utf-8"></script>
-		
-		
-		
 		
 	</body>
 
