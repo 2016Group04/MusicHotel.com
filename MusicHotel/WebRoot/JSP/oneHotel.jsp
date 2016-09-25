@@ -1,0 +1,317 @@
+<%@ page language="java" import="java.util.*,com.po.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+
+<title>期刊首页阿卡贝拉</title>
+<link rel="stylesheet" type="text/css" href="css/kaitoujiewei.css" />
+<link rel="stylesheet" href="css/stylesheets/style.css">
+
+
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+
+
+</head>
+
+<body>
+
+	<div class="container-all">
+		<div class="container container-left">
+			<!--返回期刊首页-->
+			<div>
+				<div class="vol vol-meta">
+					<a class="nav-block"> <i class="icon-block">&lt;</i> 返回期刊首页
+					</a> <a class="item">#流行</a> <a class="item">#原声</a>
+				</div>
+				<!--
+            	作者：1181613079@qq.com
+            	时间：2016-09-17
+            	描述：期刊首页图片简介开始
+            -->
+				<div class="name">
+					<span class="number"> 685 </span> <span class="title"> 阿卡贝拉
+					</span>
+				</div>
+				<div class="wrapper">
+					<img src="img/54ad6b08d34be.jpg" alt="阿卡贝拉" class="cover"> <a
+						href="" class="nav-prev" title="前一期">&nbsp;</a> <a href=""
+						class="nav-next" title="后一期">&nbsp;</a>
+				</div>
+				<div class="desc">
+					本期音乐为Acapella（无伴奏合唱）音乐专题。这种音乐源自中世纪的教会音乐，当时的教会音乐只以人声清唱，并不应用乐器。<br>
+					<br>
+					虽然Acapella的演唱者们技艺超人，但是目前世面上的绝大部分Acapella作品大多以翻唱为主，这未免是一种缺憾。本期最后一首虽然是清唱，但非Acapella风格。另外这期音乐专题总让人想到林嗣环写的《口技》：
+					<br> <br>
+					京中有善口技者。会宾客大宴，于厅事之东北角，施八尺屏障，口技人坐屏障中，一桌、一椅、一扇、一抚尺而已。众宾团坐。少顷，但闻屏障中抚尺二下，满堂寂然，无敢哗者。
+					<br>
+					遥遥闻深巷中犬吠，便有妇人惊觉欠伸，摇其夫语猥亵事，夫呓语，初不甚应，妇摇之不止，则二人语渐间杂，床又从中戛戛。既而儿醒，大啼。夫令妇抚儿乳，儿含乳啼，妇拍而呜之。夫起溺，妇亦抱儿起溺，床上又一大儿醒，狺狺不止。当是时，妇手拍儿声，口中呜声，儿含乳啼声，大儿初醒声，床声，夫叱大儿声，溺瓶中声，溺桶中声，一齐凑发，众妙毕备。满座宾客无不伸颈，侧目，微笑，嘿叹，以为妙绝也。
+					<br>
+					既而夫上床寝，妇又呼大儿溺，毕，都上床寝。小儿亦渐欲睡。夫茀声起，妇拍儿亦渐拍渐止。微闻有鼠作作索索，盆器倾侧，妇梦中咳嗽之声。宾客意少舒，稍稍正坐。
+					<br>
+					忽一人大呼：“火起！”夫起大呼，妇亦起大呼。两儿齐哭。俄而百千人大呼，百千儿哭，百千狗吠。中间力拉崩倒之声，火爆声，呼呼风声，百千齐作；又夹百千求救声，曳屋许许声，抢夺声，泼水声。凡所应有，无所不有。虽人有百手，手有百指，不能指其一端；人有百口，口有百舌，不能名其一处也。于是宾客无不变色离席，奋袖出臂，两股战战，几欲先走。
+					<br> 而忽然抚尺一下，群响毕绝。撤屏视之，一人、一桌、一椅、一扇、一抚尺如故。
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="container container-right">
+
+			<div class="clearfix vol-meta">
+
+				<img src="img/u50001445339175.png" alt="落在低处"
+					class="author-avatar rounded"> <a class="vol-author" href=""
+					target="_blank">落在低处</a> <span class="separator fleft">・</span> <span
+					class="vol-date">2015-01-08</span> <a href="javascript:;"
+					class="btn-action-like icon-fav" title="收藏"></a> <a
+					href="javascript:;" class="icon-share btn-action-share"
+					rel="nofollow"> </a>
+
+			</div>
+			<!--期刊首页图片简介结束-->
+			<!--音乐播放器开始-->
+			<div class="kePublic">
+				<!--效果html开始-->
+				<!--<div id="background"></div>-->
+				<div id="player">
+					<div class="cover"></div>
+					<div class="ctrl">
+						<div class="tag">
+							<strong>Title</strong> <span class="artist">Artist</span> <span
+								class="album">Album</span>
+						</div>
+						<div class="control">
+							<div class="left">
+								<div class="rewind icon"></div>
+								<div class="playback icon"></div>
+								<div class="fastforward icon"></div>
+							</div>
+							<div class="volume right">
+								<div class="mute icon left"></div>
+								<div class="slider left">
+									<div class="pace"></div>
+								</div>
+							</div>
+						</div>
+						<div class="progress">
+							<div class="slider">
+								<div class="loaded"></div>
+								<div class="pace"></div>
+							</div>
+							<div class="timer left">0:00</div>
+							<div class="right">
+								<div class="repeat icon"></div>
+								<div class="shuffle icon"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<ul id="playlist"></ul>
+
+				<!--效果html结束-->
+			</div>
+
+			<!--音乐播放器结束-->
+			<!--
+	作者：1181613079@qq.com
+	时间：2016-09-17
+	描述：增加评论
+-->
+			<div class=comment-wrwrapper>
+				<h3 class="volcount">
+					评论<small id="volcount">999</small>
+				</h3>
+				<div class="comment-editor">
+					<a class="avatar-wrapper"> <img src="img/avatar.gif" alt=""
+						class="avatar">
+
+					</a>
+
+					<div class="editor-wrapper">
+						<form id="commentform" action="addComment.action" method="post">
+							<input type="hidden" name="topicType" value="hotel" /> <input
+								type="hidden" name="topicId" value="1" /> <input type="hidden"
+								name="fromUid" value="1" />
+
+							<div class="from-editor">
+								<textarea name="content"></textarea>
+							</div>
+							<div class="toolbar">
+								<div class="sns-sync">
+									同步到 <a href="" class="sns-item"> <span
+										class="icon-share-weibo"></span> <input type="hidden"
+										name="sync[weibo]" value="0" class="">
+									</a> <a href="" rel="nofollow" class="sns-item"> <span
+										class="icon-share-douban"></span> <input type="hidden"
+										name="sync[douban]" value="0" class="">
+									</a> <a href="" rel="nofollow" class="sns-item"> <span
+										class="icon-tweibo"></span> <input type="hidden"
+										name="sync[tweibo]" value="0" class="">
+									</a>
+								</div>
+								<input type="submit"
+									class="btn btn-positive btn-not-ready rounded"
+									id="commentSubmit" value="发布" />
+							</div>
+						</form>
+					</div>
+				</div>
+				<!--
+	作者：1181613079@qq.com
+	时间：2016-09-17
+	描述：评论列表开始
+-->
+				<div class="comment-sort">
+					<a class="curt-sort" id="commentSort" href=""> <span
+						id="commentSortText">最新评论</span> <span id="icon-sort-menu"
+						class="icon-sort-menu">▼</span>
+
+					</a>
+
+					<div class="sort-menu" id="commentSortMenu" style="display: none;">
+						<a class="comment-sort-item" href="">最新评论</a> <a
+							class="comment-sort-item" href="">热门评论</a>
+					</div>
+
+				</div>
+				<div class="comment-list">
+					<div id="commentItems">
+						<!--
+    	作者：1181613079@qq.com
+    	时间：2016-09-17
+    	描述：单个个人评论列表开始
+    -->
+						<c:forEach items="${list}" var="comment">
+							<div class="item">
+								<a class="avatar-wrapper"> <img src="img/avatar.gif"
+									alt="${comment.fromUid}" class="avatar" />
+								</a>
+								<div class="item-wrapper">
+									<div class="helper">
+										<a href="" class="username" target="_blank">${comment.fromUid}</a>
+										<div class="more">
+											<span class="icon-more"> ▼ <span class="more-menu"
+												style="display: none;"> <a href="javascript:void(0);"
+													class="comment-more-item btn-report" rel="nofollow"> <span
+														class="icon-report"></span> <span class="report-status">
+															举报</span>
+												</a>
+											</span>
+											</span>
+
+										</div>
+									</div>
+									<div class="comment-ct">
+										<p class="the-comment">${comment.content}</p>
+
+									</div>
+									<div class="helper clear-fix">
+										${comment.commentDate}<a class="btn-vote"> <i class="icon-vote"></i>
+											<span> 赞 </span>
+
+										</a> <a href="" class="btn-replay"> <span id=""
+											class="icon-replay"> </span> 回复
+										</a>
+
+									</div>
+									<div class="sub-comment" style="display: none;">
+										<span class="arrows"></span>
+
+										<form action="" class="editor-wrapper hide form-comment-at"
+											style="border: 0px;">
+											<div class="editor">
+												<textarea name="content" class="editor-comment-at"></textarea>
+											</div>
+
+											<div class="toolbar clearfix">
+												<div class="btn-group">
+													<a href="#" class="btn-link btn-action-cancel">取消</a>
+													<button
+														class="btn btn-positive btn-not-ready rounded btn-at-comment-submit">评论</button>
+												</div>
+											</div>
+
+										</form>
+										
+
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+						
+						
+						<!-- 重复三个div个人评论列表结束 -->
+					</div>
+					<div class="paginator" id="paginator">
+						<a href="" class="previous disabled" rel="nofollow">上一页</a> <a
+							href="" class="page actived" rel="nofollow">1</a> <a href=""
+							class="page" rel="nofollow">2</a> <a href="" class="page"
+							rel="nofollow">3</a> <a href="" class="page" rel="nofollow">4</a>
+						<a href="" class="page" rel="nofollow">5</a> <span class="break">...</span>
+						<a class="page" rel="nofollow">43</a> <a href="" class="next"
+							rel="nofollow">下一页</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/jquery-3.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery-1.7.2.min.js"></script>
+	<script src="js/jquery-ui-1.8.17.custom.min.js"></script>
+	<script src="js/script.js"></script>
+	<script type="text/javascript">
+		$(function() {
+
+			/*图片的两个箭头的显示和隐藏*/
+			$("div.wrapper").mouseover(function() {
+				$("img.cover~a").css("display", "inline");
+			});
+			$("div.wrapper").mouseout(function() {
+				$("img.cover~a").css("display", "none");
+			});
+			/*最新评论和最热评论*/
+
+			var $commentSortMenu = $("div.comment-sort");
+
+			$commentSortMenu.toggle(function() {
+				$("#icon-sort-menu").text("▲");
+
+				$("#commentSortMenu").show();
+
+			}, function() {
+				$("#icon-sort-menu").text("▼");
+
+				$("#commentSortMenu").hide();
+
+			});
+			/*回复显示框*/
+
+			$("a.btn-replay").toggle(function() {
+				$(this).parent("div").next().show();
+			}, function() {
+				//$("div.sub-comment").hide();
+				$(this).parent("div").next().hide();
+			});
+			/*举报框的显示和隐藏*/
+
+			$("span.icon-more").mouseover(function() {
+				$(this).children("span").show();
+			});
+			$("span.icon-more").mouseout(function() {
+				$(this).children("span").hide();
+			});
+			/*显示当前发布时间*/
+
+		});
+	</script>
+</body>
+</html>
