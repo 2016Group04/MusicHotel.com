@@ -1,0 +1,189 @@
+*{
+	margin: 0px;
+}
+
+input{
+	outline: none;
+}
+
+/*整个大的div*/
+#hotelMiddle{
+	width: 710px;
+	margin: 20px auto;
+}
+/*hotel风格*/
+.typeH{
+	float: right;
+	margin-right: 20px;
+	color: #7D7D7D;
+	font: 13px Verdana, 微软雅黑, 'Microsoft YaHei', Helvetica, Arial;
+	cursor: pointer;
+}
+
+.clear{
+	clear: both;
+}
+
+/*hotel的编号和标题*/
+#titleH{
+	margin-top: 30px;
+}
+
+#no{
+	display: inline-block;
+	border-radius: 50%;
+	background-color: #DD5862;
+	color: white;
+	text-align: center;
+	width: 65px;
+	height: 65px;
+	font: 400 18px Verdana, 微软雅黑, 'Microsoft YaHei', Helvetica, Arial;
+}
+
+.noo{
+	display: inline-block;
+	width: 65px;
+	line-height: 65px;
+}
+
+.title{
+	height: 65px;
+	margin-left: 20px;
+	height: 65px;
+	display: inline;
+	font: 400 30px Verdana, 微软雅黑, 'Microsoft YaHei', Helvetica, Arial;
+	line-height: 65px;
+}
+/*剩下的部分*/
+#remain{
+	width: 625px;
+	margin-left: 85px;
+	margin-top: 30px;
+}
+
+/*文章部分*/
+#article{
+	margin-top: 30px;
+	color: #2D2D2D;
+	font: 13px Verdana, 微软雅黑, 'Microsoft YaHei', Helvetica, Arial;
+}
+
+/*上传歌曲*/
+#uploadButton{
+	margin-top: 20px;
+}
+
+#upload{
+	width: 100px;
+	height: 30px;
+	background-color: #2C2E32;
+	opacity: 0.7;
+	border-radius: 5px;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+}
+#songs{
+	margin-top: 30px;
+}
+
+/*歌曲信息部分*/
+table{
+	border-collapse: collapse;	
+	table-layout: fixed;
+}
+
+table td{
+	
+	font: 13px Verdana, 微软雅黑, 'Microsoft YaHei', Helvetica, Arial;
+}
+
+table th,table td{
+	white-space: nowrap;  
+    overflow: hidden;        
+    text-overflow: ellipsis;
+	height: 30px;
+	line-height: 20px;
+	width: 150px;
+	text-align: center;
+}
+
+table th{
+	background-color: #807D7D;
+	color: whitesmoke;
+	opacity: 0.3;
+	font: 15px Verdana, 微软雅黑, 'Microsoft YaHei', Helvetica, Arial;
+}
+
+td span.span1,td span.span2{
+	margin-top: 4px;
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background: url(../img/buttons.png) no-repeat;
+}
+
+td span.span1{
+	background-position:0px  -20px;
+	cursor: pointer;
+}
+
+td span.span2{
+	margin-left: 4px;
+	background-position:-50px  -100px;
+	cursor: pointer;
+}
+
+.songName{
+	color: #AB014C;
+}
+
+.otherTd{
+	color: #7D7D7D;
+}
+
+.coverSong img{
+	width: 135px;
+	height: 135px;
+	border-radius: 5px;
+}
+
+.details{
+	border: 1px gainsboro solid;
+	border-radius: 3px;
+	width: 620px;
+	height: 180px;
+}
+
+.coverSong{
+	width: 280px;
+	margin-top: 20px;
+}
+
+.lyric{
+	width: 280px;
+}
+
+.lyric>span{
+	display: inline-block;
+	width: 75px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	background-color: #DD5862;
+	color: #fff;
+	font: 13px Verdana, 微软雅黑, 'Microsoft YaHei', Helvetica, Arial;
+	border-radius: 5px;
+	position: relative;
+	top: -60px;
+	cursor: pointer;
+}
+
+.lyric>span>a{
+	position: relative;
+	top: 5px;
+}
+
+.coverSong,.lyric{
+	display: inline-block;
+}

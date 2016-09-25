@@ -2,24 +2,16 @@ package com.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.dao.UserDao;
-import com.dao.impl.UserDaoImpl;
 import com.po.User;
 import com.service.UserService;
-
+@Service
 public class UserServiceImpl implements UserService{
-
-	private UserDaoImpl dao;
-
-
-	public UserServiceImpl(){
-		System.out.println("创建了一个UserServiceImpl对象");
-	}
-
-	public void setDao(UserDaoImpl dao) {
-		this.dao = dao;
-		System.out.println(dao);
-	}
+	@Autowired
+	private UserDao dao;
 
 	/**
 	 * 功能：添加一个用户，完成用户的注册
