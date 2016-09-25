@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	
+	<properties resource="db.properties"/>
 	 <settings>
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 		 <!--打开延迟加载的开关  -->
@@ -15,10 +15,5 @@
 		<package name="com.po"/>
 	</typeAliases>
 
-	<mappers>
-		<mapper resource="com/po/userMapper.xml"/>
-		<!-- 评论commentMapper -->
-		<mapper  resource="com/po/commentMapper.xml"/>
-	</mappers>
 	
 </configuration>
