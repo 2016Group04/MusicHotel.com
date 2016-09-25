@@ -32,7 +32,7 @@
 		
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:SpringMVC.xml</param-value>
+			<param-value>classpath:spring/SpringMVC.xml</param-value>
 		</init-param>
 	</servlet>
 	
@@ -40,4 +40,10 @@
 		<servlet-name>springMVC</servlet-name>
 		<url-pattern>*.action</url-pattern>
 	</servlet-mapping>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/applicationContext.xml</param-value>
+	</context-param>
+	
 </web-app>
