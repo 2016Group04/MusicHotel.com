@@ -7,8 +7,8 @@
     <servlet-name>RandomCodeServlet</servlet-name>
     <servlet-class>com.servlet.RandomCodeServlet</servlet-class>
   </servlet>
-	
-
+	    
+      
 
   <servlet-mapping>
     <servlet-name>RandomCodeServlet</servlet-name>

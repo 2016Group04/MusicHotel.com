@@ -4,20 +4,14 @@
 <mapper namespace="com.po.musicMapper">
 	
 	<insert id="addMusic" parameterType="com.po.Music">
-		INSERT INTO music(music_id,title,cover_img,artist,path,lyrics,size,time_length) VALUE(NULL,#{titile},#{coverImg},#{artist},#{path},#{lyrics},#{size},#{timeLength});
+		INSERT INTO music(music_id,titile,cover_img,artist,path,lyrics,size,time_length) VALUE(NULL,#{titile},#{coverImg},#{artist},#{path},#{lyrics},#{size},#{timeLength});
 	</insert>
 	
 	<delete id="deleteMusicByMusicId" parameterType="int">
 		DELETE FROM music WHERE music_id=#{musicId}
 	</delete>
-	<update id="updateMusic" parameterType="Music">
-		update music set title=#{title},cover_img=#{coverImg},artist=#{artist},path=#{path},lyrics=#{lyrics},size=#{size},time_length=#{timeLength} where music_id=#{musicId}
-	</update>
-	<select id="getMusicByMusicId" parameterType="int" resultType="com.po.Music">
-		SELECT * FROM music WHERE music_id=#{musicId}
-	</select>
 	
-	<select id="getMusicByHotelId" parameterType="int" resultType="com.po.Music">
+	<select id="getMusicByMusicId" parameterType="int" resultType="com.po.Music">
 		SELECT * FROM music WHERE music_id=#{musicId}
 	</select>
 	

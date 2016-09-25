@@ -1,11 +1,12 @@
+<%@ page language="java" import="java.util.*,com.po.Article" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>是怦然心动还是刻骨铭心？</title>
-		<link rel="stylesheet" type="text/css" href="css/kaitoujiewei.css" />
-		<link rel="stylesheet" href="css/stylesheets/style.css">
-		<link rel="stylesheet" type="text/css" href="css/top.css"/>
+		<link rel="stylesheet" type="text/css" href="../../html/css/kaitoujiewei.css" />
+		<link rel="stylesheet" href="../../html/css/stylesheets/style.css">
+		<link rel="stylesheet" type="text/css" href="../../html/css/top.css"/>
 		<style type="text/css">
 
 			* {
@@ -49,7 +50,7 @@
 				height: 20px;
 				line-height: 1;
 				vertical-align: middle;
-				background-image: url(img/icon-common.png);
+				background-image: url(../img/icon-common.png);
 				background-position: top left;
 				background-repeat: no-repeat;
 				height: 12px;
@@ -105,7 +106,7 @@
 			    display: inline-block;
 			    line-height: 1;
 			    vertical-align: middle;
-			    background-image: url(img/icon-player.png);
+			    background-image: url(../img/icon-player.png);
 			    background-position: top left;
 			    background-repeat: no-repeat;
 			    height: 12px;
@@ -117,7 +118,7 @@
 			    display: inline-block;
 			    line-height: 1;
 			    vertical-align: middle;
-			    background-image: url(img/icon-player.png);
+			    background-image: url(../img/icon-player.png);
 			    background-position: top left;
 			    background-repeat: no-repeat;
 			    height: 12px;
@@ -156,7 +157,7 @@
 			    display: inline-block;
 			    line-height: 1;
 			    vertical-align: middle;
-			    background-image: url(img/icon-player.png);
+			    background-image: url(../img/icon-player.png);
 			    background-position: top left;
 			    background-repeat: no-repeat;
 			    height: 12px;
@@ -173,7 +174,7 @@
 			    display: inline-block;
 			    line-height: 1;
 			    vertical-align: middle;
-			    background-image: url(img/icon-player.png);
+			    background-image: url(../img/icon-player.png);
 			    background-position: top left;
 			    background-repeat: no-repeat;
 			    height: 12px;
@@ -185,7 +186,7 @@
 			    display: inline-block;
 			    line-height: 1;
 			    vertical-align: middle;
-			    background-image: url(img/icon-player.png);
+			    background-image: url(../img/icon-player.png);
 			    background-position: top left;
 			    background-repeat: no-repeat;
 			    height: 12px;
@@ -228,7 +229,7 @@
 			    display: inline-block;
 			    line-height: 1;
 			    vertical-align: middle;
-			    background-image: url(img/icon-musician.png);
+			    background-image: url(../img/icon-musician.png);
 			    background-position: top left;
 			    background-repeat: no-repeat;
 			    height: 20px;
@@ -241,7 +242,7 @@
 				display: inline-block;
 				line-height: 1;
 				vertical-align: middle;
-				background-image: url(img/icon-musician.png);
+				background-image: url(../img/icon-musician.png);
 				background-position: top left;
 				background-repeat: no-repeat;
 				height: 20px;
@@ -362,7 +363,7 @@
 					</div>
 				</div>
 				<div id="information">
-					<img src="img/autho.png" width="16px" height="16px" id="touXiang"/>
+					<img src="../img/autho.png" width="16px" height="16px" id="touXiang"/>
 					<label id="account">这是昵称</label>
 					
 				</div>
@@ -528,7 +529,7 @@
 					</div>  
 				</div>
 				<div class="essay-content">
-					<p style="text-align: center;"><img src="img/essay-content-img1.jpg"></p>
+					<p style="text-align: center;"><img src="../img/essay-content-img1.jpg"></p>
 					<p style="margin: 7px 0px; text-align: center;">
 						<span class="word-style">
 							 （怦然心动 | 导演 : 罗伯·莱纳 ） 
@@ -588,7 +589,7 @@
 						<p class="title">文章作者</p>
 						<div class="clearfix">
 							<a href="#" class="avatar-wrapper">
-								<img src="img/author.jpg" class="avatar rounded">
+								<img src="../img/author.jpg" class="avatar rounded">
 							</a>
 							<div class="essay-author-info">
 								<div class="cell">
@@ -625,7 +626,7 @@
 	</h3>
 				<div class="comment-editor">
 					<a class="avatar-wrapper">
-						<img src="img/avatar.gif" alt="" class="avatar">
+						<img src="../img/avatar.gif" alt="" class="avatar">
 
 					</a>
 					<div class="editor-wrapper">
@@ -683,7 +684,7 @@
     -->
 						<div class="item">
 							<a class="avatar-wrapper">
-								<img src="img/avatar.gif" alt="熙了" class="avatar" />
+								<img src="../img/avatar.gif" alt="熙了" class="avatar" />
 							</a>
 							<div class="item-wrapper">
 								<div class="helper">
@@ -748,7 +749,7 @@
 						</div>
 						<div class="item">
 							<a class="avatar-wrapper">
-								<img src="img/avatar.gif" alt="熙了" class="avatar" />
+								<img src="../img/avatar.gif" alt="熙了" class="avatar" />
 							</a>
 							<div class="item-wrapper">
 								<div class="helper">
@@ -809,7 +810,7 @@
 						</div>
 						<div class="item">
 							<a class="avatar-wrapper">
-								<img src="img/avatar.gif" alt="熙了" class="avatar" />
+								<img src="../img/avatar.gif" alt="熙了" class="avatar" />
 							</a>
 							<div class="item-wrapper">
 								<div class="helper">
@@ -889,7 +890,7 @@
 		</div>
 
 		
-		<script type="text/javascript" src="js/jquery-1.7.2.js" ></script>
-		<script type="text/javascript" src="js/top.js" ></script>
+		<script type="text/javascript" src="../js/jquery-1.7.2.js" ></script>
+		<script type="text/javascript" src="../../html/js/top.js" ></script>
 	</body>
 </html>
