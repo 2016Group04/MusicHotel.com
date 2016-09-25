@@ -63,8 +63,11 @@
 						
 					<div id="cc">
 						<a><label class="myLabel" id="my"></label>我的落网</a>
+
 						<a><label class="myLabel" id="setting"></label>账号设置</a>
 						<a href="logout.action"><label class="myLabel" id="logout"></label>退出</a>
+					
+
 					</div>
 				</div>
 			</div>

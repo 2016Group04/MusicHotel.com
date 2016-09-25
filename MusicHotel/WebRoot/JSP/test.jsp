@@ -14,5 +14,10 @@
   
   <body>
     <img src="${pageContext.request.contextPath}/JSP/RandomCodeServlet">
+    <from action = "getCommentOrderByDate.action" method="post">
+    <input name="topicType" value = "hotel" />
+    <input name="topicId" value = "1" />
+    </from>
+    <a href="getCommentOrderByDate.action">11111</a>
   </body>
 </html>
