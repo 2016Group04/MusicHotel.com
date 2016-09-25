@@ -1,29 +1,24 @@
 package com.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
-import com.dao.impl.MusicDaoImpl;
+import org.springframework.stereotype.Service;
+
+import com.dao.MusicDao;
 import com.po.Music;
 import com.service.MusicService;
-
+@Service
 public class MusicServiceImpl implements MusicService {
-	
-	private MusicDaoImpl dao;
+	@Autowired
+	private MusicDao dao;
 	
 	public MusicServiceImpl(){
 		System.out.println("创建了一个MusicServiceImpl对象");
 	}
 	
 
-	public MusicDaoImpl getDao() {
-		return dao;
-	}
-
-
-	public void setDao(MusicDaoImpl dao){
-		this.dao=dao;
-		System.out.println(dao);
-	}
+	
 	@Override
 	public int addMusic(Music music) {
 		int count=dao.addMusic(music);

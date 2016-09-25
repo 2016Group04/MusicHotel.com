@@ -50,8 +50,13 @@ public class CommentServiceImpl implements CommentService {
 
 	
 	@Override
-	public List<Comment> getCommentOrderByLikeSum(Comment comment) {
+	public List<Comment> getCommentOrderByLikeSum(String topicType ,String topicId) {
 		List<Comment> list = null;
+		int tId = Integer.parseInt(topicId);
+		String sql = "SELECT * FROM comments WHERE topic_type='" + topicType + "' and topic_id="+tId+" order by like_sum DESC";
+		list = commentDao.getCommentBySql(sql);
+		System.out.println(sql);
+		System.out.println(list);
 		return list;
 	}
 

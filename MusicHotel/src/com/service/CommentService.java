@@ -20,7 +20,7 @@ public interface CommentService {
 	public List<Comment> getCommentOrderByDate(String topicType ,String topicId);
 	
 	//查最热评论
-	public List<Comment> getCommentOrderByLikeSum(Comment comment);
+	public List<Comment> getCommentOrderByLikeSum(String topicType ,String topicId);
 	
 	//查一
 	public Comment getCommentById(String commentId);
