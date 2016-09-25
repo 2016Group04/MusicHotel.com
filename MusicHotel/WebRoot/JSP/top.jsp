@@ -54,7 +54,7 @@
 					</div>
 				</div>
 				<div id="information">
-					<img src="img/autho.jpg" width="16px" height="16px" id="touXiang"/>
+					<img src="img/profile/default.jpg" width="16px" height="16px" id="touXiang"/>
 					<label id="account">这是昵称</label>
 					
 				</div>
@@ -64,7 +64,7 @@
 					<div id="cc">
 						<a><label class="myLabel" id="my"></label>我的落网</a>
 						<a><label class="myLabel" id="setting"></label>账号设置</a>
-						<a><label class="myLabel" id="logout"></label>退出</a>
+						<a href="logout.action"><label class="myLabel" id="logout"></label>退出</a>
 					</div>
 				</div>
 			</div>

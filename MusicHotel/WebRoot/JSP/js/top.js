@@ -1,5 +1,8 @@
 ﻿;
 $(function() {
+				//得到所有的输入框
+				var inputR = $("#registeMiddle input");
+				var inputL = $("#login input");
 
 				/*搜索框添加事件*/
 				var $search = $("#search");
@@ -56,10 +59,22 @@ $(function() {
 
 				//鼠标悬停显示登录注册框
 				$("#longinAregiste").mouseover(function() {
-
+					
 					$("#registe").hide();
+					
+					inputR.val("");
+					inputL.val("");
+					
+					for(var i=0;i<inputR.length;i++){
+						
+						$(inputR[i]).next().show();
+					}
+					
+					
 					$("#login").show();
 					$("#all").show();
+					
+					
 				});
 				
 				//鼠标悬停消息列表
@@ -77,8 +92,17 @@ $(function() {
 				//除登录注册框外点击其余任何地方登录注册框都消失
 				$(document).bind("click", function(e) {
 					var target = $(e.target);
+					
 					if(target.closest("#all").length == 0) {
 						$("#all").hide();
+						inputR.val("");
+						inputL.val("");
+						
+						for(var i=0;i<inputR.length;i++){
+							$(inputR[i]).next().show();
+						}
+						
+					
 					}
 				});
 				//除消息列表之外的任何地方都隐藏
@@ -104,13 +128,16 @@ $(function() {
 					
 					if(email.trim()==""&&passwordV.trim()==""){
 						
-						$("#Submit").text("邮箱或密码不能为空");
+						$("#Submit").text("邮箱和密码不能为空");
 						$("#Submit").removeClass("Submit").addClass("null");
-					}else if(email.trim()==""){
+					}else {
+						if(email.trim()==""){
 						
 						$("#Submit").text("邮箱不能为空");
 						$("#Submit").removeClass("Submit").addClass("null");
-					}else if(passwordV.trim()==""){
+					}else {
+						if(passwordV.trim()==""){
+					
 						$("#Submit").text("密码不能为空");
 						$("#Submit").removeClass("Submit").addClass("null");
 					}else{
@@ -119,7 +146,33 @@ $(function() {
 						
 						if(checkEmail(email)){
 							
-							//发送ajax  验证是否是正确的用户名和密码
+							//发送ajax  验证是否是正确的邮箱和密码
+							$.post("checkLogin.action",{
+								"email":email,
+								"password":passwordV
+							},function(data){
+								
+								if(data=="0"){
+									
+									$("#Submit").text("邮箱或密码错误");
+									$("#Submit").removeClass("Submit").addClass("null");
+								}else{
+									
+									$("#Submit").text("登录成功");
+									$("#Submit").removeClass("Submit").addClass("null");
+									$.post("login.action",{
+										"email":email,
+										"password":passwordV
+									},function(data){
+										
+							             var json = eval(data);  
+							             $("#account").text(json.nickname); 
+							             $("#touXiang").src = "img/profile/" + json.profileImg;
+							             $("#loginAngRegiste").hide();
+										 $("#loginAfter").show();
+									},"json");
+								}
+							});
 						}else{
 							
 							$("#Submit").text("请输入正确的邮箱");
@@ -127,6 +180,8 @@ $(function() {
 						}
 						
 					
+					}
+					}
 					}
 				});
 				
@@ -214,46 +269,61 @@ $(function() {
 							$.post("checkAuth.action",{
 					    		"auth":(""+authR)
 					    	},function(data,status){
-					    		alert(data+"---0：错误，1：正确");
+					    		
 					    		if(data=="0"){
 					    			$("#Registe").text("验证码错误");
 									$("#Registe").removeClass("Registe").addClass("null");
 									changeImg();
 									//换一个验证码
 					    		}else{
+					    			
+					    			
 					    			if(!$("#agree").is(":checked")){
 										$("#Registe").text("请同意该网站的协议");
 										$("#Registe").removeClass("Registe").addClass("null");
 										changeImg();
 									}else{
 										
-										//发送ajax  验证该昵称是否已被注册
+										
 										//发送ajax  验证该昵称是否已被注册
 										$.post("checkAccount.action",{
 											"account":accountR
 										},function(data){
-											alert(data);
-											alert(data + "    1：该昵称已被使用  0：没有使用，可以注册");
+											
 											if(data=="1"){
 												
-												$("#Registe").text("该昵称已存在");
+												$("#Registe").text("该昵称已被占用");
 												$("#Registe").removeClass("Registe").addClass("null");
 											}else{
-												$("#Registe").text("注册成功");
-												$("#Registe").removeClass("Registe").addClass("null");
+												//发送ajax验证邮箱是否已被注册
+												$.post("checkEmail.action",{
+								    				"email":emailR
+								    			},function(data){
+								    				if(data=="1"){
+								    					
+								    					$("#Registe").text("该邮箱已被占用");
+														$("#Registe").removeClass("Registe").addClass("null");
+								    				}else{
+								    					
+								    					$("#Registe").text("注册成功");
+														$("#Registe").removeClass("Registe").addClass("null");
+														
+														//发送ajax进行注册
+														$.post("submit.action",{
+															"nickname":accountR,
+															"email":emailR,
+															"password":passwordR
+														},function(data){
+															
+															
+															$("#loginAngRegiste").hide();
+															$("#account").text(accountR);
+															$("#loginAfter").show();
+											
+														});
+								    				}
+								    			});
 												
-												//发送ajax进行注册
-												$.post("submit.action",{
-													"nickname":accountR,
-													"email":emailR,
-													"password":passwordR
-												},function(data){
-													
-													
-													$("#loginAngRegiste").hide();
-													$("#account").text(accountR);
-													$("#loginAfter").show();
-												});
 											}
 										},"text");
 									}
@@ -318,6 +388,8 @@ $(function() {
 						$(this).next("label").hide();
 					}
 				});
+				
+				
 			});
 			//检查邮箱
 			function checkEmail (email) {
@@ -330,7 +402,7 @@ $(function() {
 			//检查昵称
 			function checkName (accountR) {
 				
-				var regEXP = /^[A-Za-z0-9]+$/;
+				var regEXP = /^[A-Za-z0-9\u4e00-\u9fa5]+$/;
 				return regEXP.test(accountR);
 			}
 			//点击换一换验证码
@@ -338,13 +410,13 @@ $(function() {
 		         document.getElementById("imageCode").src = document.getElementById("imageCode").src + "?";
 		    }
 		    
-		    //
+		    //检查验证码
 		    function checkAuth(authR){
 		    	
 		    	$.post("checkAuth.action",{
 		    		"auth":(""+authR)
 		    	},function(data,status){
-		    		alert(data+"---0：错误，1：正确");
+		    		
 		    		return data;
 		    	},"text");
 		    }

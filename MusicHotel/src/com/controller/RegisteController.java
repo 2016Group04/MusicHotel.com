@@ -4,18 +4,20 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.google.gson.Gson;
 import com.po.User;
 import com.service.impl.JavaMailServiceImpl;
 import com.service.impl.UserServiceImpl;
@@ -49,10 +51,40 @@ public class RegisteController{
 		
 		int count = service.getUserByNickName(account);//1:找到该用户   0：没有找到该用户可以注册
 		
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("application/text;charset=utf-8");
+		
 		PrintWriter out = response.getWriter();
 		System.out.println("count================" + count);
+		if(count==1){
+			out.write("1");
+		}else if(count==0){
+			out.write("0");
+		}
+		
+		out.flush();
+		
+	}
+	
+	/**
+	 * 功能：检查用户的邮箱是否已被注册
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	@RequestMapping("/JSP/checkEmail.action")
+	public void checkEmail(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		System.out.println("检查邮箱是否存在spring mvc");
+		
+		String email = request.getParameter("email");
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		int count = service.getUserByEmail(email);//1:找到该用户   0：没有找到该用户可以注册
+		
+		
+		PrintWriter out = response.getWriter();
 		if(count==1){
 			out.write("1");
 		}else if(count==0){
@@ -82,14 +114,18 @@ public class RegisteController{
 		User user = new User();
 		user.setNickname(nickname);
 		user.setEmail(email);
+		Date date = new Date();
 		
+		user.setSignupDate(date);
 		
 		String passwordMD5 = MD5.getHash(password);
 		user.setPasswordMD5(passwordMD5);
 		//注册成功
 		int count = service.addUser(user);
 		
-		
+		HttpSession session = request.getSession(true);
+		//将当前用户放在session中
+		session.setAttribute("user", user);
 		//发送邮件部分
 		String from = "271429728qq@sina.com";
 		String to = user.getEmail();
@@ -128,15 +164,108 @@ public class RegisteController{
 		if(count==1){
 			
 			//添加成功
-			request.setCharacterEncoding("utf-8");
-			response.setContentType("application/text;charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.write("1");
 			out.flush();
 			
 		}
-	
 		
 	}
+	
+	/**
+	 * 功能：用户登录时，验证用户的邮箱和密码是否正确
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	@RequestMapping("JSP/checkLogin.action")
+	public void checkLogin(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		System.out.println("in checkLogin");
+		
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		
+		String passwordMD5 = MD5.getHash(password);
+		
+		User user = service.checkLogin(email, passwordMD5);
+		
+		PrintWriter out = response.getWriter();
+		if(user!=null){
+			out.write("1");//找到该用户，可以登录
+		}else if(user==null){
+			out.write("0");//没有找到该用户，用户民或密码错误
+		}
+		
+		out.flush();
+	}
+	
+	/**
+	 * 功能：用户登录成功，返回用户相关的信息
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	@RequestMapping("JSP/login.action")
+	public void login(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		System.out.println("in login");
+		
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		
+		String passwordMD5 = MD5.getHash(password);
+		
+		User user = service.checkLogin(email, passwordMD5);
+		
+		String nickname = user.getNickname();
+		String profileImg = user.getProfileImg();
+		
+		HttpSession session = request.getSession(true);
+		//将当前用户放在session中
+		session.setAttribute("user", user);
+		
+		Gson gson = new Gson();
+		
+		
+		Map<String,String> map = new HashMap<String,String>();
+		
+		map.put("nickname", nickname);
+		map.put("profileImg", profileImg);
+		
+		
+		//得到相应的用户消息，放到map中，然后转换成json
+		String s = gson.toJson(map);
+		
+		System.out.println(s);
+		PrintWriter out = response.getWriter();
+		out.write(s);
+		out.flush();
+	}
+	
+	/**
+	 * 功能：用户登出
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	@RequestMapping("JSP/logout.action")
+	public void logout(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		System.out.println("in logout");
+		
+		HttpSession session = request.getSession(true);
+		session.invalidate();
+		
+		String target = "allHotels.html";
+		request.getRequestDispatcher(target).forward(request, response);
+	}
+	
 
 }
