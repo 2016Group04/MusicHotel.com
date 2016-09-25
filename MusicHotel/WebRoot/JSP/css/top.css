@@ -95,6 +95,7 @@ div.logo{
 	position: absolute;
 	right: 1365px;
 	top:0px;
+	z-index:99900;
 }
 
 /*注册和登录框*/
@@ -103,7 +104,7 @@ div.logo{
 	margin-top: 16px;
 	font: 13px Verdana, 微软雅黑, 'Microsoft YaHei', Helvetica, Arial;
 	color: #595959;
-	margin-left: 410px;;
+	margin-left: 410px;
 }
 
 #longinAregiste:hover{
@@ -117,6 +118,7 @@ div.logo{
 	top:53px;
 	left: 1013px;
 	border-radius: 5px;
+	z-index:999;
 }
 
 #loginOrResite>div#login{
@@ -139,7 +141,7 @@ div.logo{
 	height: 9px;
 	text-align: center;
 	position:relative;
-	z-index: 3;
+	z-index: 99;
 	top: 43px;
 	left: 1125px;
 }
@@ -369,11 +371,13 @@ label.accountRegiste,label.emailRegiste,label.passwordRegiste{
 	cursor: pointer;
 }
 
-#touXiang{
+img#touXiang{
 	margin-top: 16px;
 	margin-left: 30px;
 	margin-right: 5px;
 	cursor: pointer;
+	position:relative;
+	top:3px;
 }
 
 #account{
@@ -408,7 +412,7 @@ label.accountRegiste,label.emailRegiste,label.passwordRegiste{
 	border-bottom: 1px solid #E5E5E5;
 	font-size: 12px;
 	color:#E06B73;
-	padding: 10px 25px;
+	padding: 17px 25px;
 }
 
 .message:hover,#bottom:hover,#information:hover,#cc a:hover{
@@ -421,7 +425,7 @@ label.accountRegiste,label.emailRegiste,label.passwordRegiste{
 	height: 110px;
 	position: absolute;
 	top: 50px;
-	left: 1090px;
+	left: 1080px;
 	color: #7D7D7D;
 	font-size: 13px;
 	border: 2px solid #E5E5E5;
@@ -431,7 +435,7 @@ label.accountRegiste,label.emailRegiste,label.passwordRegiste{
 .myLabel{
 	display: inline-block;
 	width: 18px;
-	height: 13px;
+	height: 12px;
 	background: url(../img/icon-common.png) no-repeat;
 	margin-right: 2px;
 }
@@ -456,3 +460,13 @@ label.accountRegiste,label.emailRegiste,label.passwordRegiste{
 	margin-left: 10px;
 }
 
+/* iframe的样式 */
+iframe{
+	margin-left:300px;
+}
+
+/* 退出的a标签样式 */
+#cc a{
+	color:#7D7D7D;
+	underline:none;
+}

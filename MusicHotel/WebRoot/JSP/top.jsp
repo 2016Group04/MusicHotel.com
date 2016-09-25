@@ -42,24 +42,19 @@
 				</div>
 			</div>
 			<!-- 登录上之后出现的 -->
-			<div id="loginAfter"  style="display:none">
+			<div id="loginAfter" style="display:none">
 				<div id="message"></div>
 				<div id="messageDetail" style="display:none">
 					<div class="message">
-						这是一个系统消息
+						期刊 
 					</div>
-					<div class="message">
-						这是一个系统消息
-					</div>
-					<div class="message">
-						这是一个系统消息
-					</div>
+				
 					<div id="bottom">
 						查看全部消息
 					</div>
 				</div>
 				<div id="information">
-					<img src="img/autho.png" width="16px" height="16px" id="touXiang"/>
+					<img src="img/profile/default.jpg" width="16px" height="16px" id="touXiang"/>
 					<label id="account">这是昵称</label>
 					
 				</div>
@@ -68,11 +63,15 @@
 						
 					<div id="cc">
 						<a><label class="myLabel" id="my"></label>我的落网</a>
-						<a herf="getMyInfo.action?userId=1"><label class="myLabel" id="setting"></label>账号设置</a>
-						<a><label class="myLabel" id="logout"></label>退出</a>
+
+						<a><label class="myLabel" id="setting"></label>账号设置</a>
+						<a href="logout.action"><label class="myLabel" id="logout"></label>退出</a>
+					
+
 					</div>
 				</div>
 			</div>
+			
 			
 			<div id="loginAngRegiste" class="searchAfter">
 				<span id="longinAregiste">注册/登录</span>
@@ -93,12 +92,12 @@
 
 									<div id="Email">
 										<label>邮箱</label>
-										<input type="text" id="email" />
+										<input type="text" id="email" title="请填写此字段"/>
 									</div>
 
 									<div id="Password">
 										<label>密码</label>
-										<input type="password" id="password" />
+										<input type="password" id="password"  title="请填写此字段"/>
 									</div>
 
 									<div id="tijiao">
@@ -131,7 +130,7 @@
 							</div>
 
 							<div id="registeMiddle">
-								<form action="submit.action" method="post" id="submitForm">
+								<form action="submit.action" method="post" id="submitForm" target="after">
 
 									<div id="AccountRegiste">
 										<label class="label1">昵称</label>

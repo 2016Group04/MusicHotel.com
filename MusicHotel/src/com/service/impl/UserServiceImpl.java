@@ -47,23 +47,50 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public int getUserByNickName(String account) {
+	public User getUserByNickName(String account) {
 		
+		User user = null;
 		String sql = "SELECT * FROM users WHERE nickname='" + account + "'";
 		
 		List<User> list = dao.getUserBySql(sql);
 				
 		int count = 0;
 		if(list.size()>=1){
-			count = 1;//找到该用户
-		}else{
-			count = 0;//没有这个用户
+			user = list.get(0);//找到该用户
 		}
 				
-		return count;
+		return user;
 	}
 
 
-	
-	
+	//使用用户的邮箱来查找是否存在该用户
+		public User getUserByEmail(String email){
+			
+			User user = null;
+			String sql = "SELECT * FROM users WHERE email='" + email + "'";
+			
+			List<User> list = dao.getUserBySql(sql);
+					
+			int count = 0;
+			if(list.size()>=1){
+				user = list.get(0);//找到该用户
+			}
+					
+			return user;
+		}
+		
+		//用户登录的时候验证用户的邮箱和密码
+		public User checkLogin(String email,String password){
+			
+			String sql = "SELECT * FROM users WHERE email='" + email + "' and password_MD5='" + password + "'";
+			
+			List<User> list = dao.getUserBySql(sql);
+					
+			User user = null;
+			if(list.size()>=1){
+				user = list.get(0);//找到该用户
+			}
+					
+			return user;
+		}
 }

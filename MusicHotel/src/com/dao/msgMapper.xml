@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 定义sql文件的唯一标示  通过namespace这个标示 找到这个xml文件 -->
+<mapper namespace="com.dao.MsgDao">
+	
+	<insert id="addMsg" parameterType="com.po.Msg">
+		INSERT INTO msg VALUE(NULL,#{topicType},#{topicId},#{msgDate})
+	</insert>
+	
+	<select id="getAllMsg" parameterType="int" resultType="com.po.Msg">
+		SELECT * FROM msg where user_id=#{userId} order by msg_date DESC
+	</select>
+	
+</mapper>

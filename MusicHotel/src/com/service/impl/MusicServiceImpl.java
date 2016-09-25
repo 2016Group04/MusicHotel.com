@@ -3,20 +3,14 @@ package com.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
-import org.springframework.stereotype.Service;
 
 import com.dao.MusicDao;
 import com.po.Music;
 import com.service.MusicService;
-@Service
 public class MusicServiceImpl implements MusicService {
+	
 	@Autowired
 	private MusicDao dao;
-	
-	public MusicServiceImpl(){
-		System.out.println("创建了一个MusicServiceImpl对象");
-	}
-	
 
 	
 	@Override
