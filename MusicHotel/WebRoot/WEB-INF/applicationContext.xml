@@ -61,4 +61,9 @@
 		<property name="session" ref="sqlSession"/>
 		
 	</bean> 
+	<bean id="musicService" class="com.service.impl.MusicServiceImpl">
+		
+		<property name="dao" ref="musicDaoImpl"/>
+		
+	</bean>
 </beans>

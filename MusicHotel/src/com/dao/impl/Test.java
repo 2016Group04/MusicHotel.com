@@ -3,7 +3,6 @@ package com.dao.impl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-import com.po.User;
 import com.service.UserService;
 
 public class Test {
@@ -25,6 +24,8 @@ public class Test {
 		
 		/*User user = (User)userDao.getUserByUserId(1);
 		System.out.println("getOneUserById" + user);*/
+		
+		
 		
 		UserService service = (UserService)context.getBean("userService");
 		

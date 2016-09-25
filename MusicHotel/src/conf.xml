@@ -17,7 +17,7 @@
 
 	<mappers>
 		<mapper resource="com/po/userMapper.xml"/>
-
+		<mapper resource="com/po/musicMapper.xml"/>
 	</mappers>
 	
 </configuration>
