@@ -2,30 +2,38 @@ package com.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
 import com.dao.MusicDao;
 import com.po.Music;
 
 public class MusicDaoImpl implements MusicDao {
 
-	private SqlSession session = null;
-	
-	
+	private SqlSession session;
 	
 	public SqlSession getSession() {
+		
 		return session;
 	}
-
+	
 	public void setSession(SqlSession session) {
+		System.out.println("使用set方法把session注入到MusicDaoImpl对象");
 		this.session = session;
 	}
 
+	public MusicDaoImpl(){
+		System.out.println("创建了一个MusicDaoImpl对象");
+	}
 	@Override
 	public int addMusic(Music music) {
 		
 		
 		String statement = "com.po.musicMapper.addMusic";
 		int count = session.insert(statement, music);
+		
 		return count;
 		
 	}
@@ -42,7 +50,10 @@ public class MusicDaoImpl implements MusicDao {
 	@Override
 	public int updateMusic(Music music) {
 		
-		int count = 0;
+		String statement="com.po.musicMapper.updateMusic";
+		
+		
+		int count = session.update(statement, music);
 		
 		return count;
 	}
@@ -66,6 +77,13 @@ public class MusicDaoImpl implements MusicDao {
 		list = session.selectList(statement, sql);
 		
 		return list;
+	}
+
+	public static void main(String[] args) {
+		ApplicationContext context = new FileSystemXmlApplicationContext("WebRoot/WEB-INF/applicationContext.xml");
+		MusicDaoImpl dao=(MusicDaoImpl)context.getBean("musicDaoImpl");
+		Music music= new Music();
+		
 	}
 
 }

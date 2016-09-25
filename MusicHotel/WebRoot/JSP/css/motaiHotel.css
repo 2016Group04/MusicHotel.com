@@ -1,0 +1,172 @@
+*{
+	margin: 0px;
+}
+
+body{
+	font: 15px 'Microsoft Yahei', Tahoma, Arial, Helvetica;
+}
+
+input,textarea{
+	outline: none;
+	border-radius: 3px;
+	width: 250px;
+	font-size: 15px;
+}
+
+input{
+	height: 20px;
+}
+
+textarea{
+	height: 100px;
+}
+
+#createHotel{
+	width: 500px;
+	height: 400px;
+	border: 1px solid #E5E5E5;
+	margin:50px auto;
+	position: absolute;
+	z-index: 1000;
+	left: 450px;
+}
+
+#doThing{
+	height: 40px;
+	line-height: 40px;
+	background-color: #F6F6F6;
+	font: 15px 'Microsoft Yahei', Tahoma, Arial, Helvetica;
+	color: #565656;
+}
+
+#doThing span.title1{
+	display: inline-block;
+	margin-left: 15px;
+}
+#doThing span.closeButton{
+	display: inline-block;
+	width: 20px;
+	font-size: 28px;
+	margin-left: 350px;
+	color: rgb(68, 68, 68);
+	cursor: pointer;
+}
+
+#hotelN,#hotelT,#hotelC,#hotelCov{
+	margin:20px 55px;
+}
+
+#hotelN label,#hotelT label.cc,#hotelC label,#hotelCov label{
+	display: inline-block;
+	width: 80px;
+	height: 20px;
+	line-height: 20px;
+	font: 15px 'Microsoft Yahei', Tahoma, Arial, Helvetica;
+	color: #DD5862;
+}
+
+#position{
+	display: inline-block;
+	font: 13px 'Microsoft Yahei', Tahoma, Arial, Helvetica;
+	color: #7D7D7D;
+}
+
+#selectButton,.tijiao,.quxiao{
+	text-align: center;
+	display: inline-block;
+	width: 70px;
+	height: 24px;
+	color: white;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+#selectButton{
+	margin-left: 10px;
+	position: relative;
+	top: -2px;
+}
+
+#selectButton,.tijiao{
+	background-color: #DD5862;
+}
+
+.quxiao{
+	background-color: #8A8A8A;
+	margin-left: 10px;
+}
+
+#hotelC label{
+	position: relative;
+	top: -87px;
+}
+
+#submitHotel{
+	margin-top: 35px;
+	margin-left: 170px;
+}
+
+#position{
+	width: 170px;
+}
+
+#alertH{
+	
+	position: absolute;
+	z-index: 1001;
+	left:190px;
+	top: 8px;
+	font-size: 16px;
+	color: #EA2000;
+}
+
+div#biao{
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	margin-top: 3px;
+}
+
+div#textH{
+	display: inline-block;
+	position: relative;
+	top: -4px;
+}
+
+select.style1{
+	position: absolute;
+	z-index: 1001;
+	outline: none;
+	color: #898995;
+	top: 106px;
+	left: 139px;
+	width: 109px;
+	border:2px solid;
+	border-color: #9A9A9A #EEEEEE #EEEEEE #9A9A9A;
+}
+
+div#style1{
+	display: inline-block;
+	width: 100px;
+	height: 20px;
+	padding-left: 5px;
+	border: 2px solid;
+	border-color: #9A9A9A #EEEEEE #EEEEEE #9A9A9A;
+	color: #898995;
+}
+
+#hotelT span{
+	color: #898995;
+}
+
+label.ss{
+	display: inline-block;
+	width: 80px;
+}
+
+label.sc{
+	background-color: #E5E5E5;
+	display: inline-block;
+	width: 20px;
+	text-align: center;
+}

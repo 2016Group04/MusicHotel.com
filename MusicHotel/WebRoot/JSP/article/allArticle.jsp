@@ -1,9 +1,10 @@
+<%@ page language="java" import="java.util.*,com.po.Article" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>落网专栏页</title>
-		<link rel="stylesheet" href="css/top.css" />
+		<link rel="stylesheet" href="../../html/css/top.css" />
 
 		<style type="text/css">
 			* {
@@ -380,7 +381,7 @@
 					</div>
 				</div>
 				<div id="information">
-					<img src="img/autho.png" width="16px" height="16px" id="touXiang"/>
+					<img src="../img/autho.png" width="16px" height="16px" id="touXiang"/>
 					<label id="account">这是昵称</label>
 					
 				</div>
@@ -502,7 +503,7 @@
 		
 		<div class="container" style="min-height: 248px;">
 			<div class="essay-banner clearfix">
-				<img class="cover" src="img/div1-img.jpg" alt="香蕉鱼和一支乐队"/>
+				<img class="cover" src="../img/div1-img.jpg" alt="香蕉鱼和一支乐队"/>
 				<div class="meta">
 					<a class="title" href="#">香蕉鱼和一支乐队</a>
 					<p class="content">如果心中净土破灭童真死去，存在还有何意义？他们说，唱给我听！</p>
@@ -517,7 +518,7 @@
 					<div class="essay-list">
 						<div class="item">
 							<a class="cover-wrapper" href="">
-								<img class="cover rounded" src="img/essay-list1.jpg" alt="是怦然心动？还是刻骨铭心？">
+								<img class="cover rounded" src="../img/essay-list1.jpg" alt="是怦然心动？还是刻骨铭心？">
 							</a>
 							<div class="essay-wrapper">
 								<a href="#" class="title" title="是怦然心动？还是刻骨铭心？">是怦然心动？还是刻骨铭心？</a>
@@ -536,7 +537,7 @@
 						
 						<div class="item">
 							<a class="cover-wrapper" href="">
-								<img class="cover rounded" src="img/essay-list1.jpg" alt="是怦然心动？还是刻骨铭心？">
+								<img class="cover rounded" src="../img/essay-list1.jpg" alt="是怦然心动？还是刻骨铭心？">
 							</a>
 							<div class="essay-wrapper">
 								<a href="#" class="title" title="是怦然心动？还是刻骨铭心？">是怦然心动？还是刻骨铭心？</a>
@@ -555,7 +556,7 @@
 						
 						<div class="item">
 							<a class="cover-wrapper" href="">
-								<img class="cover rounded" src="img/essay-list1.jpg" alt="是怦然心动？还是刻骨铭心？">
+								<img class="cover rounded" src="../img/essay-list1.jpg" alt="是怦然心动？还是刻骨铭心？">
 							</a>
 							<div class="essay-wrapper">
 								<a href="#" class="title" title="是怦然心动？还是刻骨铭心？">是怦然心动？还是刻骨铭心？</a>
@@ -574,7 +575,7 @@
 						
 						<div class="item">
 							<a class="cover-wrapper" href="">
-								<img class="cover rounded" src="img/essay-list1.jpg" alt="是怦然心动？还是刻骨铭心？">
+								<img class="cover rounded" src="../img/essay-list1.jpg" alt="是怦然心动？还是刻骨铭心？">
 							</a>
 							<div class="essay-wrapper">
 								<a href="#" class="title" title="是怦然心动？还是刻骨铭心？">是怦然心动？还是刻骨铭心？</a>
@@ -618,7 +619,7 @@
 						<div class="widget-ct pic-widget">
 							<div class="item">
 								<a href="#" title="每一个梦都是奇妙的旅程" class="cover-wrapper">
-									<img src="img/aside-img1.png" alt="每一个梦都是奇妙的旅程" class="essay-cover rounded">
+									<img src="../img/aside-img1.png" alt="每一个梦都是奇妙的旅程" class="essay-cover rounded">
 								</a>
 								<div class="info">
 									<a href="#" title="每一个梦都是奇妙的旅程" class="title">每一个梦都是奇妙的旅程</a>
@@ -632,7 +633,7 @@
 							
 							<div class="item">
 								<a href="#" title="每一个梦都是奇妙的旅程" class="cover-wrapper">
-									<img src="img/aside-img1.png" alt="每一个梦都是奇妙的旅程" class="essay-cover rounded">
+									<img src="../img/aside-img1.png" alt="每一个梦都是奇妙的旅程" class="essay-cover rounded">
 								</a>
 								<div class="info">
 									<a href="#" title="每一个梦都是奇妙的旅程" class="title">每一个梦都是奇妙的旅程</a>
@@ -646,7 +647,7 @@
 							
 							<div class="item">
 								<a href="#" title="每一个梦都是奇妙的旅程" class="cover-wrapper">
-									<img src="img/aside-img1.png" alt="每一个梦都是奇妙的旅程" class="essay-cover rounded">
+									<img src="../img/aside-img1.png" alt="每一个梦都是奇妙的旅程" class="essay-cover rounded">
 								</a>
 								<div class="info">
 									<a href="#" title="每一个梦都是奇妙的旅程" class="title">每一个梦都是奇妙的旅程</a>
@@ -660,7 +661,7 @@
 							
 							<div class="item">
 								<a href="#" title="每一个梦都是奇妙的旅程" class="cover-wrapper">
-									<img src="img/aside-img1.png" alt="每一个梦都是奇妙的旅程" class="essay-cover rounded">
+									<img src="../img/aside-img1.png" alt="每一个梦都是奇妙的旅程" class="essay-cover rounded">
 								</a>
 								<div class="info">
 									<a href="#" title="每一个梦都是奇妙的旅程" class="title">每一个梦都是奇妙的旅程</a>
@@ -674,7 +675,7 @@
 							
 							<div class="item">
 								<a href="#" title="每一个梦都是奇妙的旅程" class="cover-wrapper">
-									<img src="img/aside-img1.png" alt="每一个梦都是奇妙的旅程" class="essay-cover rounded">
+									<img src="../img/aside-img1.png" alt="每一个梦都是奇妙的旅程" class="essay-cover rounded">
 								</a>
 								<div class="info">
 									<a href="#" title="每一个梦都是奇妙的旅程" class="title">每一个梦都是奇妙的旅程</a>
@@ -688,7 +689,7 @@
 							
 							<div class="item">
 								<a href="#" title="每一个梦都是奇妙的旅程" class="cover-wrapper">
-									<img src="img/aside-img1.png" alt="每一个梦都是奇妙的旅程" class="essay-cover rounded">
+									<img src="../img/aside-img1.png" alt="每一个梦都是奇妙的旅程" class="essay-cover rounded">
 								</a>
 								<div class="info">
 									<a href="#" title="每一个梦都是奇妙的旅程" class="title">每一个梦都是奇妙的旅程</a>
@@ -712,8 +713,8 @@
 				</div>
 			</div>
 		</div>
-		<script src="js/jquery-3.1.0.min.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript" src="js/top.js" ></script>
+		<script src="../js/jquery-3.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="../js/top.js" ></script>
 		
 		<script type="text/javascript">
 			$(function(){

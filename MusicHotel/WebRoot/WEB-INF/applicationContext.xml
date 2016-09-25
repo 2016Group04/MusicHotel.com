@@ -40,4 +40,17 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 	
+<<<<<<< HEAD
+=======
+	<bean id="musicDaoImpl" class="com.dao.impl.MusicDaoImpl">
+		
+		<property name="session" ref="sqlSession"/>
+		
+	</bean> 
+	<bean id="musicService" class="com.service.impl.MusicServiceImpl">
+		
+		<property name="dao" ref="musicDaoImpl"/>
+		
+	</bean>
+>>>>>>> branch 'master' of https://github.com/2016Group04/MusicHotel.com.git
 </beans>
