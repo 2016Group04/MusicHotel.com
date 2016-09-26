@@ -262,7 +262,7 @@ public class RegisteController{
             		autoCookie = cookie;
             		
             		//cookie存在，需要重新进行赋值
-            		long time = (System.currentTimeMillis() + expires * 7);
+            		long time = (System.currentTimeMillis() + expires );
             		//cookie拼接的value值
             		
             		String cookieValue = email + ":" +time + ":" + MD5.getHash(email + ":" + time + ":" + passwordMD5);
@@ -323,7 +323,7 @@ public class RegisteController{
 	 * @throws IOException
 	 */
 	@RequestMapping("/logout.action")
-	public void logout(HttpServletRequest request, HttpServletResponse response)
+	public String logout(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		System.out.println("in logout");
@@ -331,8 +331,21 @@ public class RegisteController{
 		HttpSession session = request.getSession(true);
 		session.invalidate();
 		
-		String target = "allHotels.html";
-		request.getRequestDispatcher(target).forward(request, response);
+		//将用户自动登录的cookie删除
+		Cookie cookie = getAutoLoginCookie(request);
+		
+		System.out.println(cookie!=null);
+		
+		if(cookie!=null){
+			
+			//存在自动登录的cookie,删除
+			cookie.setMaxAge(0);
+			cookie.setPath("/MusicHotel/");
+			response.addCookie(cookie);
+		}
+		
+		String target = "redirect:/JSP/firstPage.jsp";
+		return target;
 	}
 	
 	/**
@@ -439,6 +452,24 @@ public class RegisteController{
 	
 	
 	
-	
+	public Cookie getAutoLoginCookie(HttpServletRequest request){
+		Cookie autoCookie = null;
+		
+		Cookie[] cookies = request.getCookies();
+		
+		if(cookies!=null){
+			
+			for(Cookie cookie:cookies){
+				
+				if("autoLogin".equals(cookie.getName())){
+					
+					autoCookie = cookie;
+				}
+			}
+		}
+		
+		
+		return autoCookie;
+	}
 
 }
