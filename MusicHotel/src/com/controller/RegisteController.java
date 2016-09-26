@@ -21,7 +21,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.google.gson.Gson;
-import com.po.Msg;
 import com.po.Notification;
 import com.po.User;
 import com.service.impl.JavaMailServiceImpl;
@@ -180,14 +179,9 @@ public class RegisteController{
 		
 		if(count==1){
 			
-			//注册成功
-			//返回系统通知
-			List<Notification> list = notificationService.getAllNotification();
-			Gson gson = new Gson();
-			String json = gson.toJson(list);
-			System.out.println(json);
+			
 			PrintWriter out = response.getWriter();
-			out.write(json);
+			out.write("1");
 			out.flush();
 			
 			
@@ -304,13 +298,13 @@ public class RegisteController{
 		map.put("nickname", nickname);
 		map.put("profileImg", profileImg);
 		
-		//得到所有的系统通知
+		/*//得到所有的系统通知
 		List<Notification> listNotification = notificationService.getAllNotification();
 		
 		List<Msg> listMsg = msgService.getAllMsg(user.getUserId());
 		
 		map.put("notification", listNotification);
-		map.put("msg", listMsg);
+		map.put("msg", listMsg);*/
 		
 		//得到相应的用户消息，放到map中，然后转换成json
 		String s = gson.toJson(map);
@@ -351,12 +345,13 @@ public class RegisteController{
 	@RequestMapping("/check.action")
 	public void checkAutoLogin(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String target = "";
-		
-		boolean autoLogin = false;
 		Cookie autoCookie = null;
 		
+		System.out.println("in checkAutoLogin");
 		Cookie[] cookies = request.getCookies();
+		System.out.println("this===="+cookies);
+		System.out.println(cookies!=null);
+		System.out.println(cookies==null);
 		if(cookies!=null){
 			
 			for(Cookie cookie:cookies){
@@ -366,13 +361,14 @@ public class RegisteController{
 					autoCookie = cookie;
 				}
 			}
-			
+			System.out.println("cookie");
 			//判断autoLogin cookie是不是空
 			if(autoCookie!=null){	
 				
 				//如果autoCookie不为空的话。判断cookie中的值
 				
 				//得到cookie中的值
+				System.out.println("111");
 				String value = autoCookie.getValue();
 				String[] values = value.split(":");
 				
@@ -385,6 +381,7 @@ public class RegisteController{
 					String time = values[1];
 					String valueMD5 = values[2];
 					//判断cookie是否失效
+					System.out.println("222");
 					if(Long.valueOf(time)>System.currentTimeMillis()){
 						
 					//没有失效
@@ -395,13 +392,12 @@ public class RegisteController{
 					
 					String userValue = user.getEmail() + ":" + time + ":" + user.getPasswordMD5();
 					//加密之后和cookie中的值进行对比
-					if(valueMD5.equals(MD5.getHash(userValue))){
-						//不一样的话继续执行原来的页面
-					
-					HttpSession session = request.getSession(true);
-					session.setAttribute("user", user);
-					autoLogin = true;
-					}
+						if(valueMD5.equals(MD5.getHash(userValue))){
+							//不一样的话继续执行原来的页面
+							System.out.println("user=========");
+							HttpSession session = request.getSession(true);
+							session.setAttribute("user", user);
+						}
 					
 					}
 					}
@@ -410,15 +406,39 @@ public class RegisteController{
 			}	
 		}
 		
-		if(autoLogin){
-			target = "topAutoLogin.jsp";
-		}else{
-			target = "top.jsp";
-		}
+		System.out.println("this");
+		String target = "top.jsp";
 		
 		
 		request.getRequestDispatcher(target).forward(request, response);
 	}
+	
+	
+	/**
+	 * 功能：得到用户相关的消息和通知
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	@RequestMapping("/getAllMessage.action")
+	public void getAllMessage(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		String userId = request.getParameter("userId");
+		//返回系统通知
+		List<Notification> list = notificationService.getAllNotification();
+		Gson gson = new Gson();
+		String json = gson.toJson(list);
+		System.out.println(json);
+	
+		PrintWriter out = response.getWriter();
+		out.write(json);
+		out.flush();
+	}
+	
+	
+	
 	
 
 }

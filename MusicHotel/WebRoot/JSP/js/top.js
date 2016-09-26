@@ -80,8 +80,27 @@ $(function() {
 				
 				//鼠标悬停消息列表
 				$("#message").mouseover(function() {
+					var id = $("#hidden").val();
 					$("#operate").hide();
 					$("#messageDetail").show();
+					$.post("getAllMessage.action",{
+						"userId":id
+					},function(data){
+						
+						var div = $(".wait");
+						//"<div class='message'>系统通知："
+						//请前去邮箱进行验证
+						//"</div>"
+						var replaceS = "";
+						for(var i=0;i<data.length;i++){
+							replaceS = replaceS + "<div class='message'>系统通知：" +data[i].title + "</div>";
+						}
+						
+						replaceS = replaceS + "<div id='bottom'>查看全部消息</div>";
+					
+						div.replaceWith($(replaceS));
+						
+					},"json");
 				});
 				
 				//鼠标悬停显示我的信息
@@ -111,6 +130,8 @@ $(function() {
 					var target = $(e.target);
 					if(target.closest("#messageDetail").length == 0) {
 						$("#messageDetail").hide();
+						$("#messageDetail").children().remove();
+						$("#messageDetail").append("<div class='wait'></div>");
 					}
 				});
 				
@@ -169,22 +190,22 @@ $(function() {
 										"auto":auto
 									},function(data){
 										
-							             var json = eval(data);  
+							             var json = eval(data); 
 							             $("#account").text(json.nickname); 
 							             $("#touXiang").src = "img/profile/" + json.profileImg;
 							             $("#loginAngRegiste").hide();
 										 $("#loginAfter").show();
 										 
-										 //接收发过来的消息，进行填充
+										/* //接收发过来的消息，进行填充
 										 var div = $("#bottom");
 											//"<div class='message'>系统通知："
 											//请前去邮箱进行验证
 											//"</div>"
 											var replaceS = "<div class='message'>系统通知：";
-											/*for(var i=0;i<data[2].length;i++){
+											for(var i=0;i<data[2].length;i++){
 												replaceS = replaceS + data[2][i].title + "</div>";
-											}*/
-											div.before($(replaceS));
+											}
+											div.before($(replaceS));*/
 									},"json");
 								}
 							});
@@ -336,15 +357,7 @@ $(function() {
 															$("#loginAfter").show();
 															$("#touXiang").src = "img/profile/default.jpg";
 															
-															var div = $("#bottom");
-															//"<div class='message'>系统通知："
-															//请前去邮箱进行验证
-															//"</div>"
-															var replaceS = "<div class='message'>系统通知：";
-															for(var i=0;i<data.length;i++){
-																replaceS = replaceS + data[i].title + "</div>";
-															}
-															div.before($(replaceS));
+															
 														});
 								    				}
 								    			});
