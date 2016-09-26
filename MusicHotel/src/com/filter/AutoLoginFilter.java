@@ -11,14 +11,22 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.po.User;
-import com.service.UserService;
 import com.service.impl.UserServiceImpl;
 import com.util.MD5;
 
+@Component
 public class AutoLoginFilter implements Filter{
 
+	@Autowired
+	private UserServiceImpl service;
+
+	
 	@Override
 	public void destroy() {
 		
@@ -32,8 +40,6 @@ public class AutoLoginFilter implements Filter{
 		//将不带Http的转换成带Http的
 		HttpServletRequest request = (HttpServletRequest)req;
 		HttpServletResponse response = (HttpServletResponse)res;
-		
-		
 		
 		//判断cookie中是否存在autoLogin的cookie对象
 		Cookie autoCookie = null;
@@ -53,7 +59,8 @@ public class AutoLoginFilter implements Filter{
 			if(autoCookie==null){
 				
 				chain.doFilter(request, response);
-			}else{
+				return;
+			}
 				
 				//如果autoCookie不为空的话。判断cookie中的值
 				
@@ -69,7 +76,7 @@ public class AutoLoginFilter implements Filter{
 					//得到拆分的值
 					String email = values[0];
 					String time = values[1];
-					String passwordMD5 = values[2];
+					String valueMD5 = values[2];
 					//判断cookie是否失效
 					if(Long.valueOf(time)<=System.currentTimeMillis()){
 						
@@ -77,8 +84,7 @@ public class AutoLoginFilter implements Filter{
 					}
 					
 					//没有失效
-					UserService service = new UserServiceImpl();
-					
+					System.out.println("service======="+service);
 					User user = service.getUserByEmail(email);
 					
 					//判断用户是否为空
@@ -89,17 +95,23 @@ public class AutoLoginFilter implements Filter{
 					}
 					
 					String userValue = user.getEmail() + ":" + time + ":" + user.getPasswordMD5();
-					
-					if(userValue.equals(anObject)){
-						
-						
+					//加密之后和cookie中的值进行对比
+					if(!valueMD5.equals(MD5.getHash(userValue))){
+						//不一样的话继续执行原来的页面
+						chain.doFilter(request, response);
+						return;
 					}
+					System.out.println("user==========");
+					HttpSession session = request.getSession();
+					session.setAttribute("user", user);
+					
 				}
 				
 				
-				
-			}
-			
+		}else{
+			System.out.println("**************filter~~~");
+			chain.doFilter(request, response);
+			return;
 		}
 	}
 

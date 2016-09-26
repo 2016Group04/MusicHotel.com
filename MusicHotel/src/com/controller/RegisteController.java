@@ -248,7 +248,7 @@ public class RegisteController{
 		
 		String nickname = user.getNickname();
 		String profileImg = user.getProfileImg();
-		
+		System.out.println(auto);
 		//实现下次的自动登陆
 		if("true".equals(auto)){
 			
@@ -281,7 +281,9 @@ public class RegisteController{
             	
             	long time = System.currentTimeMillis() + expires * 7;
             	
-            	String cookieValue = email + ":" + time + ":" + passwordMD5;
+            	String cookieValue = email + ":" + time + ":" + MD5.getHash(email + ":" + time + ":" + passwordMD5);
+            	
+            	autoCookie = new Cookie("autoLogin", cookieValue); 
             }
             
             autoCookie.setMaxAge((int)expires);
@@ -336,6 +338,85 @@ public class RegisteController{
 		session.invalidate();
 		
 		String target = "allHotels.html";
+		request.getRequestDispatcher(target).forward(request, response);
+	}
+	
+	/**
+	 * 功能:检查是不是自动登录
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	@RequestMapping("/check.action")
+	public void checkAutoLogin(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String target = "";
+		
+		boolean autoLogin = false;
+		Cookie autoCookie = null;
+		
+		Cookie[] cookies = request.getCookies();
+		if(cookies!=null){
+			
+			for(Cookie cookie:cookies){
+				
+				//判断cookies中是否存在autoLogin的cookie对象
+				if("autoLogin".equals(cookie.getName())){
+					autoCookie = cookie;
+				}
+			}
+			
+			//判断autoLogin cookie是不是空
+			if(autoCookie!=null){	
+				
+				//如果autoCookie不为空的话。判断cookie中的值
+				
+				//得到cookie中的值
+				String value = autoCookie.getValue();
+				String[] values = value.split(":");
+				
+				if(values.length==3){
+				
+					
+					
+					//得到拆分的值
+					String email = values[0];
+					String time = values[1];
+					String valueMD5 = values[2];
+					//判断cookie是否失效
+					if(Long.valueOf(time)>System.currentTimeMillis()){
+						
+					//没有失效
+					System.out.println("service======="+service);
+					User user = service.getUserByEmail(email);					
+					//判断用户是否为空
+					if(user!=null){//为空，继续执行
+					
+					String userValue = user.getEmail() + ":" + time + ":" + user.getPasswordMD5();
+					//加密之后和cookie中的值进行对比
+					if(valueMD5.equals(MD5.getHash(userValue))){
+						//不一样的话继续执行原来的页面
+					
+					HttpSession session = request.getSession(true);
+					session.setAttribute("user", user);
+					autoLogin = true;
+					}
+					
+					}
+					}
+				}
+				
+			}	
+		}
+		
+		if(autoLogin){
+			target = "topAutoLogin.jsp";
+		}else{
+			target = "top.jsp";
+		}
+		
+		
 		request.getRequestDispatcher(target).forward(request, response);
 	}
 	

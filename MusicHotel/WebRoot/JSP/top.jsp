@@ -1,4 +1,5 @@
- <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+ <%@ page language="java" import="java.util.*,com.po.User" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -9,6 +10,10 @@
 	</head>
 
 	<body>
+	
+		<% 
+			User user = (User)session.getAttribute("user");
+		%>
 		<!--一整个顶部栏-->
 		<div id="wholeTop">
 			<!--网站logo-->
@@ -41,6 +46,7 @@
 					<input type="text" name="searchEverything" id="searchEverything" style="display: none;" />
 				</div>
 			</div>
+			
 			<!-- 登录上之后出现的 -->
 			<div id="loginAfter" style="display:none">
 				<div id="message"></div>
@@ -177,7 +183,6 @@
 		</div>
 		<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/top.js" type="text/javascript" charset="utf-8"></script>
-		
 	</body>
 
 </html>

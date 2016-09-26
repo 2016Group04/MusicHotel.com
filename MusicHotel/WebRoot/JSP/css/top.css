@@ -468,5 +468,5 @@ iframe{
 /* 退出的a标签样式 */
 #cc a{
 	color:#7D7D7D;
-	underline:none;
+	text-decoration:none;
 }

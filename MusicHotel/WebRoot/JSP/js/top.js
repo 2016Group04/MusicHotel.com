@@ -181,9 +181,9 @@ $(function() {
 											//请前去邮箱进行验证
 											//"</div>"
 											var replaceS = "<div class='message'>系统通知：";
-											for(var i=0;i<data[2].length;i++){
+											/*for(var i=0;i<data[2].length;i++){
 												replaceS = replaceS + data[2][i].title + "</div>";
-											}
+											}*/
 											div.before($(replaceS));
 									},"json");
 								}

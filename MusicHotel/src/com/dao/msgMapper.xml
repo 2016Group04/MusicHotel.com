@@ -8,7 +8,7 @@
 	</insert>
 	
 	<select id="getAllMsg" parameterType="int" resultType="com.po.Msg">
-		SELECT * FROM msg where user_id=#{userId} order by msg_date DESC
+		SELECT * FROM msg where user_id=#{userId} order by msg_date DESC		
 	</select>
 	
 </mapper>

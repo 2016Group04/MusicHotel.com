@@ -2,5 +2,5 @@
 <<<<<<<=HEAD
 >>>>>>>=branch 'master' of https\://github.com/2016Group04/MusicHotel.com.git
 eclipse.preferences.version=1
-validator.Checked=WebRoot/html/js/jquery-1.7.2.min.js,WebRoot/WEB-INF/applicationContext.xml,config/spring/applicationContext.xml,WebRoot/html/js/jquery-3.1.0.js,WebRoot/JSP/js/jquery-3.1.0.js,WebRoot/JSP/js/jquery-1.7.2.min.js,WebRoot/html/js/jquery-3.1.0.min.js
+validator.Checked=config/spring/applicationContext.xml
 validator.Unchecked=

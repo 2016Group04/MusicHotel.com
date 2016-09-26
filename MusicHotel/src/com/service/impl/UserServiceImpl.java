@@ -68,9 +68,7 @@ public class UserServiceImpl implements UserService{
 			
 			User user = null;
 			String sql = "SELECT * FROM users WHERE email='" + email + "'";
-			
 			List<User> list = dao.getUserBySql(sql);
-					
 			int count = 0;
 			if(list.size()>=1){
 				user = list.get(0);//找到该用户
