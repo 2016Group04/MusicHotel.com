@@ -233,7 +233,12 @@
 			.clearfix {
 			    *zoom: 1;
 			}
-			
+			.clearfix::before, .clearfix::after {
+			    clear: both;
+			    display: table;
+			    content: "";
+			    line-height: 0;
+			}
 			/*article start*/
 			.article {
 			    float: left;
@@ -669,9 +674,6 @@
 			    width: 100%;
 			    height: 158.5px;
 			}
-			.clearfix {
-			    *zoom: 1;
-			}
 			.foot-ct {
 			    color: #e1e1e1;
 			    width: 960px;
@@ -1049,7 +1051,7 @@
 		
 		<div class="container" style="min-height: 209px;">
 			
-			<div class="clearfix" style="position: relative;height: 1635px">
+			<div class="clearfix" style="position: relative;">
 				
 				<!--article start-->
 				<div class="article article-sm">

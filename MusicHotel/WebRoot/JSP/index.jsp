@@ -13,6 +13,8 @@
   </head>
   
   <body>
-   <a href="getAllHotel.action">查所有</a>
+   <jsp:forward page="getAllHotel.action">
+   	<jsp:param value="1" name="1"/>
+   </jsp:forward>
   </body>
 </html>

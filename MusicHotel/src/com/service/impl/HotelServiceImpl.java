@@ -27,7 +27,7 @@ public class HotelServiceImpl implements HotelService {
 	@Override
 	public List<Hotel> getAllHotel() {
 		List<Hotel> list = null;
-		String sql = "SELECT * FROM hotel";
+		String sql = "SELECT * FROM hotel order by hotel_id desc";
 		list = hotelDao.getHotelBySql(sql);
 		return list;
 	}
