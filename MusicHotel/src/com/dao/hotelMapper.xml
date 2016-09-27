@@ -12,4 +12,9 @@
 	<select id="getHotelBySql" parameterType="java.lang.String" resultType="com.po.Hotel">
 		${value}
 	</select>
+	
+	<!--查询总共有多少条记录-->
+	<select id="getTotalRecordSum" parameterType="java.lang.String" resultType="int">
+		${value}
+	</select>
 </mapper>

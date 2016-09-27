@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 定义sql文件的唯一标示  通过namespace这个标示 找到这个xml文件 -->
+<mapper namespace="com.dao.NotificationDao">
+	
+	<insert id="addNotification" parameterType="com.po.Notification">
+		INSERT INTO notification VALUE(NULL,#{notificationDate},#{title},#{content})
+	</insert>
+	
+	<select id="getAllNotification" resultType="com.po.Notification">
+		SELECT * FROM notification order by notification_date DESC
+	</select>
+	
+</mapper>

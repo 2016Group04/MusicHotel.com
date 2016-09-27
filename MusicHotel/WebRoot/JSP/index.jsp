@@ -13,8 +13,8 @@
   </head>
   
   <body>
-   <jsp:forward page="getAllHotel.action">
-   	<jsp:param value="1" name="1"/>
+   <jsp:forward page="getHotelByPage.action">
+   	<jsp:param name="requestPage" value="1"/>
    </jsp:forward>
   </body>
 </html>

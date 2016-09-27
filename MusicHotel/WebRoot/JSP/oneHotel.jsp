@@ -168,15 +168,15 @@
 	描述：评论列表开始
 -->
 				<div class="comment-sort">
-					<a class="curt-sort" id="commentSort" href=""> <span
+					<a class="curt-sort" id="commentSort" href="#"> <span
 						id="commentSortText">最新评论</span> <span id="icon-sort-menu"
 						class="icon-sort-menu">▼</span>
 
 					</a>
 
 					<div class="sort-menu" id="commentSortMenu" style="display: none;">
-						<a class="comment-sort-item" href="">最新评论</a> <a
-							class="comment-sort-item" href="">热门评论</a>
+						<a class="comment-sort-item" href="#" id="new">最新评论</a> <a
+							class="comment-sort-item" href="#" id="hot">热门评论</a>
 					</div>
 
 				</div>
@@ -310,7 +310,33 @@
 				$(this).children("span").hide();
 			});
 			/*显示当前发布时间*/
+			
+			//查询最新评论
+			$("#new").click(function(){
+				location.assign("getCommentOrderByDate.action");
+			});
+			
+			//查询热门评论
+			$("#hot").click(function(){
+				
+				//location.assign("getCommentOrderByLikeSum.action");
+				 $.post("getCommentOrderByLikeSum.action",{
+					 	"action":"getCommentOrderByLikeSum",
+					 	
+					 },function(data,status){
+					 	//使用dom技术来更新 创建出一个 二级产品种类的下来列表框 把以前的替换
+					 	var divItem = null;
+					 	
+					 	for(var i =0;i<data.length;i++){
+					 		 divItem = "<div class='item'><a class='avatar-wrapper'> <img src='img/avatar.gif' alt='"+data[i].fromUid+"' class='avatar' /></a><div class='item-wrapper'><div class='helper'><a  class='username' target='_blank'>"+data[i].fromUid+"</a><div class='more'><span class='icon-more'> ▼ <span class='more-menu' style='display: none;'> <a href='javascript:void(0);' class='comment-more-item btn-report' rel='nofollow'> <span class='icon-report'></span> <span class='report-status'>举报</span></a></span></span></div></div><div class='comment-ct'><p class='the-comment'>"+data[i].content+"</p></div><div class='helper clear-fix'>"+data[i].commentDate+"<a class='btn-vote'> <i class='icon-vote'></i>	<span> 赞 </span></a> <a  class='btn-replay'> <span id='' class='icon-replay'> </span> 回复</a></div><div class='sub-comment' style='display: none;'><span class='arrows'></span><form action='' class='editor-wrapper hide form-comment-at' style='border: 0px;'><div class='editor'><textarea name='content' class='editor-comment-at'></textarea></div><div class='toolbar clearfix'><div class='btn-group'><a  class='btn-link btn-action-cancel'>取消</a>	<button	class='btn btn-positive btn-not-ready rounded btn-at-comment-submit'>评论</button></div></div></form></div></div></div>";
 
+					 	}
+					 	
+					 	//替换以前的
+					 	$("#hot").replaceWith(divItem);
+					 },"json");
+			});
+			//
 		});
 	</script>
 </body>

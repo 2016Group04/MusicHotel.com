@@ -1,5 +1,5 @@
 package com.controller;
-
+//对验证码进行验证的控制器
 import java.io.IOException;
 import java.io.PrintWriter;
 

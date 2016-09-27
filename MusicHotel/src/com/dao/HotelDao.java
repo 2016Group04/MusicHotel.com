@@ -20,4 +20,7 @@ public interface HotelDao {
 	
 	//根据sql查
 	public List<Hotel> getHotelBySql(String sql);
+	
+	//查询总共有多少条记录
+	public int getTotalRecordSum(String sql);
 }

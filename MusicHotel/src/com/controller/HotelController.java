@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.page.PageInfo;
 import com.po.Hotel;
 import com.service.impl.HotelServiceImpl;
 
@@ -21,24 +23,32 @@ public class HotelController {
 	private HotelServiceImpl hotelService;
 	
 	//根据id查一个
-	@RequestMapping("")
-	public void getHotelById(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	@RequestMapping("JSP/getHotelById.action")
+	public String getHotelById(Model model,String hotelId){
 		//一.填充数据
+		System.out.println(hotelId);
 		//二.调用业务逻辑
+		Hotel hotel = hotelService.getHotelById(Integer.parseInt(hotelId));
 		//三.转发视图
+		String target = "oneHotel.jsp";
+		model.addAttribute("hotel", hotel);
+		return target;
 	}
 	
-	//查所有
-	@RequestMapping("JSP/getAllHotel.action")
-	public void getAllHotel(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	//分页查
+	@RequestMapping("JSP/getHotelByPage.action")
+	public String getHotelByPage(Model model,String requestPage){
 		//一.填充数据
+		PageInfo pageInfo = new PageInfo(Integer.parseInt(requestPage));
 		//二.调用业务逻辑
-		List<Hotel> list = hotelService.getAllHotel();
+		int totalRecordSum = hotelService.getTotalRecordSum();
+		pageInfo.setTotalRecordCount(totalRecordSum);
+		
+		List<Hotel> list = hotelService.getHotelByPage(pageInfo);
 		//三.转发视图
 		String target = "allHotels.jsp";
-		request.setAttribute("list", list);
-		request.getRequestDispatcher(target).forward(request, response);
+		model.addAttribute("list", list);
+		model.addAttribute("pageInfo", pageInfo);
+		return target;
 	}
 }
