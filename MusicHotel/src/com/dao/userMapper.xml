@@ -12,6 +12,10 @@
 		DELETE FROM users WHERE user_id=#{userId}
 	</delete>
 	
+	<update id="updateUser" parameterType="com.po.User">
+		UPDATE users SET email=#{email},password_MD5=#{passwordMD5},nickname=#{nickname},profile_text=#{profileText},profile_img=#{profileImg},signup_date=#{signupDate},listened_sum=#{listenedSum},account_qq=#{accountQq},account_weibo=#{accountWeibo},account_douban=#{accountDouban},gender=#{gender},age=#{age},address=#{address},occupation=#{occupation},auto_play=#{autoPlay},is_validated=#{isValited} WHERE user_id=#{userId}
+	</update>
+	
 	<select id="getUserByUserId" parameterType="int" resultType="com.po.User">
 		SELECT * FROM users WHERE user_id=#{userId}
 	</select>

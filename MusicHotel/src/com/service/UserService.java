@@ -26,4 +26,5 @@ public interface UserService {
 	//用户登录的时候验证用户的邮箱和密码
 	public User checkLogin(String email,String password);
 	
+	
 }

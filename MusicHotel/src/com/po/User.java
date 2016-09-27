@@ -38,6 +38,7 @@ public class User {
 	private String address;
 	private String occupation;
 	private int autoPlay;
+	private int isValited;
 	public int getUserId() {
 		return userId;
 	}
@@ -134,6 +135,14 @@ public class User {
 	public void setAutoPlay(int autoPlay) {
 		this.autoPlay = autoPlay;
 	}
+	
+	
+	public int getIsValited() {
+		return isValited;
+	}
+	public void setIsValited(int isValited) {
+		this.isValited = isValited;
+	}
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", email=" + email + ", passwordMD5="
@@ -143,7 +152,8 @@ public class User {
 				+ accountQq + ", accountWeibo=" + accountWeibo
 				+ ", accountDouban=" + accountDouban + ", gender=" + gender
 				+ ", age=" + age + ", address=" + address + ", occupation="
-				+ occupation + ", autoPlay=" + autoPlay + "]";
+				+ occupation + ", autoPlay=" + autoPlay + ", isValited="
+				+ isValited + "]";
 	}
 	
 	

@@ -197,8 +197,11 @@ public class RegisteController{
 	public String emailValidation(int userId){
 		String target = "";
 		
+		User user = service.getUserByUserId(userId);
 		
+		user.setIsValited(1);
 		
+		service.updateUser(user);
 		
 		target = "/JSP/activationSuccess.jsp";
 		return target;
