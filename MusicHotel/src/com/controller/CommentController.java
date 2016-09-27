@@ -83,5 +83,23 @@ public class CommentController {
 		request.getRequestDispatcher(target).forward(request, response);
 		System.out.println("in getCommentOrderByDate  end");
 	}
+	@RequestMapping("/JSP/getCommentOrderByLikeSum")
+	public void getCommentOrderByLikeSum(HttpServletRequest request,HttpServletResponse response)
+			throws IOException,ServletException{
+		System.out.println("in getCommentOrderByLikeSum ");
+		request.setCharacterEncoding("UTF-8");
+		String target = "";
+		//填充数据(hotel 和1 需要从jsp中传值)
+		
+		List<Comment> list = commentServiceImpl.getCommentOrderByLikeSum("hotel", "1");
+		
+		for(Comment comment:list){
+			System.out.println(comment);
+		}
+		request.setAttribute("list", list);
+		target = "oneHotel.jsp";
+		request.getRequestDispatcher(target).forward(request, response);
+	
+	}
 	
 }

@@ -200,6 +200,7 @@ public class RegisteController{
 		
 		
 		
+		target = "/JSP/activationSuccess.jsp";
 		return target;
 	}
 	

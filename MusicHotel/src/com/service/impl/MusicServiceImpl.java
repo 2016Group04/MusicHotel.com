@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.dao.MusicDao;
 import com.po.Music;
 import com.service.MusicService;
-@Service
+
 public class MusicServiceImpl implements MusicService {
 	
 	@Autowired
