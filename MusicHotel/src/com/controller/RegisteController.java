@@ -190,6 +190,20 @@ public class RegisteController{
 	}
 	
 	/**
+	 * 功能：用户注册之后验证邮箱
+	 * @return
+	 */
+	@RequestMapping("/emailValidation.action")
+	public String emailValidation(int userId){
+		String target = "";
+		
+		
+		
+		
+		return target;
+	}
+	
+	/**
 	 * 功能：用户登录时，验证用户的邮箱和密码是否正确
 	 * @param request
 	 * @param response
