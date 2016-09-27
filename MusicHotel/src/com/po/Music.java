@@ -2,7 +2,7 @@ package com.po;
 
 public class Music {
 	
-	private int musicId;
+	private Integer musicId;
 	private String titile;
 	private String coverImg;
 	private String artist;
@@ -13,7 +13,7 @@ public class Music {
 	public int getMusicId() {
 		return musicId;
 	}
-	public void setMusicId(int musicId) {
+	public void setMusicId(Integer musicId) {
 		this.musicId = musicId;
 	}
 	public String getTitile() {

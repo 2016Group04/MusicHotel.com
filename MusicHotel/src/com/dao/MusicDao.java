@@ -2,22 +2,24 @@ package com.dao;
 
 import java.util.List;
 
-import com.po.Music;
+import org.springframework.stereotype.Repository;
 
+import com.po.Music;
+@Repository
 public interface MusicDao {
 	
-	//增加一个用户
+	//增加一个音乐
 	public int addMusic(Music music);
 	
-	//删除一个用户
+	//删除一个音乐
 	public int deleteMusic(int musicId);
 	
-	//修改用户信息
+	//修改音乐信息
 	public int updateMusic(Music music);
 	
-	//根据用户的useId来查找用户
-	public Music getMusicByMusicId(int musicId);
+	//根据音乐的Id来查找用户
+	public Music getMusicByMusicId(Integer musicId);
 	
-	//根据sql来查找用户
+	//根据sql来查找音乐
 	public List<Music> getMusicBySql(String sql);
 }

@@ -1,13 +1,18 @@
 package com.service.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.stereotype.Service;
 
 import com.dao.MusicDao;
 import com.po.Music;
 import com.service.MusicService;
-
+@Service
 public class MusicServiceImpl implements MusicService {
 	
 	@Autowired
@@ -34,9 +39,18 @@ public class MusicServiceImpl implements MusicService {
 	}
 
 	@Override
-	public Music getMusicByMusicId(int musicId) {
-		Music music=dao.getMusicByMusicId(musicId);
-		return music;
+	public List<Music> getMusicByMusicId(List<Integer> list) {
+		
+		List<Music> list1 = new ArrayList<Music>();
+		
+		Iterator<Integer> i = list.iterator();
+		while(i.hasNext()){
+			Integer in = i.next();
+			Music music = dao.getMusicByMusicId(in);
+			list1.add(music);
+		}
+		
+		return list1;
 	}
 	
 	public static void main(String[] args) {

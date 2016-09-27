@@ -1,6 +1,8 @@
 package com.service;
 
 
+import java.util.List;
+
 import com.po.Music;
 
 public interface MusicService {
@@ -16,8 +18,7 @@ public interface MusicService {
 	public int updateMusic(Music music);
 	
 	//根据MusicId来查找
-	public Music getMusicByMusicId(int musicId);
-	
+	public List<Music> getMusicByMusicId(List<Integer> list);
 	
 	
 }

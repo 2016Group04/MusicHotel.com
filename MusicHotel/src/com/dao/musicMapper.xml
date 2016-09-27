@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 定义sql文件的唯一标示  通过namespace这个标示 找到这个xml文件 -->
-<mapper namespace="com.po.musicMapper">
+<mapper namespace="com.dao.MusicDao">
 	
 	<insert id="addMusic" parameterType="com.po.Music">
-		INSERT INTO music(music_id,titile,cover_img,artist,path,lyrics,size,time_length) VALUE(NULL,#{titile},#{coverImg},#{artist},#{path},#{lyrics},#{size},#{timeLength});
+		INSERT INTO music(null,titile,cover_img,artist,path,lyrics,size,time_length) VALUE(NULL,#{titile},#{coverImg},#{artist},#{path},#{lyrics},#{size},#{timeLength});
 	</insert>
 	
 	<delete id="deleteMusicByMusicId" parameterType="int">
 		DELETE FROM music WHERE music_id=#{musicId}
 	</delete>
 	
-	<select id="getMusicByMusicId" parameterType="int" resultType="com.po.Music">
+	<select id="getMusicByMusicId" parameterType="java.lang.Integer" resultType="com.po.Music">
 		SELECT * FROM music WHERE music_id=#{musicId}
 	</select>
 	

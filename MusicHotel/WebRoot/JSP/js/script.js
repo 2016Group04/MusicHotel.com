@@ -1,43 +1,6 @@
 ﻿(function($){
 	// Settings
-	var repeat = localStorage.repeat || 0,
-		shuffle = localStorage.shuffle || 'false',
-		continous = true,
-		autoplay = true,
-		playlist = [
-			{
-			title: 'Ciao, Bella, Ciao [Italy] (arr. Ben Parry)',
-			artist: 'Artist: The Swingle Singers',
-			album: 'Album: Anthology',
-			cover:'img/cover.jpg',
-			mp3: 'mp3/deguo.mp3',
-			ogg: ''
-			},
-			{
-			title: 'Clair',
-			artist: 'Artist: The Singers Unlimited',
-			album: 'Album: A Capella II',
-			cover: 'img/cover2.jpg',
-			mp3: 'mp3/The Dawn.mp3',
-			ogg: ''
-			},
-			{
-			title: 'Another You',
-			artist: 'Artist: Naturally 7',
-			album: 'Album: What Is It?',
-			cover: 'img/cover3.jpg',
-			mp3: 'mp3/chenparty dj.mp3',
-			ogg: ''
-			},
-			{
-			title: '你被写在我的歌声里',
-			artist: 'Artist: 伯村清唱团',
-			album: 'Album: Here We Go',
-			cover: 'img/cover4.jpg',
-			mp3: 'mp3/chenparty dj.mp3',
-			ogg: ''
-			},
-		];
+	
 
 	// Load playlist
 	for (var i=0; i<playlist.length; i++){
