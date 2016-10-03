@@ -2,6 +2,8 @@ package com.po;
 
 import java.util.Date;
 
+import com.util.DateFormat;
+
 public class Hotel {
 
 	private Integer hotelId;
@@ -13,6 +15,16 @@ public class Hotel {
 	private Date createDate;
 	private String style;
 	private String hotelDesc;
+	
+	private Date likeDate;
+	
+	
+	public String getLikeDate() {
+		return DateFormat.dateFormat(likeDate);
+	}
+	public void setLikeDate(Date likeDate) {
+		this.likeDate = likeDate;
+	}
 	
 	public Integer getHotelId() {
 		return hotelId;
@@ -50,8 +62,8 @@ public class Hotel {
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-	public Date getCreateDate() {
-		return createDate;
+	public String getCreateDate() {
+		return DateFormat.dateFormat(createDate);
 	}
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
@@ -72,8 +84,9 @@ public class Hotel {
 	@Override
 	public String toString() {
 		return "Hotel [hotelId=" + hotelId + ", titile=" + titile
-				+ ", likeSum=" + likeSum + ", commentSum=" + commentSum
-				+ ", userId=" + userId + ", createDate=" + createDate
-				+ ", style=" + style + "]";
+				+ ", coverImg=" + coverImg + ", likeSum=" + likeSum
+				+ ", commentSum=" + commentSum + ", userId=" + userId
+				+ ", createDate=" + createDate + ", style=" + style
+				+ ", hotelDesc=" + hotelDesc + ", likeDate=" + likeDate + "]";
 	}
 }

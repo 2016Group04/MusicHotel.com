@@ -46,9 +46,10 @@ public class ArticleServiceImpl implements ArticleService{
 		return article;
 	}
 
+	//根据用户的id来查找用户创建的文章
 	@Override
 	public int getArticleByQuery(String account) {
-	/*wenwenwenwenwnenwenwnenwnenwnenwe*/
+	
 		String sql = "SELECT * FROM Article WHERE nickname='" + account + "'";
 		
 		List<Article> list = dao.getArticleBySql(sql);
@@ -63,6 +64,16 @@ public class ArticleServiceImpl implements ArticleService{
 		return count;
 	}
 
+	//根据用户的id来查找用户创建的文章
+		@Override
+		public List<Article> getArticleByUserId(int userId) {
+		
+			String sql = "SELECT * FROM article WHERE user_id="+userId;
+			
+			List<Article> list = dao.getArticleBySql(sql);
+					
+			return list;
+		}
 
 	
 	

@@ -27,6 +27,7 @@ import com.service.impl.JavaMailServiceImpl;
 import com.service.impl.MsgServiceImpl;
 import com.service.impl.NotificationServiceImpl;
 import com.service.impl.UserServiceImpl;
+import com.util.DateFormat;
 import com.util.MD5;
 
 @Controller
@@ -132,6 +133,7 @@ public class RegisteController{
 		Date date = new Date();
 		
 		user.setSignupDate(date);
+		
 		
 		String passwordMD5 = MD5.getHash(password);
 		user.setPasswordMD5(passwordMD5);
@@ -253,7 +255,7 @@ public class RegisteController{
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String auto = request.getParameter("auto");
-		
+		System.out.println(password);
 		String passwordMD5 = MD5.getHash(password);
 		
 		User user = service.checkLogin(email, passwordMD5);
@@ -380,9 +382,6 @@ public class RegisteController{
 		
 		System.out.println("in checkAutoLogin");
 		Cookie[] cookies = request.getCookies();
-		System.out.println("this===="+cookies);
-		System.out.println(cookies!=null);
-		System.out.println(cookies==null);
 		if(cookies!=null){
 			
 			for(Cookie cookie:cookies){

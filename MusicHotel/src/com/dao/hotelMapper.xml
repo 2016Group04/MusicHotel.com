@@ -3,6 +3,20 @@
 
 <mapper namespace="com.dao.HotelDao">
 
+	<!-- 增加一个hotel -->
+	<insert id="addHotel" parameterType="com.po.Hotel">
+		INSERT INTO hotel VALUE(NULL,#{titile},#{coverImg},#{likeSum},#{commentSum},#{userId},#{createDate},#{style},#{hotelDesc})
+	</insert>
+
+	<!-- 根据id删除hotel -->
+	<delete id="deleteHotel" parameterType="int">
+		DELETE FROM hotel WHERE hotel_id=#{hotelId}
+	</delete>
+	
+	<!-- 修改hotel -->
+	<update id="updateHotek" parameterType="com.po.Hotel">
+		UPDATE hotel SET cover_img=#{coverImg} WHERE hotel_id=#{hotelId}
+	</update>
 	<!--根据id查一个-->
 	<select id="getHotelById" parameterType="int" resultType="com.po.Hotel">
 		SELECT * FROM hotel WHERE hotel_id=#{hotelId}

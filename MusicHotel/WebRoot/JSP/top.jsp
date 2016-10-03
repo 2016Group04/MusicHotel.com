@@ -78,7 +78,7 @@
 				<div id="operate" style="display:none">
 						
 					<div id="cc">
-						<a><label class="myLabel" id="my"></label>我的落网</a>
+						<a href="getMyHotel.action"><label class="myLabel" id="my"></label>我的落网</a>
 
 						<a><label class="myLabel" id="setting"></label>账号设置</a>
 						<a href="logout.action"><label class="myLabel" id="logout"></label>退出</a>
@@ -220,7 +220,7 @@
 				<div id="operate" style="display:none">
 						
 					<div id="cc">
-						<a><label class="myLabel" id="my"></label>我的落网</a>
+						<a href="getMyHotel.action"><label class="myLabel" id="my"></label>我的落网</a>
 
 						<a><label class="myLabel" id="setting"></label>账号设置</a>
 						<a href="logout.action"><label class="myLabel" id="logout"></label>退出</a>
@@ -341,7 +341,6 @@
 		</div>
 		<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/top.js" type="text/javascript" charset="utf-8"></script>
-		
 	</body>
 
 </html>

@@ -2,12 +2,9 @@
 	margin: 0px;
 }
 
-input,textarea{
+input{
 	outline: none;
-	color:#7d7d7d;
 }
-
-
 
 /*整个大的div*/
 #hotelMiddle{
@@ -30,7 +27,6 @@ input,textarea{
 /*hotel的编号和标题*/
 #titleH{
 	margin-top: 30px;
-	margin-left:210px;
 }
 
 #no{
@@ -42,7 +38,6 @@ input,textarea{
 	width: 65px;
 	height: 65px;
 	font: 400 18px Verdana, 微软雅黑, 'Microsoft YaHei', Helvetica, Arial;
-	
 }
 
 .noo{
@@ -51,7 +46,7 @@ input,textarea{
 	line-height: 65px;
 }
 
-.title,.title input{
+.title{
 	height: 65px;
 	margin-left: 20px;
 	height: 65px;
@@ -59,12 +54,10 @@ input,textarea{
 	font: 400 30px Verdana, 微软雅黑, 'Microsoft YaHei', Helvetica, Arial;
 	line-height: 65px;
 }
-
-
 /*剩下的部分*/
 #remain{
 	width: 625px;
-	margin-left: 320px;
+	margin-left: 85px;
 	margin-top: 30px;
 }
 
@@ -80,7 +73,7 @@ input,textarea{
 	margin-top: 20px;
 }
 
-#upload,#uploadImg{
+#upload{
 	width: 100px;
 	height: 30px;
 	background-color: #2C2E32;
@@ -90,13 +83,6 @@ input,textarea{
 	color: #fff;
 	cursor: pointer;
 }
-
-#uploadImg{
-	position:relative;
-	top:-90px;
-	left:250px;
-}
-
 #songs{
 	margin-top: 30px;
 }

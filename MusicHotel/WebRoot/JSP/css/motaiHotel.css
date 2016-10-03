@@ -9,16 +9,18 @@ body{
 input,textarea{
 	outline: none;
 	border-radius: 3px;
-	width: 250px;
 	font-size: 15px;
 }
 
 input{
 	height: 20px;
+	width: 250px;
 }
 
 textarea{
 	height: 100px;
+	width:630px;
+	font: 15px 'Microsoft Yahei', Tahoma, Arial, Helvetica;
 }
 
 #createHotel{
@@ -53,10 +55,12 @@ textarea{
 }
 
 #hotelN,#hotelT,#hotelC,#hotelCov{
-	margin:20px 55px;
+	margin:20px 100px;
+	position:relative;
+	left:250px;
 }
 
-#hotelN label,#hotelT label.cc,#hotelC label,#hotelCov label{
+#hotelT label.cc{
 	display: inline-block;
 	width: 80px;
 	height: 20px;
@@ -138,15 +142,15 @@ select.style1{
 	z-index: 1001;
 	outline: none;
 	color: #898995;
-	top: 106px;
-	left: 139px;
+	top: 0px;
+	left: 80px;
 	width: 109px;
 	border:2px solid;
 	border-color: #9A9A9A #EEEEEE #EEEEEE #9A9A9A;
 }
 
 div#style1{
-	display: inline-block;
+	display:inline-block;
 	width: 100px;
 	height: 20px;
 	padding-left: 5px;
@@ -169,4 +173,8 @@ label.sc{
 	display: inline-block;
 	width: 20px;
 	text-align: center;
+}
+
+.tip{
+	display:inline-block;
 }

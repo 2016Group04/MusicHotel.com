@@ -308,9 +308,12 @@
 					trigger = false,
 					audio, timeout, isPlaying, playCounts;
 
-				var play = function(){
+				var play = function(userId){
 					audio.play();
 					$('.playback').addClass('playing');
+					$.post("listenedSumAddOne.action",{
+						"userId":${user.userId}
+					});
 					timeout = setInterval(updateProgress, 500);
 					isPlaying = true;
 				}
@@ -321,6 +324,7 @@
 					clearInterval(updateProgress);
 					isPlaying = false;
 				}
+				
 
 				// Update progress
 				var setProgress = function(value){

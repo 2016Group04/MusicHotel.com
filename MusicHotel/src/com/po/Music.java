@@ -1,5 +1,9 @@
 package com.po;
 
+import java.util.Date;
+
+import com.util.DateFormat;
+
 public class Music {
 	
 	private Integer musicId;
@@ -10,6 +14,7 @@ public class Music {
 	private String lyrics;
 	private String size;
 	private String timeLength;
+	
 	public int getMusicId() {
 		return musicId;
 	}

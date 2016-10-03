@@ -2,12 +2,14 @@ package com.po;
 
 import java.util.Date;
 
+import com.util.DateFormat;
+
 public class Article {
 	private int articleId;      //文章编号
 	private int userId;			//作者  用户编号
 	private String titile;		//文章标题
 	private String coverImg;	//文章的封面 在文章列表里显示
-	private Date articleData;	//文章发表的日期
+	private Date articleDate;	//文章发表的日期
 	private int musicId;		//文章背景音乐的id
 	private String brief;		//文章简介
 	private String content;		//文章内容   doc文件名
@@ -19,6 +21,16 @@ public class Article {
 	music_id INT,			#文章背景音乐的id
 	brief VARCHAR(500),
 	content VARCHAR(60)	#文章内容   doc文件名*/
+	
+	private Date likeDate;
+	
+	
+	public String getLikeDate() {
+		return DateFormat.dateFormatLong(likeDate);
+	}
+	public void setLikeDate(Date likeDate) {
+		this.likeDate = likeDate;
+	}
 	public int getArticleId() {
 		return articleId;
 	}
@@ -43,11 +55,13 @@ public class Article {
 	public void setCoverImg(String coverImg) {
 		this.coverImg = coverImg;
 	}
-	public Date getArticleData() {
-		return articleData;
+	public String getArticleDate() {
+		String date = DateFormat.dateFormatLong(articleDate);
+		System.out.println("date==========="+date);
+		return date;
 	}
-	public void setArticleData(Date articleData) {
-		this.articleData = articleData;
+	public void setArticleDate(Date articleData) {
+		this.articleDate = articleData;
 	}
 	public int getMusicId() {
 		return musicId;
@@ -73,7 +87,7 @@ public class Article {
 	public String toString() {
 		return "Article [articleId=" + articleId + ", userId=" + userId
 				+ ", titile=" + titile + ", coverImg=" + coverImg
-				+ ", articleData=" + articleData + ", musicId=" + musicId
+				+ ", articleData=" + articleDate + ", musicId=" + musicId
 				+ ", brief=" + brief + ", content=" + content + "]";
 	}
 	

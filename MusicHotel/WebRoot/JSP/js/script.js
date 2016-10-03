@@ -16,6 +16,7 @@
 	var play = function(){
 		audio.play();
 		$('.playback').addClass('playing');
+		$.post("listenedSumAddOne.action");
 		timeout = setInterval(updateProgress, 500);
 		isPlaying = true;
 	}

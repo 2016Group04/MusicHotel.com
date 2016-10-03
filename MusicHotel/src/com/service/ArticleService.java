@@ -22,4 +22,7 @@ public interface ArticleService {
 	//根据作者查找
 	public int getArticleByQuery(String account);
 	
+	//根据用户的id来查找用户创建的文章
+	public List<Article> getArticleByUserId(int userId);
+	
 }

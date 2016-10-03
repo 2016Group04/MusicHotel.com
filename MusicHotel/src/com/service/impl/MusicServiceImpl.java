@@ -53,6 +53,17 @@ public class MusicServiceImpl implements MusicService {
 		return list1;
 	}
 	
+	//根据MusicId来查找
+	public Music getMusicByMusicId(int musicId){
+		Music music = null;
+		
+		music = dao.getMusicByMusicId(musicId);
+		
+		return music;
+		
+	}
+	
+	
 	public static void main(String[] args) {
 		ApplicationContext context = new FileSystemXmlApplicationContext("WebRoot/WEB-INF/applicationContext.xml");
 		MusicServiceImpl service=(MusicServiceImpl)context.getBean("musicService");

@@ -13,6 +13,7 @@ div#wholeTop {
 	background-color: #F2F2F2;
 	border-top:2px solid #DD5862;
 	border-bottom: 1px solid #E9E8E8;
+	margin-bottom:20px;
 }
 
 /*顶栏下所有的div都是水平排列*/

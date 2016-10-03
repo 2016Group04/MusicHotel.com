@@ -2,6 +2,8 @@ package com.po;
 
 import java.util.Date;
 
+import com.util.DateFormat;
+
 
 public class User {
 
@@ -75,8 +77,10 @@ public class User {
 	public void setProfileImg(String profileImg) {
 		this.profileImg = profileImg;
 	}
-	public Date getSignupDate() {
-		return signupDate;
+	public String getSignupDate() {
+		
+		String date = DateFormat.dateFormat(signupDate);
+		return date;
 	}
 	public void setSignupDate(Date signupDate) {
 		this.signupDate = signupDate;

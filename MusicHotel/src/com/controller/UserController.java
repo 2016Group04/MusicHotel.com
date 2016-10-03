@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -39,5 +40,35 @@ public class UserController {
 		
 		request.setAttribute("user", user);
 		request.getRequestDispatcher("/JSP/setting.jsp").forward(request, response);
+	}
+	
+	@RequestMapping("/JSP/updateUserProfileText.action")
+	public void updateUserProfileText(HttpServletResponse response,HttpServletRequest request,int userId,String profileContent){
+		
+		System.out.println("in updateUserProfileText");
+		
+		User user = service.getUserByUserId(userId);
+		user.setProfileText(profileContent);
+		
+		HttpSession session = request.getSession(true);
+		session.setAttribute("user", user);
+		service.updateUser(user);
+		
+		
+	}
+	
+	
+	@RequestMapping("/JSP/listenedSumAddOne.action")
+	public void listenedSumAddOne(HttpServletResponse response,int userId){
+		
+		System.out.println("in listenedSumAddOne");
+		
+		User user = service.getUserByUserId(userId);
+		int sum = user.getListenedSum();
+		user.setListenedSum(sum + 1);
+		
+		service.updateUser(user);
+		
+		
 	}
 }

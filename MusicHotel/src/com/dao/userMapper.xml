@@ -5,7 +5,7 @@
 <mapper namespace="com.dao.UserDao">
 	
 	<insert id="addUser" parameterType="com.po.User">
-		INSERT INTO users(user_id,nickname,email,password_MD5) VALUE(NULL,#{nickname},#{email},#{passwordMD5})
+		INSERT INTO users(user_id,nickname,email,password_MD5,signup_date) VALUE(NULL,#{nickname},#{email},#{passwordMD5},#{signupDate})
 	</insert>
 	
 	<delete id="deleteUserByUserId" parameterType="int">

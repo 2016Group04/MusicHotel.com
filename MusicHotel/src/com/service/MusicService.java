@@ -20,5 +20,6 @@ public interface MusicService {
 	//根据MusicId来查找
 	public List<Music> getMusicByMusicId(List<Integer> list);
 	
-	
+	//根据MusicId来查找
+	public Music getMusicByMusicId(int musicId);
 }

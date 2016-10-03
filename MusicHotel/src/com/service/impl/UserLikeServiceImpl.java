@@ -1,0 +1,68 @@
+package com.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.dao.UserLikeDao;
+import com.po.UserLike;
+import com.service.UserLikeService;
+@Service
+public class UserLikeServiceImpl implements UserLikeService{
+
+	@Autowired
+	private UserLikeDao dao;
+	
+	@Override
+	public void addUserLike(UserLike userLike) {
+		int count = dao.addUserLike(userLike);
+		
+		if(count<1){
+			System.out.println("没有添加用户喜爱");
+		}else{
+			System.out.println("添加一条用户喜爱");
+		}
+	}
+
+	@Override
+	public List<UserLike> getUserLikesByUserId(int userId) {
+		
+		List<UserLike> list = null;
+		
+		String sql = "SELECT * FROM user_like WHERE user_id="+userId;
+		
+		list = dao.getUserLikeBySql(sql);
+		return list;
+	}
+	
+	//根据类型和id来得到一个用户喜爱记录
+	@Override
+	public UserLike getUserLikeByLikeToId(int likeToId,String likeType){
+		
+		UserLike userLike = null;
+		
+		String sql = "SELECT * FROM user_like WHERE like_type='"+likeType+"' AND likeTo_id="+likeToId;
+		
+		List<UserLike> list = dao.getUserLikeBySql(sql);
+		
+		userLike = list.get(0);
+		
+		return userLike;
+	}
+	
+	//根据id删除一条用户喜爱记录
+	@Override
+	public void deleteUserLike(int id){
+		
+		int count = dao.deleteUserLike(id);
+		
+		
+		if(count<1){
+			System.out.println("没有删除任何用户喜爱记录");
+		}else{
+			System.out.println("删除一条用户喜爱记录");
+		}
+	}
+
+}
