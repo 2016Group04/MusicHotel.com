@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 定义sql文件的唯一标示  通过namespace这个标示 找到这个xml文件 -->
+
+<mapper namespace="com.dao.AdminDao">
+	
+	<insert id="addAdministrator" parameterType="com.po.Administrator">
+		INSERT INTO Administrator VALUEs(NULL,#{type},#{name},#{password},#{email},DEFAULT);
+	</insert>
+	
+	<delete id="deleteAdministrator" parameterType="int">
+		DELETE FROM Administrator WHERE id=#{id}
+	</delete>
+	
+	<select id="getAdministratorById" parameterType="int" resultType="com.po.Administrator">
+		SELECT * FROM Administrator WHERE id=#{id}
+	</select>
+	
+	<select id="getAdministratorBySql" parameterType="java.lang.String" resultType="com.po.Administrator">
+		${value}
+	</select>
+	
+</mapper>
