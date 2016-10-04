@@ -75,7 +75,7 @@
 
 			</div>
 			<div id="uploadButton">
-				<input type="button" name="upload" id="upload" value="上传歌曲" /> <input
+				<input type="button" name="upload" id="upload" value="上传歌曲" /><input
 					type="file" name="file1" id="file1" style="display: none;" /> <input
 					type="button" name="Submit" id="Submit" value="提交"
 					style="display: none;" />
@@ -138,6 +138,7 @@
 	<script type="text/javascript">
 			
 			$(function  () {
+				
 				//提交按钮
 				$("#Submit").click(function(){
 					
@@ -184,19 +185,22 @@
 					$("#songs table tr#tt").after(input2);
 					loadFile(input1[0]);
 					
-					//发送ajax对相应的表单进行提交,返回相应的id来进行填充
 					
+					/* alert("发送ajax");
+					//发送ajax对相应的表单进行提交,返回相应的id来进行填充
+	
 					 $("#musicForm").ajaxSubmit({  
 			            url : "addMusic.action",  
 			            type : "post",  
 			            dataType : 'json',  
 			            success : function(data) {  
-			                alert("设置成功！");  
+			            	alert("musicId="+data);
 			            },  
 			            error : function(data) {  
-			                alert("error:");  
+			            	alert("musicId="+data);
 			            }  
-			        });  
+			        });
+					  */
 					
 					/* var form = new FormData($("#musicForm"));
 					
@@ -231,8 +235,13 @@
 						
 					//当这个input的值改变的时候,表示选择了音乐文件进行上传
 					$("#upload").val("继续上传");
-					
+           			
 					$("#Submit").show();
+					
+				});
+				
+				$("#coverImg").change(function(){
+					
 					
 				});
 				
@@ -360,6 +369,24 @@
 				} else {
 					document.getElementById('music-cover').setAttribute('src', 'img/icon-add-1.jpg');
 				}
+				
+				
+				
+				alert("发送ajax");
+				//发送ajax对相应的表单进行提交,返回相应的id来进行填充
+
+				 $("#musicForm").ajaxSubmit({  
+		            url : "addMusic.action",  
+		            type : "post",  
+		            dataType : 'json',  
+		            success : function(data) {  
+		            	alert("musicId="+data);
+		            },  
+		            error : function(data) {  
+		            	alert("musicId="+data);
+		            }  
+		        });
+				 
 			}
 		</script>
 </body>

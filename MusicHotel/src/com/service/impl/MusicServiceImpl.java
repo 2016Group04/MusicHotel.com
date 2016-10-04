@@ -218,7 +218,7 @@ public class MusicServiceImpl implements MusicService {
 						Random random = new Random();
 						int num1 = random.nextInt(10000);
 						
-						coverImg = currentTime + "_" + num1 + ".png";
+						coverImg = currentTime + "_" + num1 + ".jpg";
 						
 						Base64.decodeBase64ToImage(base64, productImagesUploadPath+"\\coverImg\\", coverImg);
 						
@@ -256,6 +256,20 @@ public class MusicServiceImpl implements MusicService {
 		list.add(musicNew.getMusicId());
 		
 		return list;
+	}
+	
+	//删除列表中的所有的歌曲
+	@Override
+	public void deleteMusicByList(List<Integer> list){
+		
+		Iterator<Integer> i = list.iterator();
+		
+		while(i.hasNext()){
+			
+			int musicId = i.next(); 
+			
+			dao.deleteMusic(musicId);
+		}
 	}
 
 }

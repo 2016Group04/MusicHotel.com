@@ -12,6 +12,10 @@
 		DELETE FROM user_like WHERE id=#{id}
 	</delete>
 	
+	<delete id="deleteUserLikeMusic" parameterType="int">
+		DELETE FROM user_like WHERE id=#{id}
+	</delete>
+	
 	<!--根据id查一个-->
 	<select id="getUserLikeById" parameterType="int" resultType="com.po.UserLike">
 		SELECT * FROM user_like WHERE id=#{id}

@@ -45,6 +45,15 @@ public class AlbumServiceImpl implements AlbumService{
 		
 		
 	}
+	
+	//根据hotelId删除所有的album记录
+	@Override
+	public void deleteAlbumByHotelId(int hotelId){
+		
+		
+		
+		dao.deleteAlbum(hotelId);
+	}
 
 	
 }

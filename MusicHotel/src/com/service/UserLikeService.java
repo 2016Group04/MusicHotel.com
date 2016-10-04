@@ -17,4 +17,7 @@ public interface UserLikeService {
 	
 	//根据类型和id来得到一个用户喜爱记录
 	public UserLike getUserLikeByLikeToId(int likeToId,String likeType);
+	
+	//根据musicId来删除用户喜爱的已删除的歌曲
+	public void deleteUserLikeByList(List<Integer> list);
 }

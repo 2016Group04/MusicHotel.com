@@ -64,5 +64,12 @@ public class UserLikeServiceImpl implements UserLikeService{
 			System.out.println("删除一条用户喜爱记录");
 		}
 	}
+	
+	//根据musicId来删除用户喜爱的已删除的歌曲
+	@Override
+	public void deleteUserLikeByList(List<Integer> list){
+		
+		
+	}
 
 }

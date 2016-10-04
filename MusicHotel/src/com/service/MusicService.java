@@ -25,9 +25,12 @@ public interface MusicService {
 	//根据MusicId来查找
 	public Music getMusicByMusicId(int musicId);
 	
-	//上传音乐文件
+	//上传音乐文件,返回音乐名
 	public List<Integer> upload(HttpServletRequest request,String productImagesUploadPath);
 	
 	//根据音乐文件的名字来得到music
 	public Music getMusicByPath(String path);
+	
+	//删除列表中的所有的歌曲
+	public void deleteMusicByList(List<Integer> list);
 }

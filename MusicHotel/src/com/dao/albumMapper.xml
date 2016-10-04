@@ -7,8 +7,8 @@
 		INSERT INTO album VALUE(NULL,#{hotelId},#{musicId});
 	</insert>
 	
-	<delete id="deleteAlbumByMusicId" parameterType="com.po.Album">
-		DELETE FROM album WHERE music_id=#{musicId} and hotel_id=#{hotelId}
+	<delete id="deleteAlbum" parameterType="int">
+		DELETE FROM album WHERE hotel_id=#{hotelId}
 	</delete>
 	
 	<select id="getAlbumBySql" parameterType="java.lang.String" resultType="com.po.Album">

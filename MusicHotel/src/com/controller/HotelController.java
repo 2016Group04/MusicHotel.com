@@ -21,7 +21,10 @@ import org.springframework.web.context.ServletContextAware;
 import com.page.PageInfo;
 import com.po.Hotel;
 import com.po.User;
+import com.service.impl.AlbumServiceImpl;
 import com.service.impl.HotelServiceImpl;
+import com.service.impl.MusicServiceImpl;
+import com.service.impl.UserLikeServiceImpl;
 import com.util.WriteFile;
 
 @Controller
@@ -31,7 +34,17 @@ ServletContextAware{
 	@Autowired
 	private HotelServiceImpl hotelService;
 	
+	@Autowired
+	private AlbumServiceImpl albumService;
+	
+	@Autowired
+	private MusicServiceImpl musicService;
+	
+	@Autowired
+	private UserLikeServiceImpl userLikeService;
+	
 	private ServletContext servletContext;
+
 	@Override
 	public void setServletContext(ServletContext servletContext) {
 		this.servletContext = servletContext;
@@ -107,6 +120,20 @@ ServletContextAware{
 		System.out.println("in deleteMyHotel");
 		
 		hotelService.deleteHotel(hotelId);
+		
+		//删除的时候把对应的歌曲删除
+		List<Integer> list = albumService.getMusicIdByHoteId(hotelId);
+		
+		albumService.deleteAlbumByHotelId(hotelId);
+		
+		//删除所有的歌曲
+		musicService.deleteMusicByList(list);
+		
+		//删除用户喜爱列表中的歌曲
+		
+		
+		
+		
 		
 		target = "getMyHotel.action";
 		
