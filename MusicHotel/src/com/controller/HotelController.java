@@ -125,6 +125,7 @@ ServletContextAware{
 		List<Integer> list = albumService.getMusicIdByHoteId(hotelId);
 		
 		albumService.deleteAlbumByHotelId(hotelId);
+		System.out.println("删除列表==="+list);
 		
 		//删除所有的歌曲
 		musicService.deleteMusicByList(list);
@@ -132,7 +133,7 @@ ServletContextAware{
 		//删除用户喜爱列表中的歌曲
 		
 		
-		
+		//userLikeService.deleteUserLikeByList(list);
 		
 		
 		target = "getMyHotel.action";

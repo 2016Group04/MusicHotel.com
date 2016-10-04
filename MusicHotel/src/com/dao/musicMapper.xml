@@ -7,7 +7,7 @@
 		INSERT INTO music VALUE(NULL,#{titile},#{coverImg},#{artist},#{path},#{lyrics},#{size},#{timeLength},#{genre},#{album})
 	</insert>
 	
-	<delete id="deleteMusicByMusicId" parameterType="int">
+	<delete id="deleteMusic" parameterType="int">
 		DELETE FROM music WHERE music_id=#{musicId}
 	</delete>
 	

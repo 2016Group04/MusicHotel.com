@@ -60,4 +60,42 @@ public class WriteFile {
 	        
 	        return hotelDesc;
 	 }
+	 
+	 public static String baseReader(String filepath){
+		 FileReader reader =null;
+	        BufferedReader bufferedReader =null;
+	        String c = "";
+	        try{
+	        reader = new FileReader(filepath);    
+	        bufferedReader = new BufferedReader(reader);
+	       
+	        String s = "";
+	        
+	        while(true){
+	            s =bufferedReader.readLine();
+	            if(s ==null){
+	                break;
+	            }
+	           //System.out.println("read===="+s);
+	         c = c + s;
+	        }
+	            
+
+	        
+	        }catch(Exception e){
+	            System.out.println(e);
+	        }
+	        finally{
+	            try{
+	                bufferedReader.close();
+	                reader.close();
+
+	            }catch(Exception e){
+	                System.out.println(e);
+	            }
+	        }
+	        
+	        
+	        return c;
+	 }
 }

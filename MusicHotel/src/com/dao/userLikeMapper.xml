@@ -13,7 +13,7 @@
 	</delete>
 	
 	<delete id="deleteUserLikeMusic" parameterType="int">
-		DELETE FROM user_like WHERE id=#{id}
+		DELETE FROM user_like WHERE like_type='music' and likeTo_id=#{id}
 	</delete>
 	
 	<!--根据id查一个-->

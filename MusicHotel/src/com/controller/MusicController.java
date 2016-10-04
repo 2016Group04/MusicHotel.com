@@ -2,6 +2,7 @@ package com.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletConfig;
@@ -19,6 +20,7 @@ import com.google.gson.Gson;
 import com.po.Music;
 import com.service.impl.AlbumServiceImpl;
 import com.service.impl.MusicServiceImpl;
+import com.util.WriteFile;
 
 @Controller
 @RequestMapping("/JSP")
@@ -58,6 +60,24 @@ ServletContextAware{
 		List<Integer> list = albumService.getMusicIdByHoteId(hotelId);
 		List<Music> list2 = musicService.getMusicByMusicId(list);
 		
+		
+		Iterator<Music> i = list2.iterator();
+		
+		while(i.hasNext()){
+			Music music = i.next();
+			
+			if("/music/coverImg/default.jpg".equals(music.getCoverImg())){
+				
+				
+			}else{
+				String realpath = servletContext.getRealPath("");
+				//把base64读进来
+				String cover = WriteFile.baseReader(realpath+"//JSP//music//"+music.getCoverImg());
+				System.out.println(cover);
+				music.setCoverImg(cover);
+			}
+		}
+		
 		Gson gson = new Gson();
 		String json = gson.toJson(list2);
 		System.out.println(json);
@@ -69,7 +89,8 @@ ServletContextAware{
 	}
 	
 	@RequestMapping("/addMusic.action")
-	public void addMusic(HttpServletRequest request){
+	public void addMusic(HttpServletRequest request,HttpServletResponse response)
+		throws Exception{
 		
 		System.out.println("in addMusic");
 		
@@ -82,7 +103,9 @@ ServletContextAware{
 		
 		albumService.addAlbum(list.get(0), list.get(1));
 		
-	
+		PrintWriter out = response.getWriter();
+		out.write(list.get(1));
+		out.flush();
 	}
 	
 }

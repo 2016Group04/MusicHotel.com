@@ -218,9 +218,7 @@ public class HotelServiceImpl implements HotelService {
 						int num1 = random.nextInt(10000);
 						txtName = currentTime + num1 + ".txt";//生成一个随机的名字
 						String path = txtUploadPath + "//" + txtName;
-						System.out.println("path:======"+txtUploadPath);
-						System.out.println("name====="+txtName);
-						System.out.println("pppp======"+path);
+						
 						WriteFile.fileWriter(path, hoteld);
 					}
 					

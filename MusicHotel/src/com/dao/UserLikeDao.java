@@ -19,4 +19,7 @@ public interface UserLikeDao {
 	
 	//根据sql语句来得到用户喜爱列表
 	public List<UserLike> getUserLikeBySql(String sql);
+	
+	//删除用户喜爱的音乐
+	public void deleteUserLikeMusic(int musicId);
 }

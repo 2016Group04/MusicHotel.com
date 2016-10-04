@@ -21,6 +21,7 @@ import com.dao.MusicDao;
 import com.po.Music;
 import com.service.MusicService;
 import com.util.Base64;
+import com.util.WriteFile;
 @Service
 public class MusicServiceImpl implements MusicService {
 	
@@ -213,15 +214,25 @@ public class MusicServiceImpl implements MusicService {
 						System.out.println("genre===="+genre);
 					}else if("coverImg".equals(fieldName)){
 						String base64 = value;//获得是base64的值
+						if("aW1nL2RlZmF1bHQuanBn".equals(base64)){
+							coverImg = "/music/coverImg/default.jpg";//默认的图片
+							continue;
+						}
+						
 						System.out.println("base64===="+base64);
 						long currentTime = System.currentTimeMillis();
 						Random random = new Random();
 						int num1 = random.nextInt(10000);
 						
-						coverImg = currentTime + "_" + num1 + ".jpg";
+						coverImg = currentTime + "_" + num1 + ".txt";
 						
-						Base64.decodeBase64ToImage(base64, productImagesUploadPath+"\\coverImg\\", coverImg);
+						//Base64.decodeBase64ToImage(base64, productImagesUploadPath+"\\coverImg\\", coverImg);
 						
+						
+						String[] s = new String[1];
+						s[0] = base64;
+						
+						WriteFile.fileWriter(productImagesUploadPath+"\\"+coverImg, s);
 					}
 					
 					

@@ -272,7 +272,7 @@
 									</div>
 									<div class="track-detail rounded clearfix">
 										<div class="player-wrapper">
-											<img src="img/music/<%=music.getCoverImg() %>" alt="Divokej Bill" class="cover rounded">
+											<img src="<%=music.getCoverImg() %>" alt="Divokej Bill" class="cover rounded">
 											<p class="name">
 												<a href="http://www.luoo.net/single/16921" target="_blank"><%=music.getTitile() %></a>
 											</p>

@@ -1,5 +1,6 @@
 package com.service.impl;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +70,14 @@ public class UserLikeServiceImpl implements UserLikeService{
 	@Override
 	public void deleteUserLikeByList(List<Integer> list){
 		
+		Iterator<Integer> i = list.iterator();
 		
+		while(i.hasNext()){
+			
+			Integer musicId = i.next();
+			
+			dao.deleteUserLikeMusic(musicId);
+		}
 	}
 
 }

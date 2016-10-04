@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.ServletConfigAware;
+import org.springframework.web.context.ServletContextAware;
 
 import com.po.Article;
 import com.po.Hotel;
@@ -20,10 +24,12 @@ import com.service.impl.ArticleServiceImpl;
 import com.service.impl.HotelServiceImpl;
 import com.service.impl.MusicServiceImpl;
 import com.service.impl.UserLikeServiceImpl;
+import com.util.WriteFile;
 
 @Controller
 @RequestMapping("/JSP")
-public class UserLikeController {
+public class UserLikeController implements ServletConfigAware,
+ServletContextAware{
 
 	@Autowired
 	private MusicServiceImpl musicService;
@@ -36,6 +42,20 @@ public class UserLikeController {
 	
 	@Autowired
 	private UserLikeServiceImpl userLikeService;
+	
+	
+	private ServletContext servletContext;
+	@Override
+	public void setServletContext(ServletContext servletContext) {
+		this.servletContext = servletContext;
+	}
+
+	private ServletConfig servletConfig;
+
+	@Override
+	public void setServletConfig(ServletConfig servletConfig) {
+		this.servletConfig = servletConfig;
+	}
 	
 	@RequestMapping("/getAllUserLiked.action")
 	public String getAllUserLiked(HttpServletRequest request,String likeType,ModelMap model){
@@ -61,7 +81,19 @@ public class UserLikeController {
 				if(music==null){
 					music = new Music();
 					music.setMusicId(userLike.getLikeToId());
+				}else{
+					
+					if("/music/coverImg/default.jpg".equals(music.getCoverImg())){
+						
+						
+					}else{
+						String realpath = servletContext.getRealPath("");
+						//把base64读进来
+						String cover = WriteFile.baseReader(realpath+"//JSP//music//"+music.getCoverImg());
+						music.setCoverImg(cover);
+					}
 				}
+				
 				listMusic.add(music);
 			}else if("hotel".equals(userLike.getLikeType())){
 				Hotel hotel  =hotelService.getHotelById(userLike.getLikeToId());

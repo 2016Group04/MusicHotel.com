@@ -167,7 +167,6 @@
 				
 				$("#file1").change(function(){
 					
-					alert("this this");
 					var input1 = $(this);
 					//克隆一个input
 					
@@ -367,7 +366,7 @@
 					document.getElementById('music-cover').setAttribute('src', base64);
 					$("#imgM:first")[0].value = base64;
 				} else {
-					document.getElementById('music-cover').setAttribute('src', 'img/icon-add-1.jpg');
+					document.getElementById('music-cover').setAttribute('src', 'music/coverImg/default.jpg');
 				}
 				
 				
@@ -380,10 +379,10 @@
 		            type : "post",  
 		            dataType : 'json',  
 		            success : function(data) {  
-		            	alert("musicId="+data);
+		            	console.info("musicId="+data);
 		            },  
 		            error : function(data) {  
-		            	alert("musicId="+data);
+		            	console.info("musicId="+data);
 		            }  
 		        });
 				 
