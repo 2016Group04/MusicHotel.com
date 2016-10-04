@@ -114,11 +114,12 @@ ServletContextAware{
 	}
 	//添加一个新的hotel
 	@RequestMapping("/JSP/addMyHotel.action")
-	public String addMyHotel(ModelMap model,HttpServletRequest request){
+	public String addMyHotel(ModelMap model,HttpServletRequest request,int userId){
 		
 		String realpath = servletContext.getRealPath("");
-		String imgPath = realpath + "//JSP//img//hotel";
 		String txtPath = realpath + "//JSP//txt//hotel";
+		String imgPath = realpath + "//JSP//img//hotel";
+		
 		System.out.println("in addMyHotel");
 		
 		
@@ -127,9 +128,13 @@ ServletContextAware{
 		Date date = new Date();
 		
 		
-		Hotel hotel = hotelService.upload(request, imgPath,txtPath,date);
+		Hotel hotel = hotelService.upload(request, imgPath,txtPath,date,userId);
 		
 		String[] hotelDesc = WriteFile.fileReader(txtPath+"//"+hotel.getHotelDesc());
+		
+		/*for(String s:hotelDesc){
+			System.out.println("hl==="+hotelDesc);
+		}*/
 		
 		String style = hotel.getStyle();
 		
@@ -137,6 +142,8 @@ ServletContextAware{
 		
 		model.addAttribute("hotel",hotel);
 		model.addAttribute("style",styleArr);
+		model.addAttribute("hotelDesc",hotelDesc);
+		
 		
 		target = "addMusic.jsp";
 		

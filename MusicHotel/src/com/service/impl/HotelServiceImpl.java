@@ -119,7 +119,7 @@ public class HotelServiceImpl implements HotelService {
 	//上传hotel封面图片
 	@Override
 	public Hotel upload(HttpServletRequest request,
-			String productImagesUploadPath,String txtUploadPath,Date date) {
+			String productImagesUploadPath,String txtUploadPath,Date date,int userId) {
 		DiskFileItemFactory itemFactory = new DiskFileItemFactory();
 		// 设置内存缓冲区阈值为512k
 		itemFactory.setSizeThreshold(0x80000);
@@ -210,8 +210,9 @@ public class HotelServiceImpl implements HotelService {
 					}else if (fieldName.equals("hotelDesc")) {
 						//在此处将文件上传,使用按行写
 						hotelDesc = value;
-						
+				
 						String[] hoteld = value.split("\n");
+				
 						long currentTime = System.currentTimeMillis();
 						Random random = new Random();
 						int num1 = random.nextInt(10000);
@@ -240,6 +241,7 @@ public class HotelServiceImpl implements HotelService {
 		hotel.setTitile(titile);
 		hotel.setHotelDesc(txtName);
 		hotel.setCreateDate(date);
+		hotel.setUserId(userId);
 		System.out.println("hotel============"+hotel);
 		
 		hotelDao.addHotel(hotel);

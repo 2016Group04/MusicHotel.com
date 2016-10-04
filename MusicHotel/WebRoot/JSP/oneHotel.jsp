@@ -109,6 +109,7 @@
 							</div>
 							<div class="timer left">0:00</div>
 							<div class="right">
+								<a href="javascript:;" class="btn-action-like icon-fav" title="收藏"></a>
 								<div class="repeat icon"></div>
 								<div class="shuffle icon"></div>
 							</div>

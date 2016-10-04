@@ -29,6 +29,22 @@ public class AlbumServiceImpl implements AlbumService{
 	
 		return list;
 	}
+	
+	
+	//根据hotelId和musicId来给相应的hotel添加歌曲
+	@Override
+	public void addAlbum(int hotelId,int musicId){
+		
+		
+			
+			Album album = new Album();
+			album.setHotelId(hotelId);
+			album.setMusicId(musicId);
+			
+			dao.addAlbum(album);
+		
+		
+	}
 
 	
 }

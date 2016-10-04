@@ -25,7 +25,7 @@ public class WriteFile {
 	 public static String[] fileReader(String filepath){
 		 FileReader reader =null;
 	        BufferedReader bufferedReader =null;
-	        String[] hotelDesc = {};
+	        String[] hotelDesc = new String[100];
 	        try{
 	        reader = new FileReader(filepath);    
 	        bufferedReader = new BufferedReader(reader);
@@ -37,6 +37,7 @@ public class WriteFile {
 	            if(s ==null){
 	                break;
 	            }
+	           //System.out.println("read===="+s);
 	           hotelDesc[i] = s;
 	           i++;
 	        }

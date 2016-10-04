@@ -14,6 +14,8 @@ public class Music {
 	private String lyrics;
 	private String size;
 	private String timeLength;
+	private String genre;
+	private String album;
 	
 	public int getMusicId() {
 		return musicId;
@@ -63,12 +65,27 @@ public class Music {
 	public void setTimeLength(String timeLength) {
 		this.timeLength = timeLength;
 	}
+	
+	
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	public String getAlbum() {
+		return album;
+	}
+	public void setAlbum(String album) {
+		this.album = album;
+	}
 	@Override
 	public String toString() {
 		return "Music [musicId=" + musicId + ", titile=" + titile
 				+ ", coverImg=" + coverImg + ", artist=" + artist + ", path="
 				+ path + ", lyrics=" + lyrics + ", size=" + size
-				+ ", timeLength=" + timeLength + "]";
+				+ ", timeLength=" + timeLength + ", genre=" + genre
+				+ ", album=" + album + "]";
 	}
 	
 	

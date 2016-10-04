@@ -154,7 +154,7 @@
 									
 									<div class="item">
 										<a href="http://www.luoo.net/music/561" class="cover-wrapper">
-											<img src="img/hotel/<%=hotel.getCoverImg() %>" alt="<%=hotel.getTitile() %>" class="cover rounded">
+											<img src="img/hotel/coverImg/<%=hotel.getCoverImg() %>" alt="<%=hotel.getTitile() %>" class="cover rounded">
 										</a>
 										<a href="http://www.luoo.net/music/561" class="name"><%=hotel.getTitile() %></a>
 										<div class="op-bar">

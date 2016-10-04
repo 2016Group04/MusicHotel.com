@@ -73,7 +73,7 @@ input{
 	margin-top: 20px;
 }
 
-#upload{
+#upload,#Submit{
 	width: 100px;
 	height: 30px;
 	background-color: #2C2E32;
@@ -186,4 +186,8 @@ td span.span2{
 
 .coverSong,.lyric{
 	display: inline-block;
+}
+
+p{
+	text-indent:2em;
 }

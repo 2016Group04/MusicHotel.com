@@ -3,12 +3,12 @@
 <!-- 定义sql文件的唯一标示  通过namespace这个标示 找到这个xml文件 -->
 <mapper namespace="com.dao.AlbumDao">
 	
-	<insert id="addMusic" parameterType="com.po.Music">
-		INSERT INTO music(null,titile,cover_img,artist,path,lyrics,size,time_length) VALUE(NULL,#{titile},#{coverImg},#{artist},#{path},#{lyrics},#{size},#{timeLength});
+	<insert id="addAlbum" parameterType="com.po.Album">
+		INSERT INTO album VALUE(NULL,#{hotelId},#{musicId});
 	</insert>
 	
-	<delete id="deleteMusicByMusicId" parameterType="int">
-		DELETE FROM music WHERE music_id=#{musicId}
+	<delete id="deleteAlbumByMusicId" parameterType="com.po.Album">
+		DELETE FROM album WHERE music_id=#{musicId} and hotel_id=#{hotelId}
 	</delete>
 	
 	<select id="getAlbumBySql" parameterType="java.lang.String" resultType="com.po.Album">

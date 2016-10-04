@@ -9,7 +9,7 @@ import com.po.Album;
 public interface AlbumDao {
 
 	//添加一个歌单
-	public int addAlbum(Album album);
+	public void addAlbum(Album album);
 	
 	//删除一个歌单
 	public int deleteAlbum(Album album);

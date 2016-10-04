@@ -35,5 +35,5 @@ public interface HotelService {
 	public Hotel getHotelByTitile(String titile);
 	
 	//上传hotel封面图片
-	public Hotel upload(HttpServletRequest request,String productImagesUploadPath,String txtUploadPath,Date date);
+	public Hotel upload(HttpServletRequest request,String productImagesUploadPath,String txtUploadPath,Date date,int userId);
 }

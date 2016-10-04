@@ -13,7 +13,7 @@
 		User user = (User)session.getAttribute("user");
 		int userId = user.getUserId();
 	%>
-	<form action="addMyHotel.action" method="post" enctype="multipart/form-data">
+	<form action="addMyHotel.action?userId=<%=user.getUserId() %>" method="post" enctype="multipart/form-data">
 		<div id="hotelMiddle">
 		
 			<div id="hotelType">
@@ -80,7 +80,7 @@
 				</div>
 				<div id="article">
 					
-					<textarea rows="10" cols="88" id="hotelDesc1">请输入hotel简介</textarea>
+					<textarea rows="100" cols="88" id="hotelDesc1">请输入hotel简介</textarea>
 					<input type="hidden" name="hotelDesc" id="hotelDesc" value=""/>
 				</div>
 				<div id="uploadButton">
@@ -160,7 +160,7 @@
 					//进行判断，是否都写全了，不可空缺
 					var style = $("label.ss").text();
 					var titile = $("#title").val().trim();
-					var coverImg = $("#hotelCover").val();
+					var file = $("#hotelCover")[0].files[0]; 
 					var hotelDesc = $("#hotelDesc1").val();
 					
 					var userId = <%=userId%>;
@@ -181,7 +181,8 @@
 						    	
 						    }
 						});
-					}else if(coverImg==""){
+					}else if(file === null || file === undefined){
+						
 						
 						$.alert({
 						    title: '',
@@ -190,6 +191,16 @@
 						    	
 						    }
 						});
+					}else if(file.type.indexOf('image') === -1){
+						
+						$.alert({
+						    title: '',
+						    content: '请选择正确的图片格式',
+						    confirm: function(){
+						    	
+						    }
+						});
+						
 					}else if(hotelDesc==""||hotelDesc=="请输入hotel简介"){
 						
 						$.alert({

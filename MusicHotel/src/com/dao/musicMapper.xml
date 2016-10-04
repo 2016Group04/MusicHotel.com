@@ -4,7 +4,7 @@
 <mapper namespace="com.dao.MusicDao">
 	
 	<insert id="addMusic" parameterType="com.po.Music">
-		INSERT INTO music(null,titile,cover_img,artist,path,lyrics,size,time_length) VALUE(NULL,#{titile},#{coverImg},#{artist},#{path},#{lyrics},#{size},#{timeLength});
+		INSERT INTO music VALUE(NULL,#{titile},#{coverImg},#{artist},#{path},#{lyrics},#{size},#{timeLength},#{genre},#{album})
 	</insert>
 	
 	<delete id="deleteMusicByMusicId" parameterType="int">
