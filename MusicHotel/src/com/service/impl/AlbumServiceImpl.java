@@ -54,6 +54,14 @@ public class AlbumServiceImpl implements AlbumService{
 		
 		dao.deleteAlbum(hotelId);
 	}
+	
+	
+	//删除一条记录
+	@Override
+	public void deleteAlbum(Album album){
+		
+		dao.deleteOneAlbum(album);
+	}
 
 	
 }

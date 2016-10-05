@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -458,6 +459,14 @@ public class RegisteController{
 		String userId = request.getParameter("userId");
 		//返回系统通知
 		List<Notification> list = notificationService.getAllNotification();
+		
+		Iterator<Notification> i = list.iterator();
+		
+		while(i.hasNext()){
+			Notification n = i.next();
+			n.setType("系统通知");
+		}
+		
 		Gson gson = new Gson();
 		String json = gson.toJson(list);
 		System.out.println(json);

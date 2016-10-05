@@ -119,6 +119,9 @@ ServletContextAware{
 		String target = "";
 		System.out.println("in deleteMyHotel");
 		
+		String realpath = servletContext.getRealPath("");
+		String musicPath = realpath + "//JSP//music";
+		
 		hotelService.deleteHotel(hotelId);
 		
 		//删除的时候把对应的歌曲删除
@@ -128,7 +131,7 @@ ServletContextAware{
 		System.out.println("删除列表==="+list);
 		
 		//删除所有的歌曲
-		musicService.deleteMusicByList(list);
+		musicService.deleteMusicByList(list,musicPath);
 		
 		//删除用户喜爱列表中的歌曲
 		

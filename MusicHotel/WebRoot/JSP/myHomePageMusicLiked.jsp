@@ -261,9 +261,9 @@
 									<a href="javascript:;" rel="nofollow" class="option btn-action-like icon-trash delete" data-id="<%=music.getMusicId() %>" data-type="single" data-cback="unlike_cback" data-confirm="确定取消收藏该歌曲吗？" style="visibility: hidden;"></a>
 
 									<div class="duration">
-										<span class="current-time">00:00</span>
-										<span>/</span>
-										<span class="total-time"><%=music.getTimeLength() %></span>
+										<audio src="/music/<%=music.getPath() %>" preload="preload">
+										Your browser does not support the audio tag.
+										</audio>
 									</div>
 								</div>
 								<div class="track-detail-wrapper" id="trackDetailWrapper16921">
@@ -278,22 +278,20 @@
 											</p>
 											<p class="artist">艺人：<%=music.getArtist() %></p>
 											<p class="album">专辑：Divokej Bill</p>
-											<div class="progress rounded">
+											<!-- <div class="progress rounded">
 												<div class="loaded rounded" style="width: 100%;">
 													<div class="escaped rounded" style="width: 0%;"></div>
 												</div>
-											</div>
-											<div class="duration">
-												<span class="current-time">00:00</span>
-												<span>/</span>
-												<span class="total-time"><%=music.getTimeLength() %></span>
-											</div>
+											</div> -->
+											<!-- <div class="duration">
+												
+											</div> -->
 											<div class="player-btns">
-												<a rel="nofollow" class="player-btn player-ctl icon-detail-play"></a>
+												<!-- <a rel="nofollow" class="player-btn player-ctl icon-detail-play"></a> -->
 
-												<a rel="nofollow" class="player-btn btn-action-like icon-faved" data-id="16921" data-type="single" data-cback="unlike_cback" data-confirm="确定取消收藏该歌曲吗？" style="visibility: visible;"></a>
+												<!-- <a rel="nofollow" class="player-btn btn-action-like icon-faved" data-id="16921" data-type="single" data-cback="unlike_cback" data-confirm="确定取消收藏该歌曲吗？" style="visibility: visible;"></a> -->
 
-												<a rel="nofollow" class="player-btn btn-action-share icon-share delete" data-app="vol" data-id="16921" data-text="推荐Divokej Bill的歌曲Čmelák（分享自@落网）"></a>
+												<!-- <a rel="nofollow" class="player-btn btn-action-share icon-share delete" data-app="vol" data-id="16921" data-text="推荐Divokej Bill的歌曲Čmelák（分享自@落网）"></a> -->
 											</div>
 										</div>
 										<div class="lyric-wrapper">
@@ -306,6 +304,7 @@
 												</p>
 											</div>
 										</div>
+										<audio src="music/<%=music.getPath() %>" class="music-audio" controls="controls" loop="loop" style="display: block;">亲 您的浏览器不支持html5的audio标签</audio>
 									</div>
 								</div>
 								<!--track-detail-wrapper end-->

@@ -2,6 +2,8 @@ package com.service;
 
 import java.util.List;
 
+import com.po.Album;
+
 public interface AlbumService {
 
 	//根据hotelId得到对应的全部歌曲
@@ -12,4 +14,6 @@ public interface AlbumService {
 	
 	//根据hotelId删除所有的album记录
 	public void deleteAlbumByHotelId(int hotelId);
+	//删除一条记录
+	public void deleteAlbum(Album album);
 }

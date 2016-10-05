@@ -153,10 +153,10 @@
 									
 									
 									<div class="item">
-										<a href="http://www.luoo.net/music/561" class="cover-wrapper">
+										<a href="http://www.luoo.net/music/561" data-id="<%=hotel.getHotelId() %>" class="cover-wrapper">
 											<img src="img/hotel/coverImg/<%=hotel.getCoverImg() %>" alt="<%=hotel.getTitile() %>" class="cover rounded">
 										</a>
-										<a href="http://www.luoo.net/music/561" class="name"><%=hotel.getTitile() %></a>
+										<a href="http://www.luoo.net/music/561" class="name" data-id="<%=hotel.getHotelId() %>"><%=hotel.getTitile() %></a>
 										<div class="op-bar">
 											<span class="time"><%=hotel.getCreateDate() %></span>
 		

@@ -63,11 +63,16 @@ public class UserController {
 		
 		System.out.println("in listenedSumAddOne");
 		
-		User user = service.getUserByUserId(userId);
-		int sum = user.getListenedSum();
-		user.setListenedSum(sum + 1);
 		
-		service.updateUser(user);
+		if(userId!=0){
+			
+			User user = service.getUserByUserId(userId);
+			int sum = user.getListenedSum();
+			user.setListenedSum(sum + 1);
+			
+			service.updateUser(user);
+			
+		}
 		
 		
 	}

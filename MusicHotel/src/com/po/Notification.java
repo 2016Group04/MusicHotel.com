@@ -13,6 +13,13 @@ public class Notification {
 	private Date notificationDate;
 	private String title;
 	private String content;
+	private String type;
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public int getId() {
 		return id;
 	}
@@ -40,8 +47,8 @@ public class Notification {
 	@Override
 	public String toString() {
 		return "Notification [id=" + id + ", notificationDate="
-				+ notificationDate + ", titile=" + title + ", content="
-				+ content + "]";
+				+ notificationDate + ", title=" + title + ", content="
+				+ content + ", type=" + type + "]";
 	}
 	
 	

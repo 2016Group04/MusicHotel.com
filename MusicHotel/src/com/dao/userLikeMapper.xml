@@ -4,7 +4,7 @@
 <mapper namespace="com.dao.UserLikeDao">
 
 	<insert id="addUserLike" parameterType="com.po.UserLike">
-		INSERT INTO user_like VALUE(NULL,userId,likeType,likeToId,likeDate)
+		INSERT INTO user_like VALUE(NULL,#{userId},#{likeType},#{likeToId},#{likeDate})
 	</insert>
 
 	<!-- 根据id删除一条用户喜爱记录 -->

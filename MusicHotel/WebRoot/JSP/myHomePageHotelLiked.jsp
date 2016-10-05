@@ -293,10 +293,10 @@
 									
 										%>
 										<div class="item">
-										<a href="http://www.luoo.net/music/561" class="cover-wrapper">
+										<a class="cover-wrapper">
 											<img src="img/not-found-img.jpg" alt="原文内容已被删除" class="cover rounded">
 										</a>
-										<a href="http://www.luoo.net/music/561" class="name"></a>
+										<a class="name"></a>
 										<div class="op-bar">
 											<span class="time"><%=hotel.getLikeDate() %></span>
 		
@@ -313,10 +313,11 @@
 										
 									%>
 									<div class="item">
-										<a href="http://www.luoo.net/music/561" class="cover-wrapper">
-											<img src="img/hotel/<%=hotel.getCoverImg() %>" alt="<%=hotel.getTitile() %>" class="cover rounded">
+									
+										<a href="http://www.luoo.net/music/561" data-id="<%=hotel.getHotelId() %>" class="cover-wrapper">
+											<img src="img/hotel/coverImg/<%=hotel.getCoverImg() %>" alt="<%=hotel.getTitile() %>" class="cover rounded">
 										</a>
-										<a href="http://www.luoo.net/music/561" class="name"><%=hotel.getTitile() %></a>
+										<a href="http://www.luoo.net/music/561" class="name" data-id="<%=hotel.getHotelId() %>"><%=hotel.getTitile() %></a>
 										<div class="op-bar">
 											<span class="time"><%=hotel.getLikeDate() %></span>
 		

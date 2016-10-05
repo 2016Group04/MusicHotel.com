@@ -8,6 +8,8 @@ body {
 	color: #2d2d2d;
 }
 
+
+
 a:hover{
 	
 	text-decoration:none;
@@ -844,4 +846,10 @@ a.delete{
 a.delete i{
 	position:relative;
 	top:-2px;
+}
+
+.music-audio{
+	width:400px;
+	position:relative;
+	left:25px;
 }

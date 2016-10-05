@@ -1,12 +1,15 @@
 package com.controller;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -83,7 +86,7 @@ ServletContextAware{
 					music.setMusicId(userLike.getLikeToId());
 				}else{
 					
-					if("/music/coverImg/default.jpg".equals(music.getCoverImg())){
+					if("music/coverImg/default.jpg".equals(music.getCoverImg())){
 						
 						
 					}else{
@@ -136,18 +139,67 @@ ServletContextAware{
 	}
 	
 	@RequestMapping("/deleteUserLike.action")
-	public String deleteUserLikeMusic(int id,String likeType){
+	public String deleteUserLikeMusic(int id,String likeType,HttpServletRequest request){
+		
 		
 		System.out.println("in deleteUserLike");
 
+		User user = (User)request.getSession().getAttribute("user");
+		
 		String target = "";
 		
-		UserLike userLike = userLikeService.getUserLikeByLikeToId(id, likeType);
+		UserLike userLike = userLikeService.getUserLikeByLikeToId(id, likeType,user.getUserId());
 		
 		userLikeService.deleteUserLike(userLike.getId());
 		
 		target = "getAllUserLiked.action";
 		
 		return target;
+	}
+	
+	@RequestMapping("/addUserLike.action")
+	public void favHotel(int userId,int id,String likeType){
+		
+		System.out.println("in favHotel");
+		
+		
+		UserLike userLike = new UserLike();
+		
+		Date date = new Date();
+		
+		userLike.setLikeToId(id);
+		userLike.setUserId(userId);
+		userLike.setLikeType(likeType);
+		userLike.setLikeDate(date);
+		
+		userLikeService.addUserLike(userLike);
+	}
+	
+	@RequestMapping("/deleteOneUserLike.action")
+	public void deleteOneUserLikeMusic(int id,String likeType,int userId){
+		
+		
+		System.out.println("in deleteUserLike");
+		
+		UserLike userLike = userLikeService.getUserLikeByLikeToId(id, likeType,userId);
+		
+		userLikeService.deleteUserLike(userLike.getId());
+		
+	}
+	
+	@RequestMapping("/getUserLike.action")
+	public void getUserLike(int id,int userId,String likeType,HttpServletResponse response)
+		throws Exception{
+		
+		UserLike userLike = userLikeService.getUserLikeByLikeToId(id, likeType,userId);
+		
+		PrintWriter out = response.getWriter();
+		if(userLike==null){//没有这个喜爱
+			out.print("0");
+		}else{
+			out.print("1");
+		}
+		
+		out.flush();
 	}
 }

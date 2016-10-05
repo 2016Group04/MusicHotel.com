@@ -11,6 +11,10 @@
 		DELETE FROM album WHERE hotel_id=#{hotelId}
 	</delete>
 	
+	<delete id="deleteOneAlbum" parameterType="com.po.Album">
+		DELETE FROM album WHERE hotel_id=#{hotelId} and music_id=#{musicId}
+	</delete>
+	
 	<select id="getAlbumBySql" parameterType="java.lang.String" resultType="com.po.Album">
 		${value}
 	</select>

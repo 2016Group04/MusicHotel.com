@@ -2,8 +2,10 @@ package com.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -17,6 +19,7 @@ import org.springframework.web.context.ServletConfigAware;
 import org.springframework.web.context.ServletContextAware;
 
 import com.google.gson.Gson;
+import com.po.Album;
 import com.po.Music;
 import com.service.impl.AlbumServiceImpl;
 import com.service.impl.MusicServiceImpl;
@@ -66,7 +69,7 @@ ServletContextAware{
 		while(i.hasNext()){
 			Music music = i.next();
 			
-			if("/music/coverImg/default.jpg".equals(music.getCoverImg())){
+			if("music/coverImg/default.jpg".equals(music.getCoverImg())){
 				
 				
 			}else{
@@ -102,10 +105,39 @@ ServletContextAware{
 		List<Integer> list = musicService.upload(request, txtPath);
 		
 		albumService.addAlbum(list.get(0), list.get(1));
+		System.out.println("musicId======"+list.get(1));
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("musicId",list.get(1));
 		
+		Gson gson = new Gson();
+		String json = gson.toJson(map);
 		PrintWriter out = response.getWriter();
-		out.write(list.get(1));
+		out.write(json);
 		out.flush();
+	}
+	
+	
+	@RequestMapping("/deleteMusic.action")
+	public void deleteMusic(int musicId,int hotelId){
+		
+		System.out.println("in deleteMusic");
+		
+		String realpath = servletContext.getRealPath("");
+		String txtPath = realpath + "//JSP//music";
+		
+		//先删除歌曲
+		
+		
+		Music music = musicService.getMusicByMusicId(musicId);
+		
+		musicService.deleteMusic(music,txtPath);
+		
+		Album album = new Album();
+		album.setHotelId(hotelId);
+		album.setMusicId(musicId);
+		albumService.deleteAlbum(album);
+		
+		
 	}
 	
 }

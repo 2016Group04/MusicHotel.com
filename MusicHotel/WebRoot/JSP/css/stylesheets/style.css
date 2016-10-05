@@ -364,6 +364,7 @@ height: 120px;
 
 #playlist li.playing {
 	background: url(../images/playing.png) no-repeat 0 center;
+	background-position:0px 12px;
 	color: #A40101;
 	font-weight: bold;
 }

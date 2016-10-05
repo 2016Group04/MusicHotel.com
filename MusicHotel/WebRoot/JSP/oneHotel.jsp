@@ -19,7 +19,15 @@
 </head>
 
 <body>
-
+<%
+	User user = (User)session.getAttribute("user");
+	if(user==null){
+		
+		user = new User();
+		user.setUserId(0);
+	}
+%>
+	<input type="hidden" id="userId" value="<%=user.getUserId()%>"/>
 	<div class="container-all">
 		<div class="container container-left">
 			<!--返回期刊首页-->
@@ -69,7 +77,7 @@
 					class="author-avatar rounded"> <a class="vol-author" href=""
 					target="_blank">落在低处</a> <span class="separator fleft">・</span> <span
 					class="vol-date">2015-01-08</span> <a href="javascript:;"
-					class="btn-action-like icon-fav" title="收藏"></a> <a
+					class="btn-action-like icon-fav icon-fav3" title="收藏" id="favHotel"></a> <a
 					href="javascript:;" class="icon-share btn-action-share"
 					rel="nofollow"> </a>
 
@@ -109,7 +117,7 @@
 							</div>
 							<div class="timer left">0:00</div>
 							<div class="right">
-								<a href="javascript:;" class="btn-action-like icon-fav" title="收藏"></a>
+								<a href="javascript:;" class="btn-action-like icon-fav icon-fav2 icon-fav3" id="like" title="收藏"></a>
 								<div class="repeat icon"></div>
 								<div class="shuffle icon"></div>
 							</div>
@@ -277,7 +285,7 @@
 			//页面加载完毕就发送ajax请求
 			$.post("getAllMusic.action",{
 				//这里传hoteId
-				"hotelId":1
+				"hotelId":92
 			},function(data){
 				var repeat = localStorage.repeat || 0,
 				shuffle = localStorage.shuffle || 'false',
@@ -288,10 +296,11 @@
 				for(var i=0;i<data.length;i++){
 					console.info(data[i].cover_img);
 					var arr = {
+							id:data[i].musicId,
 							title: data[i].titile,
 							artist:data[i].artist ,
 							album: data[i].titile,
-							cover:'img/music/'+data[i].coverImg,
+							cover:data[i].coverImg,
 							mp3: 'music/'+data[i].path,
 							ogg: ''
 					};
@@ -301,7 +310,7 @@
 				// Load playlist
 				for (var i=0; i<playlist.length; i++){
 					var item = playlist[i];
-					$('#playlist').append('<li>'+item.artist+' - '+item.title+'</li>');
+					$('#playlist').append("<li>"+item.artist+" - "+item.title+"</li><input type='hidden' value='"+item.id+"'/>");
 				}
 
 				var time = new Date(),
@@ -312,9 +321,39 @@
 				var play = function(userId){
 					audio.play();
 					$('.playback').addClass('playing');
-					$.post("listenedSumAddOne.action",{
-						"userId":${user.userId}
-					});
+					console.info($(".playing:last").next());
+					var id = $(".playing:last").next().val();
+					var useId = $("#userId").val();
+					console.info( $("#userId").val());
+					if($("#userId").val()=="0"){
+						alert("是这里把应该是");
+					}else{
+						$.post("getUserLike.action",{
+							"userId":$("#userId").val(),
+							"id":id,
+							"likeType":"music"
+						},function(data){
+							
+							
+							if(data=="1"){//有这个喜爱
+								//就是红色的
+								if($("#like").hasClass("icon-fav3")){
+									$("#like").removeClass("icon-fav3");
+									$("#like").addClass("icon-fav4");
+								}
+							}else if(data=="0"){
+								if($("#like").hasClass("icon-fav4")){
+									$("#like").removeClass("icon-fav4");
+									$("#like").addClass("icon-fav3");
+								}
+							}
+						},"json");
+						
+						$.post("listenedSumAddOne.action",{
+							"userId":$("#userId").val()
+						});
+					
+					}
 					timeout = setInterval(updateProgress, 500);
 					isPlaying = true;
 				}
@@ -509,6 +548,121 @@
 				});
 				
 			},"json");
+			//收藏歌曲
+			$("#like").click(function(){
+				
+				var id = $(".playing:last").next().val();
+				
+				var userId = $("#userId").val();
+				if($("#userId").val()=="0"){
+					//提示进行登录
+					alert("请先登录");
+				}else{
+					
+					if($(this).hasClass("icon-fav4")){
+						
+						//发送ajax取消收藏
+						$.post("deleteOneUserLike.action",{
+							"id":id,
+							"userId":$("#userId").val(),
+							"likeType":"music"
+						},function(data){
+							
+						});
+						
+						//把心变成红色
+						$("#like").removeClass("icon-fav4");
+						$("#like").addClass("icon-fav3");
+					}else{
+						
+					
+						//发送ajax进行收藏
+						$.post("addUserLike.action",{
+							"id":id,
+							"userId":$("#userId").val(),
+							"likeType":"music"
+						},function(data){
+							
+						});
+						
+						//把心变成红色
+						$("#like").removeClass("icon-fav3");
+						$("#like").addClass("icon-fav4");
+					
+					}
+				}
+			});
+			
+			//收藏该hotel
+			$("#favHotel").click(function(){
+				//判断是不是已经登录
+				
+				
+				var userId = $("#userId").val();
+				if($("#userId").val()=="0"){
+					//提示进行登录
+					alert("请先登录");
+				}else{
+					
+					if($(this).hasClass("icon-fav4")){
+						
+						//发送ajax取消收藏
+						$.post("deleteOneUserLike.action",{
+							"id":92,
+							"userId":$("#userId").val(),
+							"likeType":"hotel"
+						},function(data){
+							
+						});
+						
+						//把心变成红色
+						$("#favHotel").removeClass("icon-fav4");
+						$("#favHotel").addClass("icon-fav3");
+					}else{
+						
+					
+						//发送ajax进行收藏
+						$.post("addUserLike.action",{
+							"id":92,
+							"userId":$("#userId").val(),
+							"likeType":"hotel"
+						},function(data){
+							
+						});
+						
+						//把心变成红色
+						$("#favHotel").removeClass("icon-fav3");
+						$("#favHotel").addClass("icon-fav4");
+					
+					}
+				}
+			});
+			
+			var userId = $("#userId").val();
+			if($("#userId").val()=="0"){
+				
+			}else{
+			$.post("getUserLike.action",{
+				"userId":$("#userId").val(),
+				"id":92,
+				"likeType":"hotel"
+			},function(data){
+				
+				
+				if(data=="1"){//有这个喜爱
+					//就是红色的
+					if($("#favHotel").hasClass("icon-fav3")){
+						$("#favHotel").removeClass("icon-fav3");
+						$("#favHotel").addClass("icon-fav4");
+					}
+				}else if(data=="0"){
+					if($("#favHotel").hasClass("icon-fav4")){
+						$("#favHotel").removeClass("icon-fav4");
+						$("#favHotel").addClass("icon-fav3");
+					}
+				}
+			},"json");
+			}
 			
 			/*图片的两个箭头的显示和隐藏*/
 			$("div.wrapper").mouseover(function() {

@@ -50,10 +50,22 @@ div {
   background-repeat: no-repeat;
   height: 12px;
   width: 12px;
-  background-position: 0 -60px;
-    float: left;
+  float: left;
   margin: 8px 20px;
 }
+
+.icon-fav3{
+	 background-position: 0 -60px;
+}
+
+.icon-fav4{
+	 background-position: 0px -80px;
+}
+
+.icon-fav2 {
+  margin: 11px 10px;
+}
+
 .icon-share {
   display: inline-block;
   line-height: 1;
@@ -64,6 +76,7 @@ div {
   height: 12px;
   width: 12px;
   background-position: 0 0;
+  margin: 8px 0px;
 }
 
 .container-all {

@@ -14,6 +14,9 @@ public interface AlbumDao {
 	//删除一个歌单
 	public int deleteAlbum(int hotelId);
 	
+	//删除一个歌单
+	public void deleteOneAlbum(Album album);
+	
 	//使用sql语句查询album表
 	public List<Album> getAlbumBySql(String sql);
 }

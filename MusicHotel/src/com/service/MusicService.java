@@ -14,7 +14,7 @@ public interface MusicService {
 	public int addMusic(Music music);
 	
 	//删除
-	public int deleteMusic(int musicId);
+	public int deleteMusic(Music music,String path);
 	
 	//更新
 	public int updateMusic(Music music);
@@ -32,5 +32,5 @@ public interface MusicService {
 	public Music getMusicByPath(String path);
 	
 	//删除列表中的所有的歌曲
-	public void deleteMusicByList(List<Integer> list);
+	public void deleteMusicByList(List<Integer> list,String path);
 }

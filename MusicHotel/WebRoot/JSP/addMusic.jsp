@@ -147,7 +147,7 @@
 						content : '确定提交该hotel吗？',
 						confirm : function() {
 							
-							
+							location.assign("getMyHotel.action");
 						},
 						cancel : function() {
 						
@@ -265,6 +265,8 @@
 				$("body").on("click",".span2",function(){
 					//删除的逻辑，把该首歌信息删除
 					var span2 = $(this);
+					var musicId = $(this).next().val();
+					var hotelId  = $("#hotelId").val();
 					$.confirm({
 						title : '',
 						content : '确定删除该首歌曲吗？',
@@ -273,6 +275,23 @@
 							span2.parent().parent().next().next().remove();
 							span2.parent().parent().next().remove();
 							span2.parent().parent().remove();
+							//把数据从数据库中删除，删除歌曲的同时，删除歌曲的相关信息，封面，音乐等
+							
+							$.post("deleteMusic.action",{
+								"musicId":musicId,
+								"hotelId":hotelId
+							},function(data){
+								
+								//提示删除成功
+								$.alert({
+								    title: '',
+								    content: '成功删除',
+								    confirm: function(){
+								    	
+								    }
+								});
+								
+							},"json");
 						},
 						cancel : function() {
 						
@@ -367,11 +386,11 @@
 					$("#imgM:first")[0].value = base64;
 				} else {
 					document.getElementById('music-cover').setAttribute('src', 'music/coverImg/default.jpg');
+					$("#imgM:first")[0].value = 'music/coverImg/default.jpg';
 				}
 				
 				
 				
-				alert("发送ajax");
 				//发送ajax对相应的表单进行提交,返回相应的id来进行填充
 
 				 $("#musicForm").ajaxSubmit({  
@@ -379,10 +398,19 @@
 		            type : "post",  
 		            dataType : 'json',  
 		            success : function(data) {  
-		            	console.info("musicId="+data);
+		            	
+		            	console.info("musicId="+data.musicId);
+		            	
+		            	//把这个musicId放在删除按钮的后面
+		            	var deleteSong = $("<input type='hidden' value='"+data.musicId+"'/>");
+		            	$("span.span2:first").after(deleteSong);
+		            	
 		            },  
 		            error : function(data) {  
-		            	console.info("musicId="+data);
+		            	
+		            	console.info("musicId="+data.musicId);
+		            	var deleteSong = $("<input type='hidden' value='"+data.musicId+"'/>");
+		            	$("span.span2:first").after(deleteSong);
 		            }  
 		        });
 				 

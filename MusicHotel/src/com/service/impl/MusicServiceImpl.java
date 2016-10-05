@@ -36,8 +36,28 @@ public class MusicServiceImpl implements MusicService {
 	}
 
 	@Override
-	public int deleteMusic(int musicId) {
-		int count=dao.deleteMusic(musicId);
+	public int deleteMusic(Music music,String path) {
+		
+		//删除歌曲的时候，要把歌曲的封面信息和歌曲文件一起删除
+		int count=dao.deleteMusic(music.getMusicId());
+		if("music/coverImg/default.jpg".equals(music.getCoverImg())){
+			
+			//默认封面不用删
+		}else{
+			
+			File file1 = new File(path+"//"+music.getCoverImg());
+			File file2 = new File(path+"//"+music.getPath());
+			
+			if(file1.exists()){
+				file1.delete();
+			}
+			
+			if(file2.exists()){
+				file2.delete();
+			}
+		}
+		
+		
 		return count;
 	}
 
@@ -214,8 +234,9 @@ public class MusicServiceImpl implements MusicService {
 						System.out.println("genre===="+genre);
 					}else if("coverImg".equals(fieldName)){
 						String base64 = value;//获得是base64的值
-						if("aW1nL2RlZmF1bHQuanBn".equals(base64)){
-							coverImg = "/music/coverImg/default.jpg";//默认的图片
+						System.out.println("base64==="+base64);
+						if("music/coverImg/default.jpg".equals(base64)){
+							coverImg = "music/coverImg/default.jpg";//默认的图片
 							continue;
 						}
 						
@@ -271,7 +292,7 @@ public class MusicServiceImpl implements MusicService {
 	
 	//删除列表中的所有的歌曲
 	@Override
-	public void deleteMusicByList(List<Integer> list){
+	public void deleteMusicByList(List<Integer> list,String path){
 		
 		Iterator<Integer> i = list.iterator();
 		
@@ -279,7 +300,9 @@ public class MusicServiceImpl implements MusicService {
 			
 			int musicId = i.next(); 
 			
-			dao.deleteMusic(musicId);
+			Music music = this.getMusicByMusicId(musicId);
+			
+			this.deleteMusic(music, path);
 		}
 	}
 

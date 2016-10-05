@@ -39,16 +39,20 @@ public class UserLikeServiceImpl implements UserLikeService{
 	
 	//根据类型和id来得到一个用户喜爱记录
 	@Override
-	public UserLike getUserLikeByLikeToId(int likeToId,String likeType){
+	public UserLike getUserLikeByLikeToId(int likeToId,String likeType,int userId){
 		
 		UserLike userLike = null;
 		
-		String sql = "SELECT * FROM user_like WHERE like_type='"+likeType+"' AND likeTo_id="+likeToId;
+		String sql = "SELECT * FROM user_like WHERE like_type='"+likeType+"' AND likeTo_id="+likeToId +" AND user_id="+userId;
 		
 		List<UserLike> list = dao.getUserLikeBySql(sql);
-		
+		System.out.println("userLikeList====="+list);
+		System.out.println(list.size());
+		if(list==null||list.size()<1){
+			
+		}else{
 		userLike = list.get(0);
-		
+		}
 		return userLike;
 	}
 	
