@@ -210,6 +210,7 @@ ServletContextAware{
 		out.flush();
 	}
 	
+	
 	@RequestMapping("JSP/addLikeSum.action")
 	public void addLikeSum(HttpServletResponse response,String hotelId){
 		PrintWriter out = null;
