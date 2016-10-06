@@ -22,4 +22,9 @@ public interface MusicDao {
 	
 	//根据sql来查找音乐
 	public List<Music> getMusicBySql(String sql);
+
+	
+	public int ifExist(Music music);
+	
+	
 }
