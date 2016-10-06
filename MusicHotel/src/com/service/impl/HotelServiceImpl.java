@@ -62,11 +62,12 @@ public class HotelServiceImpl implements HotelService {
 	@Override
 	public List<Hotel> getHotelByPage(PageInfo pageInfo) {
 		List<Hotel> list = null;
-		String sql = "SELECT * FROM hotel ORDER BY hotel_id DESC LIMIT " + pageInfo.getBegin() + "," + pageInfo.getEnd();
+		String sql = "SELECT * FROM hotel ORDER BY hotel_id DESC LIMIT " + pageInfo.getBegin() + ",5";
 		list = hotelDao.getHotelBySql(sql);
 		return list;
 	}
 
+	//查询总共有多少条记录
 	@Override
 	public int getTotalRecordSum() {
 		String sql = "SELECT COUNT(*) AS totalRecordSum FROM hotel";
@@ -74,7 +75,33 @@ public class HotelServiceImpl implements HotelService {
 		return totalRecordSum;
 	}
 	
-	
+	//查热门期刊 按喜欢人数查
+		@Override
+		public List<Hotel> getHotHotel() {
+			List<Hotel> list = null;
+			String sql = "SELECT * FROM hotel ORDER BY like_sum DESC LIMIT 0,5;";
+			list = hotelDao.getHotelBySql(sql);
+			return list;
+		}
+		
+		//点收藏后 likeSum+1
+		@Override
+		public void addLikeSum(Integer hotelId) {
+			hotelDao.addLikeSum(hotelId);
+		}
+
+		@Override
+		public int getMaxHotelId() {
+			int maxHotelId = hotelDao.getMaxHotelId();
+			return maxHotelId;
+		}
+
+		@Override
+		public int getMinHotelId() {
+			int minHotelId = hotelDao.getMinHotelId();
+			return minHotelId;
+		}
+		
 	//根据用户id来获取由用户创建的所有的hotel
 	@Override
 	public List<Hotel> getHotelByUserId(int userId){

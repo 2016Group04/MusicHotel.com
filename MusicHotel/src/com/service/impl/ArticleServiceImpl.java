@@ -6,16 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.ArticleDao;
+import com.page.PageInfo;
 import com.po.Article;
 import com.service.ArticleService;
 @Service
 public class ArticleServiceImpl implements ArticleService{
+	
 	@Autowired
 	private ArticleDao dao;
 
 	/**
-	 * 功能：添加一个用户，完成用户的注册
+	 * 功能：文章的增删改查
 	 */
+	
+	//增加
 	@Override
 	public int addArticle(Article article) {
 		
@@ -24,6 +28,7 @@ public class ArticleServiceImpl implements ArticleService{
 		return count;
 	}
 
+	//删除
 	@Override
 	public int deleteArticle(int articleId) {
 		
@@ -31,6 +36,7 @@ public class ArticleServiceImpl implements ArticleService{
 		return count;
 	}
 
+	//修改
 	@Override
 	public int updateArticle(Article article) {
 		
@@ -38,11 +44,15 @@ public class ArticleServiceImpl implements ArticleService{
 		return count;
 	}
 
+	
+	//查询
 	@Override
 	public Article getArticleByArticleId(int articleId) {
-		
+		System.out.println("in getArticle");
 		Article article = null;
+		System.out.println("articleId是"+articleId);
 		article = dao.getArticleByArticleId(articleId);
+		
 		return article;
 	}
 
@@ -75,6 +85,23 @@ public class ArticleServiceImpl implements ArticleService{
 			return list;
 		}
 
-	
+		@Override
+		public List<Article> getAllArticle() {
+			List<Article> list = null;
+			String sql = "SELECT * FROM article ORDER BY like_sum DESC LIMIT 0,5";
+			System.out.println("in Service");
+			list = dao.getArticleBySql(sql);
+			return list;
+		}
+
+		@Override
+		public List<Article> getAllArticleByPage(PageInfo pageInfo) {
+			List<Article> list = null;
+			String sql = "SELECT * FROM article LIMIT "+pageInfo.getBegin()+", 10";
+			
+			list = dao.getArticleBySql(sql);
+			return list;
+		}
+		
 	
 }

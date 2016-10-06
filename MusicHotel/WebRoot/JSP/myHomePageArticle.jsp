@@ -115,10 +115,10 @@
 							<div class="item">	
 								<div class="clearfix">
 								<a href="http://www.luoo.net/essay/779" class="cover-wrapper">
-									<img src="img/article/<%=article.getCoverImg() %>" alt="<%=article.getTitile() %>" class="cover">
+									<img src="img/article/<%=article.getCoverImg() %>" alt="<%=article.getTitle() %>" class="cover">
 								</a>
 								<div class="item-ct">
-									<a href="http://www.luoo.net/essay/779" class="title"><%=article.getTitile() %></a>
+									<a href="http://www.luoo.net/essay/779" class="title"><%=article.getTitle() %></a>
 									<p class="subscribe">每个人都有属于自己的表达方式，我的渠道是：歌曲。所以我的歌是内心所想。</p>
 								</div>
 							</div>

@@ -4,7 +4,7 @@
 <mapper namespace="com.dao.MusicDao">
 	
 	<insert id="addMusic" parameterType="com.po.Music">
-		INSERT INTO music VALUE(NULL,#{titile},#{coverImg},#{artist},#{path},#{lyrics},#{size},#{timeLength},#{genre},#{album})
+		INSERT INTO music(music_id,title,cover_img,artist,path,lyrics,size,time_length, genre, album) VALUE(NULL,#{title},#{coverImg},#{artist},#{path},#{lyrics},#{size},#{timeLength},#{genre},#{album})
 	</insert>
 	
 	<delete id="deleteMusic" parameterType="int">
@@ -17,6 +17,11 @@
 	
 	<select id="getMusicBySql" parameterType="java.lang.String" resultType="com.po.Music">
 		${value}
+	</select>
+	
+	<select id="ifExist" parameterType="Music" resultType="int">
+		SELECT IFNULL ((SELECT music_id FROM music WHERE title=#{title} AND artist=#{artist} AND album=#{album}),0)
+		
 	</select>
 	
 </mapper>

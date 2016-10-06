@@ -23,4 +23,12 @@ public interface HotelDao {
 	
 	//查询总共有多少条记录
 	public int getTotalRecordSum(String sql);
+	
+	//点收藏后 likeSum+1
+	public void addLikeSum(Integer hotelId);
+		
+	//得到最大的hotelId
+	public int getMaxHotelId();
+	//得到最小的hotelId
+	public int getMinHotelId();
 }

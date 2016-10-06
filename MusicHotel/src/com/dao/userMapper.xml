@@ -23,5 +23,4 @@
 	<select id="getUserBySql" parameterType="java.lang.String" resultType="com.po.User">
 		${value}
 	</select>
-	
 </mapper>

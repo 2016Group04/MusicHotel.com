@@ -7,7 +7,7 @@ import com.util.DateFormat;
 public class Music {
 	
 	private Integer musicId;
-	private String titile;
+	private String title;
 	private String coverImg;
 	private String artist;
 	private String path;
@@ -23,11 +23,11 @@ public class Music {
 	public void setMusicId(Integer musicId) {
 		this.musicId = musicId;
 	}
-	public String getTitile() {
-		return titile;
+	public String getTitle() {
+		return title;
 	}
-	public void setTitile(String titile) {
-		this.titile = titile;
+	public void setTitle(String titile) {
+		this.title = titile;
 	}
 	public String getCoverImg() {
 		return coverImg;
@@ -81,7 +81,7 @@ public class Music {
 	}
 	@Override
 	public String toString() {
-		return "Music [musicId=" + musicId + ", titile=" + titile
+		return "Music [musicId=" + musicId + ", title=" + title
 				+ ", coverImg=" + coverImg + ", artist=" + artist + ", path="
 				+ path + ", lyrics=" + lyrics + ", size=" + size
 				+ ", timeLength=" + timeLength + ", genre=" + genre

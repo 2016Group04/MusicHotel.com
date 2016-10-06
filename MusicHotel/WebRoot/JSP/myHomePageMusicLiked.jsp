@@ -130,9 +130,9 @@
 									
 									<div class="item">
 										<a href="http://www.luoo.net/music/561" class="cover-wrapper">
-											<img src="img/hotel/<%=hotel.getCoverImg() %>" alt="<%=hotel.getTitile() %>" class="cover rounded">
+											<img src="img/hotel/<%=hotel.getCoverImg() %>" alt="<%=hotel.getTitle() %>" class="cover rounded">
 										</a>
-										<a href="http://www.luoo.net/music/561" class="name"><%=hotel.getTitile() %></a>
+										<a href="http://www.luoo.net/music/561" class="name"><%=hotel.getTitle() %></a>
 										<div class="op-bar">
 											<span class="time"><%=hotel.getCreateDate() %></span>
 		
@@ -251,7 +251,7 @@
 											<i class="icon-status-play"></i>
 											<i class="icon-status-pause"></i>
 										</span>
-									<a href="javascript:;" rel="nofollow" class="trackname btn-play"><%=music.getTitile() %></a>
+									<a href="javascript:;" rel="nofollow" class="trackname btn-play"><%=music.getTitle() %></a>
 									<span class="artist btn-play"><%=music.getArtist() %></span>
 
 									<a href="javascript:;" rel="nofollow" class="option icon-info" data-sid="<%=music.getMusicId() %>" style="visibility: hidden;"></a>
@@ -274,7 +274,7 @@
 										<div class="player-wrapper">
 											<img src="<%=music.getCoverImg() %>" alt="Divokej Bill" class="cover rounded">
 											<p class="name">
-												<a href="http://www.luoo.net/single/16921" target="_blank"><%=music.getTitile() %></a>
+												<a href="http://www.luoo.net/single/16921" target="_blank"><%=music.getTitle() %></a>
 											</p>
 											<p class="artist">艺人：<%=music.getArtist() %></p>
 											<p class="album">专辑：Divokej Bill</p>

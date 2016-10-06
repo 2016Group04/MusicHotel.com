@@ -413,7 +413,38 @@ div.more {
 	float: right;
 	position: relative;
 }
-
+/* 评论回复的原评论框开始 */
+.que {
+  padding: 8px 19px;
+  margin-top: 10px;
+  line-height: 20px;
+  background: #f4f4f4;
+  border: 1px solid #dedede;
+  color: #666;
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+    position: relative;
+ 	 zoom: 1;
+}
+.darr {
+  position: absolute;
+  top: -7px;
+  left: 20px;
+  font-size: 12px;
+  line-height: 14px;
+}
+ .bd {
+  color: #dedede;
+}
+ .bg {
+  top: 1px;
+  color: #f4f4f4;
+}
+.s-fc7, a.s-fc7:hover {
+  color: #0c73c2;
+}
+/* 评论回复的原评论框结束 */
 span.icon-more {
 	float: right;
 	cursor: pointer;
@@ -463,7 +494,7 @@ p.the-comment {
 	margin-left: 10px;
 }
 
-i.icon-vote {
+.icon-vote {
 	display: inline-block;
 	line-height: 1;
 	vertical-align: middle;
@@ -473,7 +504,17 @@ i.icon-vote {
 	width: 14px;
 	background-position: -50px -20px;
 }
-
+.icon-vote-actived {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+    background-image: url(../img/icon-player.png);
+    background-position: top left;
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 14px;
+    background-position: -50px -340px;
+}
 .btn-replay {
 	color: #7D7D7D;
 	margin-left: 10px;

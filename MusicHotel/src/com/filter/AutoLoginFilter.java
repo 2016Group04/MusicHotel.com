@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.po.User;
 import com.service.UserService;
 import com.service.impl.UserServiceImpl;
-import com.util.MD5;
+
 
 public class AutoLoginFilter implements Filter{
 
@@ -102,7 +102,6 @@ public class AutoLoginFilter implements Filter{
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		
 		
 	}
 

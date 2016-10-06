@@ -1,20 +1,20 @@
-<%@ page language="java" import="java.util.*,com.po.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,java.io.*,java.text.SimpleDateFormat,com.po.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
+<%
+	Hotel hotel = (Hotel)request.getAttribute("hotel");
+%>
 <head>
 
-
-<title>期刊首页阿卡贝拉</title>
+<title><%=hotel.getTitle()%></title>
 <link rel="stylesheet" type="text/css" href="css/kaitoujiewei.css" />
 <link rel="stylesheet" href="css/stylesheets/style.css">
-
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
-
 
 </head>
 
@@ -33,8 +33,17 @@
 			<!--返回期刊首页-->
 			<div>
 				<div class="vol vol-meta">
-					<a class="nav-block"> <i class="icon-block">&lt;</i> 返回期刊首页
-					</a> <a class="item">#流行</a> <a class="item">#原声</a>
+					<a class="nav-block" href="index.jsp"> <i class="icon-block">&lt;</i> 返回期刊首页
+					</a> 
+					<%
+						String hotelStyle = hotel.getStyle();
+						String[] style = hotelStyle.split("\\|");
+						for(String s:style){
+					%>
+						<a class="item">#<%=s%></a>
+					<%
+						}
+					%>
 				</div>
 				<!--
             	作者：1181613079@qq.com
@@ -42,27 +51,80 @@
             	描述：期刊首页图片简介开始
             -->
 				<div class="name">
-					<span class="number"> 685 </span> <span class="title"> 阿卡贝拉
+					<span class="number"> <%=hotel.getHotelId()%> </span> <span class="title"> <%=hotel.getTitile()%>
 					</span>
 				</div>
 				<div class="wrapper">
-					<img src="img/54ad6b08d34be.jpg" alt="阿卡贝拉" class="cover"> <a
-						href="" class="nav-prev" title="前一期">&nbsp;</a> <a href=""
-						class="nav-next" title="后一期">&nbsp;</a>
+					<img src="<%=hotel.getCoverImg()%>" alt="<%=hotel.getTitile()%>" class="cover">
+					<%
+						int maxHotelId = (Integer)request.getAttribute("maxHotelId");
+						int minHotelId = (Integer)request.getAttribute("minHotelId");
+						
+						if(hotel.getHotelId()+1<=maxHotelId){
+					%>
+					<a href="getHotelById.action?hotelId=<%=hotel.getHotelId()+1%>" class="nav-prev" title="前一期">&nbsp;</a> 
+					<%
+						}
+						if(hotel.getHotelId()-1>=minHotelId){
+					%>
+					<a href="getHotelById.action?hotelId=<%=hotel.getHotelId()-1%>" class="nav-next" title="后一期">&nbsp;</a>
+					<%
+						}
+					%>		
 				</div>
 				<div class="desc">
-					本期音乐为Acapella（无伴奏合唱）音乐专题。这种音乐源自中世纪的教会音乐，当时的教会音乐只以人声清唱，并不应用乐器。<br>
-					<br>
-					虽然Acapella的演唱者们技艺超人，但是目前世面上的绝大部分Acapella作品大多以翻唱为主，这未免是一种缺憾。本期最后一首虽然是清唱，但非Acapella风格。另外这期音乐专题总让人想到林嗣环写的《口技》：
-					<br> <br>
-					京中有善口技者。会宾客大宴，于厅事之东北角，施八尺屏障，口技人坐屏障中，一桌、一椅、一扇、一抚尺而已。众宾团坐。少顷，但闻屏障中抚尺二下，满堂寂然，无敢哗者。
-					<br>
-					遥遥闻深巷中犬吠，便有妇人惊觉欠伸，摇其夫语猥亵事，夫呓语，初不甚应，妇摇之不止，则二人语渐间杂，床又从中戛戛。既而儿醒，大啼。夫令妇抚儿乳，儿含乳啼，妇拍而呜之。夫起溺，妇亦抱儿起溺，床上又一大儿醒，狺狺不止。当是时，妇手拍儿声，口中呜声，儿含乳啼声，大儿初醒声，床声，夫叱大儿声，溺瓶中声，溺桶中声，一齐凑发，众妙毕备。满座宾客无不伸颈，侧目，微笑，嘿叹，以为妙绝也。
-					<br>
-					既而夫上床寝，妇又呼大儿溺，毕，都上床寝。小儿亦渐欲睡。夫茀声起，妇拍儿亦渐拍渐止。微闻有鼠作作索索，盆器倾侧，妇梦中咳嗽之声。宾客意少舒，稍稍正坐。
-					<br>
-					忽一人大呼：“火起！”夫起大呼，妇亦起大呼。两儿齐哭。俄而百千人大呼，百千儿哭，百千狗吠。中间力拉崩倒之声，火爆声，呼呼风声，百千齐作；又夹百千求救声，曳屋许许声，抢夺声，泼水声。凡所应有，无所不有。虽人有百手，手有百指，不能指其一端；人有百口，口有百舌，不能名其一处也。于是宾客无不变色离席，奋袖出臂，两股战战，几欲先走。
-					<br> 而忽然抚尺一下，群响毕绝。撤屏视之，一人、一桌、一椅、一扇、一抚尺如故。
+					<%
+					String s = null;
+					FileReader fr = null;
+					BufferedReader br = null;
+					String path = application.getRealPath("/");//当前WEB应用的物理路径
+					String hotelDesc = hotel.getHotelDesc();
+					try {
+						fr = new FileReader(path+"JSP/hotelDesc/"+hotelDesc);
+						br = new BufferedReader(fr);
+					} catch (FileNotFoundException e) {
+						System.out.println("文件没有找到");
+						e.printStackTrace();
+						System.exit(-1);
+					}catch (IOException e) {
+						System.out.println("文件没有找到");
+						e.printStackTrace();
+						System.exit(-1);
+					}	
+					try {		
+						while((s=br.readLine())!=null){							
+							if(br.ready()){
+					%>
+								<%=s%><br/>
+					<%
+							}else{
+					%>
+								<%=s%><br/>
+					<%
+							}
+						}
+					} catch (IOException e) {
+						System.out.println("读取失败");
+						e.printStackTrace();
+					}finally{
+						if(br!=null){
+							try {
+								br.close();
+							} catch (IOException e) {
+								System.out.println("关闭BufferedReader失败");
+								e.printStackTrace();
+							}
+						}
+						if(fr!=null){
+							try {
+								fr.close();
+							} catch (IOException e) {
+								System.out.println("关闭FileReader失败");
+								e.printStackTrace();
+							}
+						}
+					}
+				%>
 				</div>
 
 			</div>
@@ -72,11 +134,14 @@
 		<div class="container container-right">
 
 			<div class="clearfix vol-meta">
-
+				<%
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					String date = sdf.format(hotel.getCreateDate());
+				%>
 				<img src="img/u50001445339175.png" alt="落在低处"
 					class="author-avatar rounded"> <a class="vol-author" href=""
 					target="_blank">落在低处</a> <span class="separator fleft">・</span> <span
-					class="vol-date">2015-01-08</span> <a href="javascript:;"
+					class="vol-date">><%=date%></span> <a href="javascript:;"
 					class="btn-action-like icon-fav icon-fav3" title="收藏" id="favHotel"></a> <a
 					href="javascript:;" class="icon-share btn-action-share"
 					rel="nofollow"> </a>
@@ -84,9 +149,6 @@
 			</div>
 			<!--期刊首页图片简介结束-->
 			<!--音乐播放器开始-->
-			
-			
-			
 			<div class="kePublic">
 				<!--效果html开始-->
 				<!--<div id="background"></div>-->
@@ -135,7 +197,7 @@
 	时间：2016-09-17
 	描述：增加评论
 -->
-			<div class=comment-wrwrapper>
+			<div  id ="comment-wrapper" class=comment-wrwrapper>
 				<h3 class="volcount">
 					评论<small id="volcount">999</small>
 				</h3>
@@ -146,13 +208,15 @@
 					</a>
 
 					<div class="editor-wrapper">
-						<form id="commentform" action="addComment.action" method="post">
-							<input type="hidden" name="topicType" value="hotel" /> <input
-								type="hidden" name="topicId" value="1" /> <input type="hidden"
-								name="fromUid" value="1" />
-
+						<form id="commentform" action="#" method="post">
+							<input type="hidden" name="topicType" id="topicType" value="hotel" /> <input
+								type="hidden" name="topicId" id="topicId" value="1" /> <input type="hidden"
+								name="fromUid" id="fromUid" value="1" />
+								<input type="hidden"
+								name="toCid" id="toCid" value="0" />
+							
 							<div class="from-editor">
-								<textarea name="content"></textarea>
+								<textarea name="content" id="content"></textarea>
 							</div>
 							<div class="toolbar">
 								<div class="sns-sync">
@@ -167,7 +231,7 @@
 										name="sync[tweibo]" value="0" class="">
 									</a>
 								</div>
-								<input type="submit"
+								<input type="button"
 									class="btn btn-positive btn-not-ready rounded"
 									id="commentSubmit" value="发布" />
 							</div>
@@ -180,15 +244,15 @@
 	描述：评论列表开始
 -->
 				<div class="comment-sort">
-					<a class="curt-sort" id="commentSort" href="#"> <span
+					<a class="curt-sort" id="commentSort" href="javascript:void(0);"> <span
 						id="commentSortText">最新评论</span> <span id="icon-sort-menu"
 						class="icon-sort-menu">▼</span>
 
 					</a>
 
 					<div class="sort-menu" id="commentSortMenu" style="display: none;">
-						<a class="comment-sort-item" href="#" id="new">最新评论</a> <a
-							class="comment-sort-item" href="#" id="hot">热门评论</a>
+						<a class="comment-sort-item" href="javascript:void(0);" id="new">最新评论</a> <a
+							class="comment-sort-item" href="javascript:void(0);" id="hot">热门评论</a>
 					</div>
 
 				</div>
@@ -199,22 +263,30 @@
     	时间：2016-09-17
     	描述：单个个人评论列表开始
     -->
-						<c:forEach items="${list}" var="comment">
-							<div class="item">
+						<c:forEach items="${list}" var ="commentList">
+						<c:set var="comment" value="${commentList}" />
+						<c:set var ="oldComment" value="${commentList.toComment}" />
+							<!-- 一条评论 -->
+						<div id="divItem" class="item">
 								<a class="avatar-wrapper"> <img src="img/avatar.gif"
 									alt="${comment.fromUid}" class="avatar" />
 								</a>
 								<div class="item-wrapper">
 									<div class="helper">
-										<a href="" class="username" target="_blank">${comment.fromUid}</a>
+										<a href="javascript:void(0);" class="username" target="_blank">${comment.fromUid}</a>
 										<div class="more">
-											<span class="icon-more"> ▼ <span class="more-menu"
-												style="display: none;"> <a href="javascript:void(0);"
-													class="comment-more-item btn-report" rel="nofollow"> <span
+											<span class="icon-more"> ▼ 
+											<span class="more-menu"
+												style="display: none;">
+												 <a href="javascript:void(0);"
+													class="comment-more-item btn-report" rel="nofollow">
+													 <span
 														class="icon-report"></span> <span class="report-status">
 															举报</span>
+															
 												</a>
 											</span>
+											<input type="hidden" value="${comment.commentId}"/>
 											</span>
 
 										</div>
@@ -223,11 +295,32 @@
 										<p class="the-comment">${comment.content}</p>
 
 									</div>
-									<div class="helper clear-fix">
-										${comment.commentDate}<a class="btn-vote"> <i class="icon-vote"></i>
-											<span> 赞 </span>
+									
+	<c:if test="${oldComment!=null}">
+  
+  	<!-- 一条评论回复 -->
+  			<!-- 原评论 开始-->
+									<div class="que">
+										<span class="darr">
+											<i class="bd">◆</i>
+											<i class="bg">◆</i>
+										</span>
+										<a class="s-fc7" href="#">${oldComment.commentId}</a>
+									：${oldComment.content}
+									</div>
+									<!-- 原评论结束 -->
+									
+  	</c:if>
+								<div class="helper clear-fix">
+										${comment.commentDate}
+										<a href="javascript:void(0);" class="btn-vote">
+											 <i class="icon-vote"></i>
+											 赞
+											<span>${comment.likeSum}</span>
 
-										</a> <a href="" class="btn-replay"> <span id=""
+										</a>
+										<input type="hidden" value="${comment.commentId}"/>
+										<a href="javascript:void(0);" class="btn-replay"> <span id=""
 											class="icon-replay"> </span> 回复
 										</a>
 
@@ -235,31 +328,39 @@
 									<div class="sub-comment" style="display: none;">
 										<span class="arrows"></span>
 
-										<form action="" class="editor-wrapper hide form-comment-at"
+										<div class="editor-wrapper hide form-comment-at"
 											style="border: 0px;">
+											<!-- 传固定的值 -->
+											<input type="hidden" name="replayTopicType" id="replayTopicType" value="hotel" /> <input
+								type="hidden" name="replayTopicId" id="replayTopicId" value="1" /> <input type="hidden"
+								name="replayFromUid" id="replayFromUid" value="1" />
+								<input type="hidden" name="replayToCid" id="replayToCid" value="${comment.commentId}" />
+										<!-- 传固定的值 结束 -->
 											<div class="editor">
-												<textarea name="content" class="editor-comment-at"></textarea>
+												<textarea name="replayContent" id="replayContent" class="editor-comment-at"> </textarea>
 											</div>
 
 											<div class="toolbar clearfix">
 												<div class="btn-group">
-													<a href="#" class="btn-link btn-action-cancel">取消</a>
+													<a href="javascript:void(0);" class="btn-link btn-action-cancel">取消</a>
 													<button
 														class="btn btn-positive btn-not-ready rounded btn-at-comment-submit">评论</button>
 												</div>
 											</div>
 
-										</form>
+										</div>
 										
 
 									</div>
 								</div>
 							</div>
+							
 						</c:forEach>
 						
 						
-						<!-- 重复三个div个人评论列表结束 -->
+						<!-- 重复div个人评论列表结束 -->
 					</div>
+					
 					<div class="paginator" id="paginator">
 						<a href="" class="previous disabled" rel="nofollow">上一页</a> <a
 							href="" class="page actived" rel="nofollow">1</a> <a href=""
@@ -297,9 +398,9 @@
 					console.info(data[i].cover_img);
 					var arr = {
 							id:data[i].musicId,
-							title: data[i].titile,
+							title: data[i].title,
 							artist:data[i].artist ,
-							album: data[i].titile,
+							album: data[i].album,
 							cover:data[i].coverImg,
 							mp3: 'music/'+data[i].path,
 							ogg: ''
@@ -663,7 +764,7 @@
 				}
 			},"json");
 			}
-			
+			var commentWrapper = $("#comment-wrapper");
 			/*图片的两个箭头的显示和隐藏*/
 			$("div.wrapper").mouseover(function() {
 				$("img.cover~a").css("display", "inline");
@@ -673,27 +774,153 @@
 			});
 			/*最新评论和最热评论*/
 
-			var $commentSortMenu = $("div.comment-sort");
+			var flag = 1;
+			commentWrapper.on("click","#commentSort",function() {
+				
+			
+				
+				if(flag==1){
+					$("#icon-sort-menu").text("▲");
 
-			$commentSortMenu.toggle(function() {
-				$("#icon-sort-menu").text("▲");
+					$("#commentSortMenu").show();
+					flag=0;
+				}else if(flag==0){
+					
+					$("#icon-sort-menu").text("▼");
 
-				$("#commentSortMenu").show();
-
-			}, function() {
+					$("#commentSortMenu").hide();
+					flag=1;
+				}
+			});
+			/*回复显示框*/
+			var showR = 1;
+			commentWrapper.on("click",".btn-replay",function() {
+				if(showR==1){
+					$(this).parent("div").next().show();
+					showR=0;
+				}else if(showR==0){
+					$(this).parent("div").next().hide();
+					showR=1;
+				}
+				
+			});
+			//查询最新评论
+			commentWrapper.on("click","#new",function(){
+				$("#commentSortText").text("最新评论");
 				$("#icon-sort-menu").text("▼");
 
 				$("#commentSortMenu").hide();
-
+				flag=1;
+				//使用dom技术来更新 创建出一个 二级产品种类的下来列表框 把以前的替换
+				$.post("getCommentOrderByNewDate.action",{
+					
+				 },function(data){
+					 
+					 	var div = $("#commentItems");
+					 	var divItem = "<div id='commentItems'>";
+					 	alert("test getCommentOrderByNewDate");
+						
+						for(var i =0;i<data.length;i++){
+							
+							var comment = data[i]; 
+							var oldComment = comment.toComment;
+							
+							 divItem = divItem + "<div id ='divItem' class='item'><a class='avatar-wrapper'> <img src='img/avatar.gif' alt='"+comment.fromUid+"' class='avatar' /></a><div class='item-wrapper'><div class='helper'><a  class='username' target='_blank'>"+comment.fromUid+"</a><div class='more'><span class='icon-more'> ▼ <span class='more-menu' style='display: none;'> <a href='javascript:void(0);' class='comment-more-item btn-report' rel='nofollow'> <span class='icon-report'></span> <span class='report-status'>举报</span></a></span><input type='hidden' value='"+comment.commentId+"'/></span></div></div><div class='comment-ct'><p class='the-comment'>"+comment.content+"</p></div>";
+					 		 if(oldComment!=null){
+					 			divItem = divItem +"<!-- 一条评论回复 --><!-- 原评论 开始--><div class='que'><span class='darr'><i class='bd'>◆</i><i class='bg'>◆</i></span><a class='s-fc7' href='#''>"+oldComment.commentId+"</a>："+oldComment.content+"</div><!-- 原评论结束 -->"; 
+					 		 }
+					 		
+					 		 divItem = divItem +"<div class='helper clear-fix'>"+comment.commentDate+"<a class='btn-vote'> <i class='icon-vote'></i> 赞<span>"+comment.likeSum+"</span></a> <input type='hidden' value='"+comment.commentId+"'/><a  class='btn-replay'> <span id='' class='icon-replay'> </span> 回复</a></div><div class='sub-comment' style='display: none;'><span class='arrows'></span><div class='editor-wrapper hide form-comment-at' style='border: 0px;'><input type='hidden' name='topicType' id='topicType' value='hotel' /> <input type='hidden' name='topicId' id='topicId' value='1' /> <input type='hidden' name='fromUid' id= 'fromUid ' value='1' /> <input type='hidden' name='toCid' id='toCid' value='"+comment.commentId+"' /><div class='editor'><textarea name='content' class='editor-comment-at'></textarea></div><div class='toolbar clearfix'><div class='btn-group'><a  class='btn-link btn-action-cancel'>取消</a>	<button	class='btn btn-positive btn-not-ready rounded btn-at-comment-submit'>评论</button></div></div></div></div></div></div>";
+						}
+					 	
+						
+						
+					 	//替换以前的
+					 	div.replaceWith(divItem);
+				 },"json");	
 			});
-			/*回复显示框*/
+			//查询热门评论
+			commentWrapper.on("click","#hot",function(){
+				
+				$("#commentSortText").text("最热评论");
+				$("#icon-sort-menu").text("▼");
 
-			$("a.btn-replay").toggle(function() {
-				$(this).parent("div").next().show();
-			}, function() {
-				//$("div.sub-comment").hide();
-				$(this).parent("div").next().hide();
+				$("#commentSortMenu").hide();
+				flag=1;
+				$.post("getCommentOrderNewByLikeSum.action",{
+					
+				 },function(data){
+					 
+					 	var div = $("#commentItems");
+					 	var divItem = "<div id='commentItems'>";
+					 	
+					 	 alert("test getCommentOrderNewByLikeSum");
+					for(var i =0;i<data.length;i++){
+							
+							var comment = data[i]; 
+							var oldComment = comment.toComment;
+							
+					 		 divItem = divItem + "<div id ='divItem' class='item'><a class='avatar-wrapper'> <img src='img/avatar.gif' alt='"+comment.fromUid+"' class='avatar' /></a><div class='item-wrapper'><div class='helper'><a  class='username' target='_blank'>"+comment.fromUid+"</a><div class='more'><span class='icon-more'> ▼ <span class='more-menu' style='display: none;'> <a href='javascript:void(0);' class='comment-more-item btn-report' rel='nofollow'> <span class='icon-report'></span> <span class='report-status'>举报</span></a></span><input type='hidden' value='"+comment.commentId+"'/></span></div></div><div class='comment-ct'><p class='the-comment'>"+comment.content+"</p></div>";
+					 		 if(oldComment!=null){
+					 			 divItem = divItem + "<!-- 一条评论回复 --><!-- 原评论 开始--><div class='que'><span class='darr'><i class='bd'>◆</i><i class='bg'>◆</i></span><a class='s-fc7' href='#''>"+oldComment.commentId+"</a>："+oldComment.content+"</div><!-- 原评论结束 -->"; 
+					 		 }
+					 		
+					 		 divItem = divItem + "<div class='helper clear-fix'>"+comment.commentDate+"<a class='btn-vote'> <i class='icon-vote'></i> 赞<span>"+comment.likeSum+"</span></a> <input type='hidden' value='"+comment.commentId+"'/><a  class='btn-replay'> <span id='' class='icon-replay'> </span> 回复</a></div><div class='sub-comment' style='display: none;'><span class='arrows'></span><div  class='editor-wrapper hide form-comment-at' style='border: 0px;'><input type='hidden' name='topicType' id='topicType' value='hotel' /> <input type='hidden' name='topicId' id='topicId' value='1' /> <input type='hidden' name='fromUid' id= 'fromUid ' value='1' /> <input type='hidden' name='toCid' id='toCid' value='"+comment.commentId+"' /><div class='editor'><textarea name='content' class='editor-comment-at'></textarea></div><div class='toolbar clearfix'><div class='btn-group'><a  class='btn-link btn-action-cancel'>取消</a>	<button	class='btn btn-positive btn-not-ready rounded btn-at-comment-submit'>评论</button></div></div></div></div></div></div>";
+					 	}
+					 	 divItem = divItem +  "</div>";
+					 	//替换以前的
+					 	div.replaceWith(divItem);
+				 },"json");	
 			});
+			//点赞
+			commentWrapper.on("click","a.btn-vote",function(){
+				var i = $(this).children("i");
+				if(i.hasClass("icon-vote")){
+					i.removeClass("icon-vote");
+					i.addClass("icon-vote-actived");
+					   
+					alert("test likeSum");
+					var span = $(this).children("span");
+					var commentId = $(this).next().val();
+					
+					 $.post("updateCommentById.action",{
+					 	"commentId":commentId
+					 },function(data,status){
+					 	//使用dom技术来更新 
+					 	
+					 	var likeSumSpan =  "<span>"+data.likeSum+"</span>";
+	
+						span.replaceWith(likeSumSpan);
+						
+						
+						
+					 },"json");
+				 
+				}else{
+					//取消点赞
+					
+					i.removeClass("icon-vote-actived");
+					i.addClass("icon-vote");
+					   
+					var span = $(this).children("span");
+					var commentId = $(this).next().val();
+					 $.post("cancelTheThumbUp.action",{
+						 	"commentId":commentId
+						 },function(data,status){
+						 	//使用dom技术来更新 
+						 
+						 	var likeSumSpan =  "<span>"+data.likeSum+"</span>";
+
+							span.replaceWith(likeSumSpan);
+							
+							
+							
+						 },"json");
+				}		
+				
+			});
+			
+			
 			/*举报框的显示和隐藏*/
 
 			$("span.icon-more").mouseover(function() {
@@ -702,34 +929,124 @@
 			$("span.icon-more").mouseout(function() {
 				$(this).children("span").hide();
 			});
-			/*显示当前发布时间*/
 			
-			//查询最新评论
-			$("#new").click(function(){
-				location.assign("getCommentOrderByDate.action");
+			//举报
+			commentWrapper.on("click",".more-menu",function(){
+				
+				var report =$(this).children("a").children("span.report-status");
+				var id = $(this).next().val();
+				$.post("updateCommentReport.action",{
+				 	"commentId":id
+				 },function(data,status){
+				 	var html = "<span class='report-status'>已举报</span>";
+
+					 report.replaceWith(html);
+				
+				 },"json");
+				
 			});
 			
-			//查询热门评论
-			$("#hot").click(function(){
-				
-				//location.assign("getCommentOrderByLikeSum.action");
-				 $.post("getCommentOrderByLikeSum.action",{
-					 	"action":"getCommentOrderByLikeSum",
-					 	
-					 },function(data,status){
-					 	//使用dom技术来更新 创建出一个 二级产品种类的下来列表框 把以前的替换
-					 	var divItem = null;
-					 	
-					 	for(var i =0;i<data.length;i++){
-					 		 divItem = "<div class='item'><a class='avatar-wrapper'> <img src='img/avatar.gif' alt='"+data[i].fromUid+"' class='avatar' /></a><div class='item-wrapper'><div class='helper'><a  class='username' target='_blank'>"+data[i].fromUid+"</a><div class='more'><span class='icon-more'> ▼ <span class='more-menu' style='display: none;'> <a href='javascript:void(0);' class='comment-more-item btn-report' rel='nofollow'> <span class='icon-report'></span> <span class='report-status'>举报</span></a></span></span></div></div><div class='comment-ct'><p class='the-comment'>"+data[i].content+"</p></div><div class='helper clear-fix'>"+data[i].commentDate+"<a class='btn-vote'> <i class='icon-vote'></i>	<span> 赞 </span></a> <a  class='btn-replay'> <span id='' class='icon-replay'> </span> 回复</a></div><div class='sub-comment' style='display: none;'><span class='arrows'></span><form action='' class='editor-wrapper hide form-comment-at' style='border: 0px;'><div class='editor'><textarea name='content' class='editor-comment-at'></textarea></div><div class='toolbar clearfix'><div class='btn-group'><a  class='btn-link btn-action-cancel'>取消</a>	<button	class='btn btn-positive btn-not-ready rounded btn-at-comment-submit'>评论</button></div></div></form></div></div></div>";
-
-					 	}
+			commentWrapper.on("mouseout","span.icon-more",function() {
+				$(this).children("span").hide();
+			});
+			
+			/* 增加一条评论 */
+			$("#commentSubmit").click(function(){
+				$("#commentSortText").text("最新评论");
+				var topicType = $("#topicType").val();
+				var topicId = $("#topicId").val();
+				var fromUid = $("#formUid").val();
+				var content = $("#content").val();
+				var toCid = $("#toCid").val();
+				$("#content").val("");
+				$.post("addComment.action",{
+				 	"topicType":topicType,
+				 	"topicId":topicId,
+				 	"fromUid":fromUid,
+				 	"content":content,
+				 	"toCid":toCid
+				 },function(data){
+					 var div = $("#commentItems");
+					 	var divItem = "<div id='commentItems'>";
+					 	alert("test getCommentOrderByNewDate in add");
+						
+						for(var i =0;i<data.length;i++){
+							
+							var comment = data[i]; 
+							var oldComment = comment.toComment;
+							
+							 divItem = divItem + "<div id ='divItem' class='item'><a class='avatar-wrapper'> <img src='img/avatar.gif' alt='"+comment.fromUid+"' class='avatar' /></a><div class='item-wrapper'><div class='helper'><a  class='username' target='_blank'>"+comment.fromUid+"</a><div class='more'><span class='icon-more'> ▼ <span class='more-menu' style='display: none;'> <a href='javascript:void(0);' class='comment-more-item btn-report' rel='nofollow'> <span class='icon-report'></span> <span class='report-status'>举报</span></a></span><input type='hidden' value='"+comment.commentId+"'/></span></div></div><div class='comment-ct'><p class='the-comment'>"+comment.content+"</p></div>";
+					 		 if(oldComment!=null){
+					 			divItem = divItem +"<!-- 一条评论回复 --><!-- 原评论 开始--><div class='que'><span class='darr'><i class='bd'>◆</i><i class='bg'>◆</i></span><a class='s-fc7' href='#''>"+oldComment.commentId+"</a>："+oldComment.content+"</div><!-- 原评论结束 -->"; 
+					 		 }
+					 		
+					 		 divItem = divItem +"<div class='helper clear-fix'>"+comment.commentDate+"<a class='btn-vote'> <i class='icon-vote'></i> 赞<span>"+comment.likeSum+"</span></a> <input type='hidden' value='"+comment.commentId+"'/><a  class='btn-replay'> <span id='' class='icon-replay'> </span> 回复</a></div><div class='sub-comment' style='display: none;'><span class='arrows'></span><div  class='editor-wrapper hide form-comment-at' style='border: 0px;'><input type='hidden' name='topicType' id='topicType' value='hotel' /> <input type='hidden' name='topicId' id='topicId' value='1' /> <input type='hidden' name='fromUid' id= 'fromUid ' value='1' /> <input type='hidden' name='toCid' id='toCid' value='"+comment.commentId+"' /><div class='editor'><textarea name='content' class='editor-comment-at'></textarea></div><div class='toolbar clearfix'><div class='btn-group'><a  class='btn-link btn-action-cancel'>取消</a>	<button	class='btn btn-positive btn-not-ready rounded btn-at-comment-submit'>评论</button></div></div></div></div></div></div>";
+						}
 					 	
 					 	//替换以前的
-					 	$("#hot").replaceWith(divItem);
-					 },"json");
+					 	div.replaceWith(divItem);
+				 },"json");
+				
+				
 			});
-			//
+			/* 增加一条评论回复 */
+			/* var subComment = $(".sub-comment").children("form");
+			var buttonSub = subComment.children("button"); */
+			commentWrapper.on("click","button",function(){
+				
+				$("#commentSortText").text("最新评论");
+				var topicType = $("#replayTopicType").val();
+				var topicId = $("#replayTopicId").val();
+				var fromUid = $("#replayFormUid").val();
+				var content = $("#replayContent").val();
+				
+				var toCid = $("#replayToCid").val();
+				$("#replayContent").val("");
+				alert("toCid="+toCid);
+				$.post("addCommentReplay.action",{
+				 	"topicType":topicType,
+				 	"topicId":topicId,
+				 	"fromUid":fromUid,
+				 	"content":content,
+				 	"toCid":toCid
+				 	
+				 },function(data){
+					 alert("this  this");
+					 var div = $("#commentItems");
+					 	var divItem = "<div id='commentItems'>";
+					 	alert("test getCommentOrderByNewDate");
+						
+						for(var i =0;i<data.length;i++){
+							
+							var comment = data[i]; 
+							var oldComment = comment.toComment;
+							
+							 divItem = divItem + "<div id ='divItem' class='item'><a class='avatar-wrapper'> <img src='img/avatar.gif' alt='"+comment.fromUid+"' class='avatar' /></a><div class='item-wrapper'><div class='helper'><a  class='username' target='_blank'>"+comment.fromUid+"</a><div class='more'><span class='icon-more'> ▼ <span class='more-menu' style='display: none;'> <a href='javascript:void(0);' class='comment-more-item btn-report' rel='nofollow'> <span class='icon-report'></span> <span class='report-status'>举报</span></a></span><input type='hidden' value='"+comment.commentId+"'/></span></div></div><div class='comment-ct'><p class='the-comment'>"+comment.content+"</p></div>";
+					 		 if(oldComment!=null){
+					 			divItem = divItem +"<!-- 一条评论回复 --><!-- 原评论 开始--><div class='que'><span class='darr'><i class='bd'>◆</i><i class='bg'>◆</i></span><a class='s-fc7' href='#''>"+oldComment.commentId+"</a>："+oldComment.content+"</div><!-- 原评论结束 -->"; 
+					 		 }
+					 		
+					 		 divItem = divItem +"<div class='helper clear-fix'>"+comment.commentDate+"<a class='btn-vote'> <i class='icon-vote'></i> 赞<span>"+comment.likeSum+"</span></a> <input type='hidden' value='"+comment.commentId+"'/><a  class='btn-replay'> <span id='' class='icon-replay'> </span> 回复</a></div><div class='sub-comment' style='display: none;'><span class='arrows'></span><div class='editor-wrapper hide form-comment-at' style='border: 0px;'><input type='hidden' name='topicType' id='topicType' value='hotel' /> <input type='hidden' name='topicId' id='topicId' value='1' /> <input type='hidden' name='fromUid' id= 'fromUid ' value='1' /> <input type='hidden' name='toCid' id='toCid' value='"+comment.commentId+"' /><div class='editor'><textarea name='content' class='editor-comment-at'></textarea></div><div class='toolbar clearfix'><div class='btn-group'><a  class='btn-link btn-action-cancel'>取消</a>	<button	class='btn btn-positive btn-not-ready rounded btn-at-comment-submit'>评论</button></div></div></div></div></div></div>";
+						}
+					 	
+					 	//替换以前的
+					 	div.replaceWith(divItem);
+				 },"json");
+				
+				
+			});
+			
+			
+			//点收藏后 likeSum+1
+			$("a.btn-action-like").click(function(){
+				$.post("addLikeSum.action",{
+				 	"hotelId":"<%=hotel.getHotelId()%>"
+				 },function(data,status){
+					 alert(data);
+					 $("a.icon-fav").css("background-position","0 -80px");
+				 },"json");
+			});
+		});
 		});
 	</script>
 </body>

@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.ServletConfigAware;
 import org.springframework.web.context.ServletContextAware;
 
+import com.google.gson.Gson;
 import com.page.PageInfo;
 import com.po.Hotel;
 import com.po.User;
@@ -62,31 +64,38 @@ ServletContextAware{
 	@RequestMapping("JSP/getHotelById.action")
 	public String getHotelById(Model model,String hotelId){
 		//一.填充数据
-		System.out.println(hotelId);
 		//二.调用业务逻辑
 		Hotel hotel = hotelService.getHotelById(Integer.parseInt(hotelId));
+			
+		int maxHotelId = hotelService.getMaxHotelId();
+		int minHotelId = hotelService.getMinHotelId();
 		//三.转发视图
 		String target = "oneHotel.jsp";
 		model.addAttribute("hotel", hotel);
+		model.addAttribute("maxHotelId", maxHotelId);
+		model.addAttribute("minHotelId", minHotelId);
 		return target;
-	}
+		}
 	
 	//分页查
-	@RequestMapping("JSP/getHotelByPage.action")
-	public String getHotelByPage(Model model,String requestPage){
-		//一.填充数据
-		PageInfo pageInfo = new PageInfo(Integer.parseInt(requestPage));
-		//二.调用业务逻辑
-		int totalRecordSum = hotelService.getTotalRecordSum();
-		pageInfo.setTotalRecordCount(totalRecordSum);
-		
-		List<Hotel> list = hotelService.getHotelByPage(pageInfo);
-		//三.转发视图
-		String target = "allHotels.jsp";
-		model.addAttribute("list", list);
-		model.addAttribute("pageInfo", pageInfo);
-		return target;
-	}
+		@RequestMapping("JSP/getHotelByPage.action")
+		public String getHotelByPage(Model model,String requestPage){
+			//一.填充数据
+			PageInfo pageInfo = new PageInfo(Integer.parseInt(requestPage),5);
+			//二.调用业务逻辑
+			int totalRecordSum = hotelService.getTotalRecordSum();
+			pageInfo.setTotalRecordCount(totalRecordSum);
+			
+			List<Hotel> list = hotelService.getHotelByPage(pageInfo);
+			
+			List<Hotel> hotHotelList = hotelService.getHotHotel();
+			//三.转发视图
+			String target = "allHotels.jsp";
+			model.addAttribute("list", list);
+			model.addAttribute("hotHotelList", hotHotelList);
+			model.addAttribute("pageInfo", pageInfo);
+			return target;
+		}
 	
 	@RequestMapping("/JSP/getMyHotel.action")
 	public String getMyHotel(HttpServletRequest request,ModelMap model){
@@ -198,6 +207,24 @@ ServletContextAware{
 			out.write("1");//存在相同的标题
 		}
 		
+		out.flush();
+	}
+	
+	@RequestMapping("JSP/addLikeSum.action")
+	public void addLikeSum(HttpServletResponse response,String hotelId){
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//一.填充数据
+		//二.调用业务逻辑
+		hotelService.addLikeSum(Integer.parseInt(hotelId));
+		Gson gson = new Gson();
+		String json = gson.toJson("收藏成功");
+		//三.输出
+		out.println(json);
 		out.flush();
 	}
 	

@@ -158,6 +158,7 @@ public class User {
 				+ ", age=" + age + ", address=" + address + ", occupation="
 				+ occupation + ", autoPlay=" + autoPlay + ", isValited="
 				+ isValited + "]";
+		
 	}
 	
 	

@@ -31,7 +31,7 @@
 					<a>单曲</a>
 				</div>
 				<div class="selection">
-					<a>专栏</a>
+					<a herf="getAll.action">专栏</a>
 				</div>
 				<div class="selection">
 					<a>活动</a>

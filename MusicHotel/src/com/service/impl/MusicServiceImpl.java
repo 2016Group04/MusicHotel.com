@@ -31,6 +31,7 @@ public class MusicServiceImpl implements MusicService {
 	
 	@Override
 	public int addMusic(Music music) {
+		
 		int count=dao.addMusic(music);
 		return count;
 	}
@@ -305,5 +306,91 @@ public class MusicServiceImpl implements MusicService {
 			this.deleteMusic(music, path);
 		}
 	}
+	
+	// 根据传过来的Music查数据库，歌名、专辑名、歌手相同就认为是同一首歌
+		//返回已存在音乐的id，或者没存在返回0
+		@Override
+		public int ifExist (Music music){
+			int musicId = 0;
+			
+			musicId = dao.ifExist(music);
+			
+			return musicId;
+		}
+		
+		//上传音乐文件
+			@Override
+			public void uploadOneMusic(Music music, HttpServletRequest request, MultipartFile file) {
+				
+				String path = request.getSession().getServletContext().getRealPath("/") + "upload/";
+				
+				
+				String str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+			     Random random=new Random();
+			     StringBuffer sb=new StringBuffer();
+			     for(int i=0;i<30;i++){
+			       int number=random.nextInt(62);
+			       sb.append(str.charAt(number));
+			     }
+			     String imgFile = sb.toString();
+			     
+				
+				//存专辑封面
+				String base64 = music.getCoverImg();
+				
+				File img = new File(path + "cover/" + imgFile);
+				try {
+					
+					if(!img.getParentFile().exists()) {  
+			            //如果目标文件所在的目录不存在，则创建父目录  
+			            System.out.println("目标文件所在目录不存在，准备创建它！");  
+			            if(!img.getParentFile().mkdirs()) {  
+			                System.out.println("创建目标文件所在目录失败！");  		               
+			            }  
+			        }  
+					
+				   if (!img.exists()) {			    
+						img.createNewFile();
+						FileWriter fw = new FileWriter(img.getAbsoluteFile());
+					   BufferedWriter bw = new BufferedWriter(fw);
+					   bw.write(base64);
+					   bw.close();
+					   //把封面图片由原来的base64改为存base64的文件名
+					   music.setCoverImg(imgFile);
+					}
+				   } catch (IOException e) {
+						e.printStackTrace();
+					}
+				   
+				
+				//存音乐文件
+				 // 判断文件是否为空  
+		        if (!file.isEmpty()) {  
+		            try {  
+		                // 音乐文件保存路径  
+		                String filePath = path + "music/" + file.getOriginalFilename();  
+		                
+		                File musicFile = new File(filePath);
+		                
+		                if(!musicFile.getParentFile().exists()) {  
+				            //如果目标文件所在的目录不存在，则创建父目录  
+				            System.out.println("目标文件所在目录不存在，准备创建它！");  
+				            if(!musicFile.getParentFile().mkdirs()) {  
+				                System.out.println("创建目标文件所在目录失败！");  		               
+				            }  
+				        }
+		                // 转存文件  
+		                file.transferTo(musicFile);  
+		            } catch (Exception e) {  
+		                e.printStackTrace();  
+		            }  
+		        } 
+		        
+		      //在数据库中插入记录
+				dao.addMusic(music);
+				System.out.println("音乐已上传，成功插入记录到数据库");
+				System.out.println(music.getTitle());
+			}
+		
 
 }

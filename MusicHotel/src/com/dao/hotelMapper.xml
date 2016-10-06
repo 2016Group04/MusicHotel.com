@@ -5,7 +5,7 @@
 
 	<!-- 增加一个hotel -->
 	<insert id="addHotel" parameterType="com.po.Hotel">
-		INSERT INTO hotel VALUE(NULL,#{titile},#{coverImg},#{likeSum},#{commentSum},#{userId},#{createDate},#{style},#{hotelDesc})
+		INSERT INTO hotel VALUE(NULL,#{title},#{coverImg},#{likeSum},#{commentSum},#{userId},#{createDate},#{style},#{hotelDesc})
 	</insert>
 
 	<!-- 根据id删除hotel -->
@@ -30,5 +30,20 @@
 	<!--查询总共有多少条记录-->
 	<select id="getTotalRecordSum" parameterType="java.lang.String" resultType="int">
 		${value}
+	</select>
+	
+	<!--点收藏后 likeSum+1-->
+	<update id="addLikeSum" parameterType="int">
+		UPDATE hotel SET like_sum=like_sum+1 WHERE hotel_id=#{id}
+	</update>
+	
+	<!--得到最大的hotelId-->
+	<select id="getMaxHotelId" resultType="int">
+		SELECT MAX(hotel_id) FROM hotel
+	</select>
+	
+	<!--得到最小的hotelId-->
+	<select id="getMinHotelId" resultType="int">
+		SELECT MIN(hotel_id) FROM hotel
 	</select>
 </mapper>

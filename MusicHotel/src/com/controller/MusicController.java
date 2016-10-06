@@ -26,7 +26,6 @@ import com.service.impl.MusicServiceImpl;
 import com.util.WriteFile;
 
 @Controller
-@RequestMapping("/JSP")
 public class MusicController implements ServletConfigAware,
 ServletContextAware{
 
@@ -54,7 +53,7 @@ ServletContextAware{
 	 * 功能：根据hotelId得到其下的所有的音乐
 	 * @param HotelId
 	 */
-	@RequestMapping("/getAllMusic.action")
+	@RequestMapping("/JSP/getAllMusic.action")
 	public void getAllMusic(int hotelId,HttpServletResponse response)
 		throws IOException{
 		
@@ -91,7 +90,7 @@ ServletContextAware{
 		
 	}
 	
-	@RequestMapping("/addMusic.action")
+	@RequestMapping("/JSP/addMusic.action")
 	public void addMusic(HttpServletRequest request,HttpServletResponse response)
 		throws Exception{
 		
@@ -117,7 +116,7 @@ ServletContextAware{
 	}
 	
 	
-	@RequestMapping("/deleteMusic.action")
+	@RequestMapping("/JSP/deleteMusic.action")
 	public void deleteMusic(int musicId,int hotelId){
 		
 		System.out.println("in deleteMusic");

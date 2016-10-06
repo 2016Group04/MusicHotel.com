@@ -47,7 +47,7 @@
 		<div id="titleH">
 			<span id="no"><a class="noo"><%=hotel.getHotelId() %></a></span>
 			<div class="title">
-				<%=hotel.getTitile() %>
+				<%=hotel.getTitle() %>
 			</div>
 		</div>
 

@@ -10,30 +10,44 @@ import com.po.Hotel;
 
 public interface HotelService {
 
-	//增加一个hotel
+	// 增加一个hotel
 	public void addHotel(Hotel hotel);
-	
-	//根据id删除一个hotel
+
+	// 根据id删除一个hotel
 	public void deleteHotel(int hotelId);
-	
-	//根据id查一个
+
+	// 根据id查一个
 	public Hotel getHotelById(Integer hotelId);
-		
-	//查所有
+
+	// 查所有
 	public List<Hotel> getAllHotel();
-	
-	//分页查
+
+	// 分页查
 	public List<Hotel> getHotelByPage(PageInfo pageInfo);
-	
-	//查询总共有多少条记录
+
+	// 查询总共有多少条记录
 	public int getTotalRecordSum();
-	
-	//根据用户id来获取由用户创建的所有的hotel
+
+	// 根据用户id来获取由用户创建的所有的hotel
 	public List<Hotel> getHotelByUserId(int userId);
-	
-	//根据hotel的标题来获得hotel
+
+	// 根据hotel的标题来获得hotel
 	public Hotel getHotelByTitile(String titile);
-	
-	//上传hotel封面图片
-	public Hotel upload(HttpServletRequest request,String productImagesUploadPath,String txtUploadPath,Date date,int userId);
+
+	// 上传hotel封面图片
+	public Hotel upload(HttpServletRequest request,
+			String productImagesUploadPath, String txtUploadPath, Date date,
+			int userId);
+
+	// 查热门期刊 按喜欢人数查
+	public List<Hotel> getHotHotel();
+
+	// 点收藏后 likeSum+1
+	public void addLikeSum(Integer hotelId);
+
+	// 得到最大的hotelId
+	public int getMaxHotelId();
+
+	// 得到最小的hotelId
+	public int getMinHotelId();
 }

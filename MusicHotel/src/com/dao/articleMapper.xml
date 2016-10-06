@@ -2,19 +2,54 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dao.ArticleDao">
+	<insert id="addArticle" parameterType="Article">
+	
+		INSERT INTO article VALUES(NULL,#{writer},#{title},#{coverImg},#{articleDate},#{musicId},#{brief},#{content})
+	</insert>
 
 	<!-- 根据id删除一篇文章 -->
 	<delete id="deleteArticle" parameterType="int">
 		DELETE FROM article WHERE article_id=#{articleId}
 	</delete>
+	
+	<update id="updateArticle" parameterType="Article">
+		update article set writer=#{writer},title=#{title},cover_img=#{coverImg},article_date=#{articleDate},brief=#{brief},content=#{content} where article_id=#{articleId}
+	</update>
 
-	<!--根据id查一个-->
-	<select id="getArticleByArticleId" parameterType="int" resultType="com.po.Article">
-		SELECT * FROM Article WHERE Article_id=#{articleId}
+	<!-- <select id="getArticleByArticleId" parameterType="int" resultType="Article">
+		select * from article where article_id=#{articleId}
+	</select> -->
+	<!-- ************************** -->
+	<select id="getArticleByArticleId" parameterType="int" resultMap="ArticleResultMap2">
+		select * from article where article_id=#{articleId}
+	</select>
+	<resultMap type="Article" id="ArticleResultMap2">
+		<id property="articleId" column="article_id"/>
+		<result property="writer" column="writer"/>
+		<result property="title" column="title"/>
+		<result property="coverImg" column="cover_img"/>
+		<result property="articleDate" column="article_date"/>
+		<result property="music" column="music_id"/>
+		<result property="brief" column="brief"/>
+		<result property="content" column="content"/>
+		<result property="likeSum" column="like_sum"/>
+		
+		<association property="music" column="music_id" select="getMusicByMusicId">
+		</association>
+	</resultMap>
+	
+	<select id="getMusicByMusicId" parameterType="int" resultType="Music">
+		SELECT music_id musicId,title,cover_img coverImg,artist,path,lyrics,size,time_length timeLength FROM music WHERE music_id=#{musicId}
+		
+	</select>
+
+<!-- ************************** -->
+	
+	<select id="getArticleBySql" statementType="STATEMENT" parameterType="java.lang.String" resultType="Article">
+		${value}
 	</select>
 	
-	<!--根据sqly语句查-->
-	<select id="getArticleBySql" parameterType="java.lang.String" resultType="com.po.Article">
+	<select id="getTotalRecordSum" statementType="STATEMENT" parameterType="java.lang.String" resultType="int">
 		${value}
 	</select>
 </mapper>

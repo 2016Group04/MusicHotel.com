@@ -7,7 +7,7 @@ import com.util.DateFormat;
 public class Hotel {
 
 	private Integer hotelId;
-	private String titile;
+	private String title;
 	private String coverImg;
 	private Integer likeSum;
 	private Integer commentSum;
@@ -32,11 +32,11 @@ public class Hotel {
 	public void setHotelId(Integer hotelId) {
 		this.hotelId = hotelId;
 	}
-	public String getTitile() {
-		return titile;
+	public String getTitle() {
+		return title;
 	}
-	public void setTitile(String titile) {
-		this.titile = titile;
+	public void setTitle(String titile) {
+		this.title = titile;
 	}
 	public String getCoverImg() {
 		return coverImg;
@@ -83,7 +83,7 @@ public class Hotel {
 	
 	@Override
 	public String toString() {
-		return "Hotel [hotelId=" + hotelId + ", titile=" + titile
+		return "Hotel [hotelId=" + hotelId + ", title=" + title
 				+ ", coverImg=" + coverImg + ", likeSum=" + likeSum
 				+ ", commentSum=" + commentSum + ", userId=" + userId
 				+ ", createDate=" + createDate + ", style=" + style

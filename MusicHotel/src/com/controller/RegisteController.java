@@ -28,7 +28,6 @@ import com.service.impl.JavaMailServiceImpl;
 import com.service.impl.MsgServiceImpl;
 import com.service.impl.NotificationServiceImpl;
 import com.service.impl.UserServiceImpl;
-import com.util.DateFormat;
 import com.util.MD5;
 
 @Controller
@@ -134,7 +133,6 @@ public class RegisteController{
 		Date date = new Date();
 		
 		user.setSignupDate(date);
-		
 		
 		String passwordMD5 = MD5.getHash(password);
 		user.setPasswordMD5(passwordMD5);

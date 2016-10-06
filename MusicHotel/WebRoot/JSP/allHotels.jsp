@@ -432,6 +432,25 @@
 			    width: 290px;
 			    overflow-x: hidden;
 			}
+			.kazhu {
+				top:0px;
+				position: fixed; 
+				width: 290px; 
+				margin-left: 670px;
+			}
+			.recommend {
+				position: static;
+				width: 290px;
+				height: 398px;
+				display: block;
+				vertical-align: baseline;
+				float: right;
+			}
+			.stuck {
+			    position: fixed;
+			    width: 290px;
+			    top: -19px;
+			}
 			.widget {
 			    margin-bottom: 25px;
 			}
@@ -1104,11 +1123,11 @@
 							for(Hotel hotel:list){
 						%>
 						<div class="item">
-							<a class="cover-wrapper" href="getHotelById.action?hotelId=<%=hotel.getHotelId()%>" title="<%=hotel.getTitile()%>">
-								<img src="<%=hotel.getCoverImg()%>" alt="<%=hotel.getTitile()%>" class="cover rounded">
+							<a class="cover-wrapper" href="getHotelById.action?hotelId=<%=hotel.getHotelId()%>" title="<%=hotel.getTitle()%>">
+								<img src="<%=hotel.getCoverImg()%>" alt="<%=hotel.getTitle()%>" class="cover rounded">
 							</a>
 							<div class="meta rounded clearfix">
-								<a href="getHotelById.action?hotelId=<%=hotel.getHotelId()%>" class="name" title="<%=hotel.getTitile()%>">vol.<%=hotel.getHotelId() %> <%=hotel.getTitile()%></a>
+								<a href="getHotelById.action?hotelId=<%=hotel.getHotelId()%>" class="name" title="<%=hotel.getTitle()%>">vol.<%=hotel.getHotelId() %> <%=hotel.getTitle()%></a>
 								<span class="comments">
 									<span class="icon-comment-count"></span>
 									<%=hotel.getCommentSum() %>
@@ -1127,18 +1146,65 @@
 					<!--paginator start-->
 					<div class="paginator">
 						<a class="previous" rel="nofollow" href="getHotelByPage.action?requestPage=<%=pageInfo.getPreviousPage()%>">上一页</a>
-						<a class="page" rel="nofollow" href="getHotelByPage.action?requestPage=1">1</a>
-						<a class="page" href="getHotelByPage.action?requestPage=2">2</a>
-						<a class="page" href="getHotelByPage.action?requestPage=3">3</a>
-						<a class="page" href="#">4</a>
-						<a class="page" href="#">5</a>
-						<a class="page" href="#">6</a>
-						<a class="page" href="#">7</a>
-						<a class="page" href="#">8</a>
-						<a class="page" href="#">9</a>
-						<a class="page" href="#">10</a>
-						<span class="break">...</span>
-						<a class="page" href="#">86</a>
+						<%
+							int totalPageCount = pageInfo.getTotalPageCount();
+							int currentPage = pageInfo.getCurrentPage();
+							
+							if(totalPageCount<=10){
+								//全部打印出来
+								for(int i=1;i<=totalPageCount;i++){
+						%>
+									<a class="page" href="getHotelByPage.action?&requestPage=<%=i%>"><%=i%></a>
+						<%			
+								}
+							}else{
+								//当前页的样式为 class="curr"
+								//打印一部分
+								if(currentPage<=5){
+									//从1开始打印 打印到 当前页数 + 2页
+									for(int i=1;i<=currentPage+2;i++){
+						%>
+										<a class="page" href="getHotelByPage.action?&requestPage=<%=i%>"><%=i%></a>
+						<%
+									}
+						%>
+									<!--  打印..-->
+									<span class="break">...</span>
+									<!-- 打印最后一页(即总共的页数) -->
+									<a class="page" href="getHotelByPage.action?&requestPage=<%=totalPageCount%>"><%=totalPageCount%></a>
+						<%
+								}else if(currentPage<totalPageCount-3){//当前页<总页数-3  8
+						%>
+									<!--始终打印10个先打印1  和 ..  -->
+									<a class="page" href="getHotelByPage.action?&requestPage=1">1</a>
+									<span class="break">...</span>
+						<%
+									//从当前页-3 开始打印  打印到当前页+2
+									for(int i=currentPage-3;i<=currentPage+2;i++){
+						%>
+										<a class="page" href="getHotelByPage.action?&requestPage=<%=i%>"><%=i%></a>
+										
+						<%
+									}
+						%>
+									<!--  打印 ..  和最后一页-->
+									<span class="break">...</span>
+									<a class="page" href="getHotelByPage.action?&requestPage=<%=totalPageCount%>"><%=totalPageCount%></a>
+						<%			
+								}else{//8
+						%>
+									<!-- 先 打印 1 和 .. -->
+									<a class="page" href="getHotelByPage.action?&requestPage=1">1</a>
+									<span class="break">...</span>
+						<%
+									for(int i=currentPage-3;i<=totalPageCount;i++){
+						%>
+										<a class="page" href="getHotelByPage.action?&requestPage=<%=i%>"><%=i%></a>
+						<%
+									}
+								}
+							}
+						%>
 						<a class="next" href="getHotelByPage.action?requestPage=<%=pageInfo.getNextPage()%>">下一页</a>
 					</div>
 					<!--paginator end-->
@@ -1155,56 +1221,22 @@
 						</div>
 						<div class="widget-ct pic-widget">
 						
+						<%
+							List<Hotel> hotHotelList = (List<Hotel>)request.getAttribute("hotHotelList");
+							for(Hotel hotHotel:hotHotelList){
+						%>
 							<div class="item">
-								<a href="http://www.luoo.net/music/045" class="cover-wrapper">
-									<img src="img/52550c7d3b76d.jpg" alt="他们在恋爱" class="vol-cover rounded">
+								<a href="getHotelById.action?hotelId=<%=hotHotel.getHotelId()%>" class="cover-wrapper">
+									<img src="<%=hotHotel.getCoverImg() %>" alt="<%=hotHotel.getTitle() %>" class="vol-cover rounded">
 								</a>
 								<div class="info">
-									<a href="http://www.luoo.net/music/045" title="他们在恋爱" class="title">他们在恋爱</a>
-									<p class="description">18885人收藏</p>
+									<a href="getHotelById.action?hotelId=<%=hotHotel.getHotelId()%>" title="<%=hotHotel.getTitle() %>" class="title"><%=hotHotel.getTitle() %></a>
+									<p class="description"><%=hotHotel.getLikeSum() %>人收藏</p>
 								</div>
 							</div>
-							
-							<div class="item">
-								<a href="http://www.luoo.net/music/632" class="cover-wrapper">
-									<img src="img/53c94f9d68090.jpg" alt="不断的拥有 不断的失去" class="vol-cover rounded">
-								</a>
-								<div class="info">
-									<a href="http://www.luoo.net/music/632" title="不断的拥有 不断的失去" class="title">不断的拥有 不断的失去</a>
-									<p class="description">21452人收藏</p>
-								</div>
-							</div>
-							
-							<div class="item">
-								<a href="http://www.luoo.net/music/826" class="cover-wrapper">
-									<img src="img/5750635f9f56e.jpg" alt="云自无心水自闲" class="vol-cover rounded">
-								</a>
-								<div class="info">
-									<a href="http://www.luoo.net/music/826" title="云自无心水自闲" class="title">云自无心水自闲</a>
-									<p class="description">19855人收藏</p>
-								</div>
-							</div>
-							
-							<div class="item">
-								<a href="http://www.luoo.net/music/850" class="cover-wrapper">
-									<img src="img/57be0d220fa7fl.jpg" alt="因为短暂 所以永恒" class="vol-cover rounded">
-								</a>
-								<div class="info">
-									<a href="http://www.luoo.net/music/850" title="因为短暂 所以永恒" class="title">因为短暂 所以永恒</a>
-									<p class="description">13310人收藏</p>
-								</div>
-							</div>
-							
-							<div class="item">
-								<a href="http://www.luoo.net/music/856" class="cover-wrapper">
-									<img src="img/57dbfb2c3e6c2.jpg" alt="生命中不能承受之轻" class="vol-cover rounded">
-								</a>
-								<div class="info">
-									<a href="http://www.luoo.net/music/856" title="生命中不能承受之轻" class="title">生命中不能承受之轻</a>
-									<p class="description">1670人收藏</p>
-								</div>
-							</div>
-							
+						<%
+							}
+						%>
 						</div>
 					</div>	
 				</div>
@@ -1308,7 +1340,7 @@
 	  	<script src="js/jquery-2.1.4.js"></script>
 		<script src="js/bootstrap.js"></script>
 		<script src="js/top.js" type="text/javascript"></script>
-		<script type="text/javascript">
+		<script type="text/javascript">		
 			$(function(){
 				
 				//幻灯片 自动播放
@@ -1362,6 +1394,19 @@
 				});
 			});
 			
+			//aside 卡住效果
+			$(function(){
+				var aside = $('.aside');
+				var pos = aside.offset();
+				
+				$(window).scroll(function(){
+					if ($(this).scrollTop() > 440 && aside.hasClass('aside')) {
+						aside.removeClass('aside').addClass('kazhu');
+					} else if ($(this).scrollTop() <= 440 && aside.hasClass('kazhu')){
+						aside.removeClass('kazhu').addClass('aside');
+					}
+				});
+			});
 		</script>
 	</body>
 </html>
