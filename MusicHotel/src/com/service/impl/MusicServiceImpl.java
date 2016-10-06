@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -19,9 +20,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dao.MusicDao;
+import com.po.Hotel;
 import com.po.Music;
 import com.service.MusicService;
 import com.util.WriteFile;
@@ -124,174 +127,87 @@ public class MusicServiceImpl implements MusicService {
 	
 	//上传音乐文件
 	@Override
-	public List<Integer> upload(HttpServletRequest request,
-			String productImagesUploadPath) {
-		DiskFileItemFactory itemFactory = new DiskFileItemFactory();
-		// 设置内存缓冲区阈值为512k
-		itemFactory.setSizeThreshold(0x80000);
-		String coverImg = "";
-		String path = "";
-		String title  ="";
-		String hotelId = "";
-		String album = "";
-		String genre = "";
-		String artist = "";
-		File tempDir = new File("D:\\temp");
+	public int upload(HttpServletRequest request,
+			Music music, int hotelId, MultipartFile file) {
 		
-		List<String> musicName = new ArrayList<String>();
-		if (!tempDir.exists()) {
-			tempDir.mkdir();
-		}// 设置临时文件目录
-		itemFactory.setRepository(tempDir);
+		String realpath = request.getSession().getServletContext().getRealPath("");
+		String musicPath = realpath + "//JSP//music";
+		
+		String base64 = music.getCoverImg();
+		if(base64!=null){
+	            try {  
+	                //存图片
+	            	// 生成唯一的名字避免同名覆盖
+	        		System.out.println("存图片");
+	        		long currentTime = System.currentTimeMillis();	        		
+	        		String imgFileName = currentTime + music.getTitle();
+	        		System.out.println("图片文件名：" + imgFileName);
+	        		File imgFile = new File(musicPath, imgFileName);
+	                
+	                if(!imgFile.getParentFile().exists()) {  
+			            //如果目标文件所在的目录不存在，则创建父目录  
+			            System.out.println("目标文件所在目录不存在，准备创建它！");  
+			            if(!imgFile.getParentFile().mkdirs()) {  
+			                System.out.println("创建目标文件所在目录失败！");  		               
+			            }  
+			        }
+	                // 存简介文件  
+	                if (!imgFile.exists()) {			    
+	                	imgFile.createNewFile();
+	     				FileWriter fw = new FileWriter(imgFile.getAbsoluteFile());
+	     			   BufferedWriter bw = new BufferedWriter(fw);
+	     			   bw.write(base64);
+	     			   bw.close();
+	     			   
+	     			   music.setCoverImg(imgFileName);;
+	     			}
+	     		   } catch (IOException e) {
+	     				e.printStackTrace();
+	     			}
 
-		ServletFileUpload fileUpload = new ServletFileUpload(itemFactory);
-		// 设置上传文件的最大数据量 10M
-		fileUpload.setFileSizeMax(0xA00000);
-
-		// 解析上传文件流，得到FileItem对象的列表
-		List<String> fileNameList = new ArrayList<String>();
-		try {
-			List<FileItem> fileItems = fileUpload.parseRequest(request);
-
-			System.out.println("size=" + fileItems.size());
-
-			Iterator<FileItem> it = fileItems.iterator();
-			
-			
-			
-			while (it.hasNext()) {				
-				
-				FileItem item = it.next();			
-				
-				// 如果是文件域
-				if (!item.isFormField()) {
-					System.out.println("是文件域");
-					path = item.getName();
-					long size = item.getSize();
-					System.out.println("name====="+path);
-					System.out.println("size====="+size);
-					if ((path == null || path.equals("")) && size == 0) {
-						fileNameList.add("");
-						continue;
-					}
-
-					System.out.println("name=" + item.getName());
-					System.out.println("size=" + item.getSize());
-
-					File uploadFileDir = new File(productImagesUploadPath);
-					
-					System.out.println("uploadFileDir:" + uploadFileDir);
-
-					if (!uploadFileDir.exists()) {
-						uploadFileDir.mkdir();
-					}
-
-					int index = path.lastIndexOf(File.separator);
-					if (index > 0) {// 是全路径
-						path = path.substring(index + 1, path.length());
-					}
-
-					// 生成唯一的名字避免同名覆盖
-					System.out.println("生成唯一的名字避免同名覆盖");
-					long currentTime = System.currentTimeMillis();
-					Random random = new Random();
-					int num1 = random.nextInt(10000);
-					int dotPosition = path.lastIndexOf(".");
-					String fileBeginName = path.substring(0, dotPosition);
-					String fileEndName = path.substring(dotPosition);
-					path = fileBeginName + "_" + currentTime + "_" + num1 + "_" + fileEndName;
-
-					System.out.println("文件名：" + path);
-
-					File file = new File(uploadFileDir, path);
-					// 上传文件
-					item.write(file);
-					
-					
-
-				} else {
-					// 是普通的表单域
-					System.out.println("普通的表单域");
-					String fieldName = item.getFieldName();
-					String value = new String((item.getString()).getBytes("iso-8859-1"),"UTF-8"); 
-					System.out.println("fieldName=" + fieldName);
-					
-					if("hotelId".equals(fieldName)){
-						
-						hotelId = value;
-						System.out.println("hotelId==="+hotelId);
-					}else if("title".equals(fieldName)){
-						
-						title = value;
-						System.out.println("title==="+title);
-					}else if("artist".equals(fieldName)){
-						
-						artist = value;
-						System.out.println("artist===="+artist);
-					}else if("album".equals(fieldName)){
-						
-						album = value;
-						System.out.println("album===="+album);
-					}else if("genre".equals(fieldName)){
-						
-						genre = value;
-						System.out.println("genre===="+genre);
-					}else if("coverImg".equals(fieldName)){
-						String base64 = value;//获得是base64的值
-						System.out.println("base64==="+base64);
-						if("music/coverImg/default.jpg".equals(base64)){
-							coverImg = "music/coverImg/default.jpg";//默认的图片
-							continue;
-						}
-						
-						System.out.println("base64===="+base64);
-						long currentTime = System.currentTimeMillis();
-						Random random = new Random();
-						int num1 = random.nextInt(10000);
-						
-						coverImg = currentTime + "_" + num1 + ".txt";
-						
-						//Base64.decodeBase64ToImage(base64, productImagesUploadPath+"\\coverImg\\", coverImg);
-						
-						
-						String[] s = new String[1];
-						s[0] = base64;
-						
-						WriteFile.fileWriter(productImagesUploadPath+"\\"+coverImg, s);
-					}
-					
-					
-				}
-			}
-		} catch (FileUploadException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		}else{
+			music.setCoverImg("music/coverImg/default.jpg");
+		}   
+	             
+	       
+		// 上传音乐文件
+	     // 判断文件是否为空  
+	        if (!file.isEmpty()) {  
+	            try {  
+	                
+	            	// 生成唯一的名字避免同名覆盖
+	        		System.out.println("生成唯一的名字避免同名覆盖");
+	        		long currentTime = System.currentTimeMillis();	        		
+	        		String musicFileName = currentTime + file.getOriginalFilename();
+	        		System.out.println("文件名：" + musicFileName);
+	        		File musicFile = new File(musicPath, musicFileName);
+	                
+	                if(!musicFile.getParentFile().exists()) {  
+			            //如果目标文件所在的目录不存在，则创建父目录  
+			            System.out.println("目标文件所在目录不存在，准备创建它！");  
+			            if(!musicFile.getParentFile().mkdirs()) {  
+			                System.out.println("创建目标文件所在目录失败！");  		               
+			            }  
+			        }
+	                // 转存文件  
+	                file.transferTo(musicFile);  
+	                
+	                music.setPath(musicFileName);
+	                
+	            } catch (Exception e) {  
+	                e.printStackTrace();  
+	            }  
+	        }
+	
 		
 		
+	        
+		System.out.println("hotel============"+music);	
 		
-		List<Integer> list = new ArrayList<Integer>();
+		dao.addMusic(music);
 		
-		
-		list.add(new Integer(hotelId));
-		
-		Music music = new Music();
-		
-		music.setAlbum(album);
-		music.setArtist(artist);
-		music.setCoverImg(coverImg);
-		music.setGenre(genre);
-		music.setPath(path);
-		music.setTitle(title);
-		
-		this.addMusic(music);
-		
-		Music musicNew = this.getMusicByPath(path);
-		
-		list.add(musicNew.getMusicId());
-		
-		return list;
+		int musicId = this.getMusicByPath(music.getPath()).getMusicId();
+		return musicId;
 	}
 	
 	//删除列表中的所有的歌曲

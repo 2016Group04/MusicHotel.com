@@ -7,8 +7,12 @@
 		<link rel="stylesheet" type="text/css" href="css/createNewHotel.css"/>
 		<link rel="stylesheet" type="text/css" href="css/motaiHotel.css"/>
 		<link rel="stylesheet" type="text/css" href="js/jQuery-confirm/jquery-confirm.css"/>
+		<link rel="stylesheet" type="text/css" href="css/top.css"/>
 	</head>
 	<body>
+	
+	<%@include file="top.jsp" %>
+	
 	<%
 		User user = (User)session.getAttribute("user");
 		int userId = user.getUserId();
@@ -66,7 +70,7 @@
 				<span id="no"><a class="noo">标题</a></span>
 				<div class="title">
 				
-				<input type="text" name="titile" id="title" value="请输入hotel标题"/>
+				<input type="text" name="title" id="title" value="请输入hotel标题"/>
 				</div>
 			</div>
 			
@@ -75,7 +79,7 @@
 					<img id="cover-img" src="img/hotelCover.jpg" width="640px" height="452px"/>
 					<input type="button" name="uploadImg" id="uploadImg" value="上传hotel封面"/>
 					
-						<input type="file" name="coverImg" id="hotelCover" style="display:none"/>
+						<input type="file" name="hotelCover" id="hotelCover" style="display:none"/>
 						<input type="submit" id="tijiao" style="display:none"/>
 				</div>
 				<div id="article">
@@ -150,6 +154,7 @@
 		</div>
 		</form>
 		<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/top.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/jQuery-confirm/jquery-confirm.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			

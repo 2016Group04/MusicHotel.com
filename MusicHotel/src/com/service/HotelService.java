@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.page.PageInfo;
 import com.po.Hotel;
 
@@ -36,8 +39,7 @@ public interface HotelService {
 
 	// 上传hotel封面图片
 	public Hotel upload(HttpServletRequest request,
-			String productImagesUploadPath, String txtUploadPath, Date date,
-			int userId);
+			Hotel hotel, MultipartFile file);
 
 	// 查热门期刊 按喜欢人数查
 	public List<Hotel> getHotHotel();

@@ -1,14 +1,4 @@
- <%@ page language="java" import="java.util.*,com.po.User" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-
-	<head>
-		<meta charset="UTF-8">
-		<title>网站顶栏</title>
-		<link rel="stylesheet" type="text/css" href="css/top.css" />
-	</head>
-
-	<body>
+<%@ page language="java" import="java.util.*,com.po.User" pageEncoding="UTF-8"%>
 	
 		<% 
 			User user = (User)session.getAttribute("user");
@@ -339,8 +329,5 @@
 			%>
 			
 		</div>
-		<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/top.js" type="text/javascript" charset="utf-8"></script>
-	</body>
-
-</html>
+		
+	

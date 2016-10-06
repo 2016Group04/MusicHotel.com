@@ -8,14 +8,17 @@
 <link rel="stylesheet" type="text/css" href="css/addMusic.css" />
 <link rel="stylesheet" type="text/css"
 	href="js/jQuery-confirm/jquery-confirm.css" />
+<link rel="stylesheet" type="text/css" href="css/top.css" />
 </head>
 <body>
+
+	<%@include file="top.jsp" %>
 
 	<%
 	
 		Hotel hotel = (Hotel)request.getAttribute("hotel");
 		String[] style = (String[])request.getAttribute("style");
-		String[] hotelDesc = (String[])request.getAttribute("hotelDesc");
+		String hotelDesc = (String)request.getAttribute("hotelDesc");
 	%>
 	<div id="hotelMiddle">
 		<div id="hotelType">
@@ -58,19 +61,19 @@
 			</div>
 			<div id="article">
 				<%
-						for(String str:hotelDesc){
+						
 							
-							if(str!=null){
+							if(hotelDesc!=null){
 								
 								%>
-				<p><%=str %></p>
+				<p><%=hotelDesc %></p>
 				<br />
 
 				<%
 								
 								
 							}
-						}
+						
 					%>
 
 			</div>
@@ -134,6 +137,8 @@
 	<script src="js/jQuery-confirm/jquery-confirm.js"
 		type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery.form.js"
+		type="text/javascript" charset="utf-8"></script>
+	<script src="js/top.js"
 		type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 			
@@ -386,7 +391,7 @@
 					$("#imgM:first")[0].value = base64;
 				} else {
 					document.getElementById('music-cover').setAttribute('src', 'music/coverImg/default.jpg');
-					$("#imgM:first")[0].value = 'music/coverImg/default.jpg';
+					$("#imgM:first")[0].value = '';
 				}
 				
 				

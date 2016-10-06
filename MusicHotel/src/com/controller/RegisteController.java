@@ -436,7 +436,7 @@ public class RegisteController{
 		}
 		
 		System.out.println("this");
-		String target = "top.jsp";
+		String target = "getHotelByPage.action?requestPage=1";
 		
 		
 		request.getRequestDispatcher(target).forward(request, response);

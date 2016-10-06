@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.po.Music;
@@ -26,8 +27,8 @@ public interface MusicService {
 	public Music getMusicByMusicId(int musicId);
 
 	// 上传音乐文件,返回音乐名
-	public List<Integer> upload(HttpServletRequest request,
-			String productImagesUploadPath);
+	public int upload(HttpServletRequest request,
+			Music music, int hotelId, MultipartFile file);
 
 	// 根据音乐文件的名字来得到music
 	public Music getMusicByPath(String path);

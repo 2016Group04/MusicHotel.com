@@ -15,8 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.ServletConfigAware;
 import org.springframework.web.context.ServletContextAware;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.po.Album;
@@ -26,16 +28,16 @@ import com.service.impl.MusicServiceImpl;
 import com.util.WriteFile;
 
 @Controller
-public class MusicController implements ServletConfigAware,
-ServletContextAware{
+public class MusicController implements ServletConfigAware, ServletContextAware {
 
 	@Autowired
 	private MusicServiceImpl musicService;
-	
+
 	@Autowired
 	private AlbumServiceImpl albumService;
-	
+
 	private ServletContext servletContext;
+
 	@Override
 	public void setServletContext(ServletContext servletContext) {
 		this.servletContext = servletContext;
@@ -47,96 +49,86 @@ ServletContextAware{
 	public void setServletConfig(ServletConfig servletConfig) {
 		this.servletConfig = servletConfig;
 	}
-	
-	
+
 	/**
 	 * 功能：根据hotelId得到其下的所有的音乐
+	 * 
 	 * @param HotelId
 	 */
 	@RequestMapping("/JSP/getAllMusic.action")
-	public void getAllMusic(int hotelId,HttpServletResponse response)
-		throws IOException{
-		
+	public void getAllMusic(int hotelId, HttpServletResponse response)
+			throws IOException {
+
 		System.out.println("in getAllMusic");
-		
+
 		List<Integer> list = albumService.getMusicIdByHoteId(hotelId);
 		List<Music> list2 = musicService.getMusicByMusicId(list);
-		
-		
+
 		Iterator<Music> i = list2.iterator();
-		
-		while(i.hasNext()){
+
+		while (i.hasNext()) {
 			Music music = i.next();
-			
-			if("music/coverImg/default.jpg".equals(music.getCoverImg())){
-				
-				
-			}else{
+
+			if ("music/coverImg/default.jpg".equals(music.getCoverImg())) {
+
+			} else {
 				String realpath = servletContext.getRealPath("");
-				//把base64读进来
-				String cover = WriteFile.baseReader(realpath+"//JSP//music//"+music.getCoverImg());
+				// 把base64读进来
+				String cover = WriteFile.baseReader(realpath + "//JSP//music//"
+						+ music.getCoverImg());
 				System.out.println(cover);
 				music.setCoverImg(cover);
 			}
 		}
-		
+
 		Gson gson = new Gson();
 		String json = gson.toJson(list2);
 		System.out.println(json);
-		
+
 		PrintWriter out = response.getWriter();
 		out.write(json);
 		out.flush();
-		
+
 	}
-	
+
 	@RequestMapping("/JSP/addMusic.action")
-	public void addMusic(HttpServletRequest request,HttpServletResponse response)
-		throws Exception{
-		
+	public Map<String, Integer> addMusic(HttpServletRequest request,
+			Music music, int hotelId, @RequestParam("file1") MultipartFile file) throws Exception {
+
 		System.out.println("in addMusic");
+		System.out.println("music===" + music);
+		System.out.println("hotelId===" + hotelId);
+
+		int musicId = musicService.upload(request, music, hotelId, file);
+
+		music.setMusicId(musicId);
 		
-		String target = "";
-		
-		String realpath = servletContext.getRealPath("");
-		String txtPath = realpath + "//JSP//music";
-		
-		List<Integer> list = musicService.upload(request, txtPath);
-		
-		albumService.addAlbum(list.get(0), list.get(1));
-		System.out.println("musicId======"+list.get(1));
-		Map<String,Integer> map = new HashMap<String,Integer>();
-		map.put("musicId",list.get(1));
-		
-		Gson gson = new Gson();
-		String json = gson.toJson(map);
-		PrintWriter out = response.getWriter();
-		out.write(json);
-		out.flush();
+		albumService.addAlbum(hotelId, musicId);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("musicId", musicId);
+
+		return map;
 	}
-	
-	
+
 	@RequestMapping("/JSP/deleteMusic.action")
-	public void deleteMusic(int musicId,int hotelId){
-		
+	public void deleteMusic(int musicId, int hotelId) {
+
 		System.out.println("in deleteMusic");
-		
+
 		String realpath = servletContext.getRealPath("");
 		String txtPath = realpath + "//JSP//music";
-		
-		//先删除歌曲
-		
-		
+
+		// 先删除歌曲
+
 		Music music = musicService.getMusicByMusicId(musicId);
-		
-		musicService.deleteMusic(music,txtPath);
-		
+
+		musicService.deleteMusic(music, txtPath);
+
 		Album album = new Album();
 		album.setHotelId(hotelId);
 		album.setMusicId(musicId);
 		albumService.deleteAlbum(album);
-		
-		
+
 	}
-	
+
 }

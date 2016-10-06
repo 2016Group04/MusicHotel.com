@@ -390,6 +390,7 @@ img#touXiang{
 }
 
 #messageDetail{
+	z-index: 999;
 	border: 2px solid #E5E5E5;
 	position: absolute;
 	width: 270px;
@@ -432,6 +433,7 @@ img#touXiang{
 
 /*我的账号*/
 #operate{
+	z-index: 999;
 	width: 105px;
 	height: 110px;
 	position: absolute;

@@ -190,4 +190,6 @@ td span.span2{
 
 p{
 	text-indent:2em;
+	width:640px;
+	word-break:break-all;
 }
