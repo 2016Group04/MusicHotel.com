@@ -263,7 +263,7 @@ public class HotelServiceImpl implements HotelService {
 		
 		hotel.setCoverImg(coverImg);
 		hotel.setStyle(style);
-		hotel.setTitile(titile);
+		hotel.setTitle(titile);
 		hotel.setHotelDesc(txtName);
 		hotel.setCreateDate(date);
 		hotel.setUserId(userId);

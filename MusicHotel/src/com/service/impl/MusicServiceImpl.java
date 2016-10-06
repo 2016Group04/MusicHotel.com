@@ -1,6 +1,9 @@
 package com.service.impl;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -16,11 +19,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dao.MusicDao;
 import com.po.Music;
 import com.service.MusicService;
-import com.util.Base64;
 import com.util.WriteFile;
 @Service
 public class MusicServiceImpl implements MusicService {
@@ -280,7 +283,7 @@ public class MusicServiceImpl implements MusicService {
 		music.setCoverImg(coverImg);
 		music.setGenre(genre);
 		music.setPath(path);
-		music.setTitile(title);
+		music.setTitle(title);
 		
 		this.addMusic(music);
 		

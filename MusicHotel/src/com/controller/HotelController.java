@@ -77,25 +77,6 @@ ServletContextAware{
 		return target;
 		}
 	
-	//分页查
-		@RequestMapping("JSP/getHotelByPage.action")
-		public String getHotelByPage(Model model,String requestPage){
-			//一.填充数据
-			PageInfo pageInfo = new PageInfo(Integer.parseInt(requestPage),5);
-			//二.调用业务逻辑
-			int totalRecordSum = hotelService.getTotalRecordSum();
-			pageInfo.setTotalRecordCount(totalRecordSum);
-			
-			List<Hotel> list = hotelService.getHotelByPage(pageInfo);
-			
-			List<Hotel> hotHotelList = hotelService.getHotHotel();
-			//三.转发视图
-			String target = "allHotels.jsp";
-			model.addAttribute("list", list);
-			model.addAttribute("hotHotelList", hotHotelList);
-			model.addAttribute("pageInfo", pageInfo);
-			return target;
-		}
 	
 	@RequestMapping("/JSP/getMyHotel.action")
 	public String getMyHotel(HttpServletRequest request,ModelMap model){
@@ -210,6 +191,25 @@ ServletContextAware{
 		out.flush();
 	}
 	
+	//分页查
+		@RequestMapping("JSP/getHotelByPage.action")
+		public String getHotelByPage(Model model,String requestPage){
+			//一.填充数据
+			PageInfo pageInfo = new PageInfo(Integer.parseInt(requestPage),5);
+			//二.调用业务逻辑
+			int totalRecordSum = hotelService.getTotalRecordSum();
+			pageInfo.setTotalRecordCount(totalRecordSum);
+			
+			List<Hotel> list = hotelService.getHotelByPage(pageInfo);
+			
+			List<Hotel> hotHotelList = hotelService.getHotHotel();
+			//三.转发视图
+			String target = "allHotels.jsp";
+			model.addAttribute("list", list);
+			model.addAttribute("hotHotelList", hotHotelList);
+			model.addAttribute("pageInfo", pageInfo);
+			return target;
+		}
 	
 	@RequestMapping("JSP/addLikeSum.action")
 	public void addLikeSum(HttpServletResponse response,String hotelId){
