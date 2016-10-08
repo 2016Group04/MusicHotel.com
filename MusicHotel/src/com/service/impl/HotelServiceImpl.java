@@ -87,6 +87,12 @@ public class HotelServiceImpl implements HotelService {
 		public void addLikeSum(Integer hotelId) {
 			hotelDao.addLikeSum(hotelId);
 		}
+		
+		//点收藏后 likeSum+1
+		@Override
+		public void deleteLikeSum(Integer hotelId) {
+			hotelDao.deleteLikeSum(hotelId);
+		}
 
 		@Override
 		public int getMaxHotelId() {

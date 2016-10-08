@@ -4,6 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>创建新的hotel</title>
+		
 		<link rel="stylesheet" type="text/css" href="css/createNewHotel.css"/>
 		<link rel="stylesheet" type="text/css" href="css/motaiHotel.css"/>
 		<link rel="stylesheet" type="text/css" href="js/jQuery-confirm/jquery-confirm.css"/>
@@ -14,7 +15,7 @@
 	<%@include file="top.jsp" %>
 	
 	<%
-		User user = (User)session.getAttribute("user");
+		//User user = (User)session.getAttribute("user");
 		int userId = user.getUserId();
 	%>
 	<form action="addMyHotel.action?userId=<%=user.getUserId() %>" method="post" enctype="multipart/form-data">

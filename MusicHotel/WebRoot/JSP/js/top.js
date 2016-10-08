@@ -1,6 +1,10 @@
 ﻿;
 $(function() {
 	
+				$("span#logo").click(function(){
+					location.assign("check.action");
+				});
+				
 				//得到所有的输入框
 				var inputR = $("#registeMiddle input");
 				var inputL = $("#login input");
@@ -74,6 +78,7 @@ $(function() {
 					
 					$("#login").show();
 					$("#all").show();
+					changeImg();
 					
 					
 				});
@@ -330,6 +335,7 @@ $(function() {
 												
 												$("#Registe").text("该昵称已被占用");
 												$("#Registe").removeClass("Registe").addClass("null");
+												changeImg();
 											}else{
 												//发送ajax验证邮箱是否已被注册
 												$.post("checkEmail.action",{
@@ -339,6 +345,7 @@ $(function() {
 								    					
 								    					$("#Registe").text("该邮箱已被占用");
 														$("#Registe").removeClass("Registe").addClass("null");
+														changeImg();
 								    				}else{
 								    					
 								    					$("#Registe").text("注册成功");

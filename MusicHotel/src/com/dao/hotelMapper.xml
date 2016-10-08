@@ -37,6 +37,11 @@
 		UPDATE hotel SET like_sum=like_sum+1 WHERE hotel_id=#{id}
 	</update>
 	
+	<!--点收藏后 likeSum+1-->
+	<update id="deleteLikeSum" parameterType="int">
+		UPDATE hotel SET like_sum=like_sum-1 WHERE hotel_id=#{id}
+	</update>
+	
 	<!--得到最大的hotelId-->
 	<select id="getMaxHotelId" resultType="int">
 		SELECT MAX(hotel_id) FROM hotel

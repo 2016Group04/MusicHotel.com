@@ -134,7 +134,7 @@ public class MusicServiceImpl implements MusicService {
 		String musicPath = realpath + "//JSP//music";
 		
 		String base64 = music.getCoverImg();
-		if(base64!=null){
+		if(base64.equals("music/coverImg/default.jpg")){
 	            try {  
 	                //存图片
 	            	// 生成唯一的名字避免同名覆盖
@@ -159,14 +159,14 @@ public class MusicServiceImpl implements MusicService {
 	     			   bw.write(base64);
 	     			   bw.close();
 	     			   
-	     			   music.setCoverImg(imgFileName);;
+	     			   music.setCoverImg(imgFileName);
 	     			}
 	     		   } catch (IOException e) {
 	     				e.printStackTrace();
 	     			}
 
 		}else{
-			music.setCoverImg("music/coverImg/default.jpg");
+			music.setCoverImg(base64);
 		}   
 	             
 	       
@@ -204,7 +204,7 @@ public class MusicServiceImpl implements MusicService {
 	        
 		System.out.println("hotel============"+music);	
 		
-		dao.addMusic(music);
+		this.addMusic(music);
 		
 		int musicId = this.getMusicByPath(music.getPath()).getMusicId();
 		return musicId;

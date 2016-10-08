@@ -9,13 +9,14 @@
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="js/jQuery-confirm/jquery-confirm.css" /> 
 		<link rel="stylesheet" href="css/user.css" />
+		<link rel="stylesheet" type="text/css" href="css/top.css"/>
 	
 	</head>
 
 	<body>
-	
+	<%@include file="top.jsp" %>
 	<%
-		User user = (User)session.getAttribute("user");
+		//User user = (User)session.getAttribute("user");
 		List<Hotel> list = (List<Hotel>)request.getAttribute("list");
 		
 	%>
@@ -153,10 +154,10 @@
 									
 									
 									<div class="item">
-										<a href="http://www.luoo.net/music/561" data-id="<%=hotel.getHotelId() %>" class="cover-wrapper">
+										<a href="getHotelById.action?hotelId=<%=hotel.getHotelId() %>" data-id="<%=hotel.getHotelId() %>" class="cover-wrapper">
 											<img src="img/hotel/coverImg/<%=hotel.getCoverImg() %>" alt="<%=hotel.getTitle() %>" class="cover rounded">
 										</a>
-										<a href="http://www.luoo.net/music/561" class="name" data-id="<%=hotel.getHotelId() %>"><%=hotel.getTitle() %></a>
+										<a href="getHotelById.action?hotelId=<%=hotel.getHotelId() %>" class="name" data-id="<%=hotel.getHotelId() %>"><%=hotel.getTitle() %></a>
 										<div class="op-bar">
 											<span class="time"><%=hotel.getCreateDate() %></span>
 		
@@ -340,6 +341,7 @@
 		</div>
 
 		<script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+		<script src="js/top.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
 		<script type="text/javascript" src="js/jQuery-confirm/jquery-confirm.js"></script> 
 		<script type="text/javascript">

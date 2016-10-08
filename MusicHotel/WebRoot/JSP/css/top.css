@@ -6,6 +6,14 @@ input {
 	outline:none;
 }
 
+img{
+	vertical-align:top;
+}
+
+label{
+	margin-bottom:0px;
+}
+
 /*顶部最外面的div*/
 div#wholeTop {
 	width: 1350px;
@@ -27,6 +35,7 @@ div#wholeTop {
 	display: inline-block;
 	width: 30px;
 	height: 35px;
+	cursor:pointer;
 }
 
 div.logo{

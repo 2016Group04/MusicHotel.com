@@ -6,18 +6,21 @@
 		<meta charset="UTF-8">
 		<title>个人主页</title>
 
+		
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="js/jQuery-confirm/jquery-confirm.css" /> 
 		<link rel="stylesheet" href="css/user.css" />
+		<link rel="stylesheet" type="text/css" href="css/top.css" />
 	</head>
 
 	<body>
-	
+	<%@include file="top.jsp" %>
 	<%
-		User user = (User)session.getAttribute("user");
+		//User user = (User)session.getAttribute("user");
 		List<Article> list = (List<Article>)request.getAttribute("list");
 		
 	%>
+		
 		<div class="container setting" style="min-height: 46px;">
 			<!-- uc-head -->
 			<div class="uc-head clearfix">
@@ -297,6 +300,7 @@
 		</div>
 
 		<script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+		<script src="js/top.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
 		<script type="text/javascript" src="js/jQuery-confirm/jquery-confirm.js"></script> 
 		<script type="text/javascript">

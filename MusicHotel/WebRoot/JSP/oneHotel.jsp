@@ -9,6 +9,7 @@
 <head>
 
 <title><%=hotel.getTitle()%></title>
+<link rel="stylesheet" type="text/css" href="css/top.css"/>
 <link rel="stylesheet" type="text/css" href="css/kaitoujiewei.css" />
 <link rel="stylesheet" href="css/stylesheets/style.css">
 
@@ -19,8 +20,9 @@
 </head>
 
 <body>
+<%@include file="top.jsp" %>
 <%
-	User user = (User)session.getAttribute("user");
+	//User user = (User)session.getAttribute("user");
 	if(user==null){
 		
 		user = new User();
@@ -28,8 +30,7 @@
 	}
 %>
 	<input type="hidden" id="userId" value="<%=user.getUserId()%>"/>
-	<div class="container-all">
-		<div class="container container-left">
+	<div class="container">
 			<!--返回期刊首页-->
 			<div>
 				<div class="vol vol-meta">
@@ -51,11 +52,11 @@
             	描述：期刊首页图片简介开始
             -->
 				<div class="name">
-					<span class="number"> <%=hotel.getHotelId()%> </span> <span class="title"> <%=hotel.getTitile()%>
+					<span class="number"> <%=hotel.getHotelId()%> </span> <span class="title"> <%=hotel.getTitle()%>
 					</span>
 				</div>
 				<div class="wrapper">
-					<img src="<%=hotel.getCoverImg()%>" alt="<%=hotel.getTitile()%>" class="cover">
+					<img src="img/hotel/coverImg/<%=hotel.getCoverImg()%>" alt="<%=hotel.getTitle()%>" class="cover">
 					<%
 						int maxHotelId = (Integer)request.getAttribute("maxHotelId");
 						int minHotelId = (Integer)request.getAttribute("minHotelId");
@@ -80,7 +81,7 @@
 					String path = application.getRealPath("/");//当前WEB应用的物理路径
 					String hotelDesc = hotel.getHotelDesc();
 					try {
-						fr = new FileReader(path+"JSP/hotelDesc/"+hotelDesc);
+						fr = new FileReader(path+"JSP/txt/"+hotelDesc);
 						br = new BufferedReader(fr);
 					} catch (FileNotFoundException e) {
 						System.out.println("文件没有找到");
@@ -129,19 +130,15 @@
 
 			</div>
 
-		</div>
+	
 
-		<div class="container container-right">
 
 			<div class="clearfix vol-meta">
-				<%
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-					String date = sdf.format(hotel.getCreateDate());
-				%>
+				
 				<img src="img/u50001445339175.png" alt="落在低处"
 					class="author-avatar rounded"> <a class="vol-author" href=""
 					target="_blank">落在低处</a> <span class="separator fleft">・</span> <span
-					class="vol-date">><%=date%></span> <a href="javascript:;"
+					class="vol-date">><%=hotel.getCreateDate()%></span> <a href="javascript:;"
 					class="btn-action-like icon-fav icon-fav3" title="收藏" id="favHotel"></a> <a
 					href="javascript:;" class="icon-share btn-action-share"
 					rel="nofollow"> </a>
@@ -373,20 +370,20 @@
 
 				</div>
 			</div>
-		</div>
 	</div>
-
+	
 	<script src="js/jquery-3.1.0.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/top.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery-1.7.2.min.js"></script>
 	<script src="js/jquery-ui-1.8.17.custom.min.js"></script>
-	<!-- <script src="js/script.js"></script> -->
 	<script type="text/javascript">
 		$(function() {
 			//页面加载完毕就发送ajax请求
+			var hotelId = <%=hotel.getHotelId()%>;
 			$.post("getAllMusic.action",{
 				//这里传hoteId
-				"hotelId":92
+				"hotelId":hotelId
 			},function(data){
 				var repeat = localStorage.repeat || 0,
 				shuffle = localStorage.shuffle || 'false',
@@ -427,7 +424,7 @@
 					var useId = $("#userId").val();
 					console.info( $("#userId").val());
 					if($("#userId").val()=="0"){
-						alert("是这里把应该是");
+						
 					}else{
 						$.post("getUserLike.action",{
 							"userId":$("#userId").val(),
@@ -671,7 +668,7 @@
 							
 						});
 						
-						//把心变成红色
+						//把心变成灰色
 						$("#like").removeClass("icon-fav4");
 						$("#like").addClass("icon-fav3");
 					}else{
@@ -709,7 +706,7 @@
 						
 						//发送ajax取消收藏
 						$.post("deleteOneUserLike.action",{
-							"id":92,
+							"id":hotelId,
 							"userId":$("#userId").val(),
 							"likeType":"hotel"
 						},function(data){
@@ -724,7 +721,7 @@
 					
 						//发送ajax进行收藏
 						$.post("addUserLike.action",{
-							"id":92,
+							"id":hotelId,
 							"userId":$("#userId").val(),
 							"likeType":"hotel"
 						},function(data){
@@ -745,7 +742,7 @@
 			}else{
 			$.post("getUserLike.action",{
 				"userId":$("#userId").val(),
-				"id":92,
+				"id":hotelId,
 				"likeType":"hotel"
 			},function(data){
 				
@@ -1037,16 +1034,16 @@
 			});
 			
 			
-			//点收藏后 likeSum+1
+			<%-- //点收藏后 likeSum+1
 			$("a.btn-action-like").click(function(){
 				$.post("addLikeSum.action",{
 				 	"hotelId":"<%=hotel.getHotelId()%>"
 				 },function(data,status){
-					 alert(data);
-					 $("a.icon-fav").css("background-position","0 -80px");
+					
+					 //$("a.icon-fav").css("background-position","0 -80px");
 				 },"json");
-			});
-		});
+			}); --%>
+	
 		});
 	</script>
 </body>

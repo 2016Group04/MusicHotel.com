@@ -45,6 +45,7 @@
 						<input type='hidden' name='artist' id='artist'/>
 						<input type='hidden' name='genre' id='genre'/>
 						<input type='hidden' name='coverImg' id='imgM'/>
+						<input type="file" name="file1" id="file1"/>
 		</form>
 
 		<div id="titleH">
@@ -78,10 +79,8 @@
 
 			</div>
 			<div id="uploadButton">
-				<input type="button" name="upload" id="upload" value="上传歌曲" /><input
-					type="file" name="file1" id="file1" style="display: none;" /> <input
-					type="button" name="Submit" id="Submit" value="提交"
-					style="display: none;" />
+				<input type="button" name="upload" id="upload" value="上传歌曲" /> <input
+					type="button" name="Submit" id="Submit1" class="Submit" value="提交" />
 			</div>
 			<!-- 这是上传音乐文件的form -->
 			<!--上传歌曲之后显示的地方-->
@@ -145,7 +144,7 @@
 			$(function  () {
 				
 				//提交按钮
-				$("#Submit").click(function(){
+				$("#Submit1").click(function(){
 					
 					$.confirm({
 						title : '',
@@ -162,7 +161,7 @@
 				
 				$("#upload").click(function  () {
 					
-					$("#file1:first").click();
+					$("#file1").click();
 				});
 				
 				$("body").on("click",".lyric>span",function  () {
@@ -175,7 +174,7 @@
 					var input1 = $(this);
 					//克隆一个input
 					
-					var input2 = $(this).clone();
+					//var input2 = $(this).clone();
 					
 					
 					
@@ -184,9 +183,9 @@
 					
 					
 					$("#songs table tr#tt").after(insertT);
-					$("form input[type=file]").remove();
-					input1.insertAfter($("form input:last"));
-					$("#songs table tr#tt").after(input2);
+					//$("form input[type=file]").remove();
+					//input1.insertAfter($("form input:last"));
+					//$("#songs table tr#tt").after(input2);
 					loadFile(input1[0]);
 					
 					
@@ -244,10 +243,7 @@
 					
 				});
 				
-				$("#coverImg").change(function(){
-					
-					
-				});
+				
 				
 				var tag = 1;//表示该div隐藏
 				$("body").on("click",".span1",function(){
@@ -391,7 +387,7 @@
 					$("#imgM:first")[0].value = base64;
 				} else {
 					document.getElementById('music-cover').setAttribute('src', 'music/coverImg/default.jpg');
-					$("#imgM:first")[0].value = '';
+					$("#imgM:first")[0].value = 'music/coverImg/default.jpg';
 				}
 				
 				
@@ -404,17 +400,17 @@
 		            dataType : 'json',  
 		            success : function(data) {  
 		            	
-		            	console.info("musicId="+data.musicId);
+		            	console.info("success="+data);
 		            	
 		            	//把这个musicId放在删除按钮的后面
-		            	var deleteSong = $("<input type='hidden' value='"+data.musicId+"'/>");
+		            	var deleteSong = $("<input type='hidden' value='"+data+"'/>");
 		            	$("span.span2:first").after(deleteSong);
 		            	
 		            },  
 		            error : function(data) {  
 		            	
-		            	console.info("musicId="+data.musicId);
-		            	var deleteSong = $("<input type='hidden' value='"+data.musicId+"'/>");
+		            	console.info("error="+data);
+		            	var deleteSong = $("<input type='hidden' value='"+data+"'/>");
 		            	$("span.span2:first").after(deleteSong);
 		            }  
 		        });

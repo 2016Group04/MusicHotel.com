@@ -69,7 +69,7 @@ public class HotelController implements ServletConfigAware, ServletContextAware 
 		int maxHotelId = hotelService.getMaxHotelId();
 		int minHotelId = hotelService.getMinHotelId();
 		// 三.转发视图
-		String target = "oneHotel.jsp";
+		String target = "/JSP/getCommentOrderByDate.action?topicType=hotel";
 		model.addAttribute("hotel", hotel);
 		model.addAttribute("maxHotelId", maxHotelId);
 		model.addAttribute("minHotelId", minHotelId);

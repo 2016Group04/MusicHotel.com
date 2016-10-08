@@ -73,7 +73,7 @@ input{
 	margin-top: 20px;
 }
 
-#upload,#Submit{
+#upload,.Submit{
 	width: 100px;
 	height: 30px;
 	background-color: #2C2E32;

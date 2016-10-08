@@ -957,7 +957,7 @@
 						%>
 						<div class="item">
 							<a class="cover-wrapper" href="getHotelById.action?hotelId=<%=hotel.getHotelId()%>" title="<%=hotel.getTitle()%>">
-								<img src="img/hotel/coverImg/<%=hotel.getCoverImg()%>" alt="<%=hotel.getTitle()%>" class="cover rounded">
+								<img src="img/hotel/coverImg/<%=hotel.getCoverImg()%>" alt="<%=hotel.getTitle()%>" class="cover rounded" width="640px" height="360px">
 							</a>
 							<div class="meta rounded clearfix">
 								<a href="getHotelById.action?hotelId=<%=hotel.getHotelId()%>" class="name" title="<%=hotel.getTitle()%>">vol.<%=hotel.getHotelId() %> <%=hotel.getTitle()%></a>

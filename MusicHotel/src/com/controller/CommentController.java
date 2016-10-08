@@ -66,14 +66,14 @@ public class CommentController {
 		
 	}
 	@RequestMapping("/JSP/getCommentOrderByDate")
-	public void getCommentOrderByDate(HttpServletRequest request,HttpServletResponse response)
+	public void getCommentOrderByDate(HttpServletRequest request,HttpServletResponse response,String topicType,String hotelId)
 			throws IOException,ServletException{
 		System.out.println("in getCommentOrderByDate ");
 		request.setCharacterEncoding("UTF-8");
 		String target = "";
 		//填充数据(hotel 和1 需要从jsp中传值)
 		System.out.println("in method");
-		List<Comment> list = commentServiceImpl.getCommentOrderByDate("hotel", "1");
+		List<Comment> list = commentServiceImpl.getCommentOrderByDate(topicType, hotelId);
 		System.out.println("in list");
 		for(Comment comment:list){
 			System.out.println(comment);

@@ -60,7 +60,7 @@ public class MusicController implements ServletConfigAware, ServletContextAware 
 			throws IOException {
 
 		System.out.println("in getAllMusic");
-
+		System.out.println(hotelId);
 		List<Integer> list = albumService.getMusicIdByHoteId(hotelId);
 		List<Music> list2 = musicService.getMusicByMusicId(list);
 
@@ -70,8 +70,8 @@ public class MusicController implements ServletConfigAware, ServletContextAware 
 			Music music = i.next();
 
 			if ("music/coverImg/default.jpg".equals(music.getCoverImg())) {
-
-			} else {
+				
+			}else {
 				String realpath = servletContext.getRealPath("");
 				// 把base64读进来
 				String cover = WriteFile.baseReader(realpath + "//JSP//music//"
@@ -92,22 +92,24 @@ public class MusicController implements ServletConfigAware, ServletContextAware 
 	}
 
 	@RequestMapping("/JSP/addMusic.action")
-	public Map<String, Integer> addMusic(HttpServletRequest request,
+	public void addMusic(HttpServletRequest request,HttpServletResponse response,
 			Music music, int hotelId, @RequestParam("file1") MultipartFile file) throws Exception {
 
 		System.out.println("in addMusic");
-		System.out.println("music===" + music);
+		
 		System.out.println("hotelId===" + hotelId);
 
 		int musicId = musicService.upload(request, music, hotelId, file);
-
+		System.out.println("musicId====="+musicId);
 		music.setMusicId(musicId);
-		
+		System.out.println("music===" + music);
 		albumService.addAlbum(hotelId, musicId);
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("musicId", musicId);
 
-		return map;
+		PrintWriter out = response.getWriter();
+		out.print(musicId);
+		out.flush();
 	}
 
 	@RequestMapping("/JSP/deleteMusic.action")

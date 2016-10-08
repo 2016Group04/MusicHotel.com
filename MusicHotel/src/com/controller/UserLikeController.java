@@ -147,6 +147,11 @@ ServletContextAware{
 		User user = (User)request.getSession().getAttribute("user");
 		
 		String target = "";
+		if("hotel".equals(likeType)){
+			
+			hotelService.deleteLikeSum(id);
+		}
+		
 		
 		UserLike userLike = userLikeService.getUserLikeByLikeToId(id, likeType,user.getUserId());
 		
@@ -172,6 +177,10 @@ ServletContextAware{
 		userLike.setLikeType(likeType);
 		userLike.setLikeDate(date);
 		
+		if("hotel".equals(likeType)){
+			
+			hotelService.addLikeSum(id);
+		}
 		userLikeService.addUserLike(userLike);
 	}
 	

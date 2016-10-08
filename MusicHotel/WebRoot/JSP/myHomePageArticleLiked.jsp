@@ -9,13 +9,15 @@
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="js/jQuery-confirm/jquery-confirm.css" />
 		<link rel="stylesheet" href="css/user.css" />
+		<link rel="stylesheet" type="text/css" href="css/top.css"/>
+		
 		
 	</head>
 
 	<body>
-	
+	<%@include file="top.jsp" %>
 	<%
-		User user = (User)session.getAttribute("user");
+		//User user = (User)session.getAttribute("user");
 		List<Article> list = (List<Article>)request.getAttribute("list");
 		
 	%>
@@ -86,7 +88,7 @@
 					<span class="retract1"></span>
 					<div class="nav-item nav-title">我添加的</div>
 					<a href="getMyHotel.action" class="nav-item">音乐馆</a>
-					<a href="getMyArticle.action?userId=<%=user.getUserId() %>" class="nav-item">文章</a>
+					<a href="getMyArticle.action" class="nav-item">文章</a>
 				</div>
 				
 				<!--/// uc-ct end -->
@@ -291,6 +293,7 @@
 		</div>
 
 		<script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+		<script src="js/top.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
 		<script type="text/javascript" src="js/jQuery-confirm/jquery-confirm.js"></script>
 		<script type="text/javascript">
