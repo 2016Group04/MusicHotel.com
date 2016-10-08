@@ -12,7 +12,7 @@
 </head>
 <body>
 
-	<%@include file="top.jsp" %>
+	<%@include file="top.jsp" %> 
 
 	<%
 	
@@ -45,7 +45,7 @@
 						<input type='hidden' name='artist' id='artist'/>
 						<input type='hidden' name='genre' id='genre'/>
 						<input type='hidden' name='coverImg' id='imgM'/>
-						<input type="file" name="file1" id="file1"/>
+						<input type="file" name="file1" id="file1"/> 
 		</form>
 
 		<div id="titleH">
@@ -71,11 +71,8 @@
 				<br />
 
 				<%
-								
-								
 							}
-						
-					%>
+				%>
 
 			</div>
 			<div id="uploadButton">
@@ -185,7 +182,7 @@
 					$("#songs table tr#tt").after(insertT);
 					//$("form input[type=file]").remove();
 					//input1.insertAfter($("form input:last"));
-					//$("#songs table tr#tt").after(input2);
+					//$("#songs table tr#tt").after(input2); 
 					loadFile(input1[0]);
 					
 					

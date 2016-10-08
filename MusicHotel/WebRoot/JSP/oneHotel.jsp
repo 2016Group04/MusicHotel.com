@@ -7,7 +7,7 @@
 	Hotel hotel = (Hotel)request.getAttribute("hotel");
 %>
 <head>
-
+  
 <title><%=hotel.getTitle()%></title>
 <link rel="stylesheet" type="text/css" href="css/top.css"/>
 <link rel="stylesheet" type="text/css" href="css/kaitoujiewei.css" />

@@ -449,6 +449,25 @@
 			    width: 290px;
 			    top: -19px;
 			}
+			.kazhu {
+				top:0px;
+				position: fixed; 
+				width: 290px; 
+				margin-left: 670px;
+			}
+			.recommend {
+				position: static;
+				width: 290px;
+				height: 398px;
+				display: block;
+				vertical-align: baseline;
+				float: right;
+			}
+			.stuck {
+			    position: fixed;
+			    width: 290px;
+			    top: -19px;
+			}
 			.widget {
 			    margin-bottom: 25px;
 			}

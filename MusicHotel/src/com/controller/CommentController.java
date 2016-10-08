@@ -82,7 +82,7 @@ public class CommentController {
 		target = "oneHotel.jsp";
 		request.getRequestDispatcher(target).forward(request, response);
 		System.out.println("in getCommentOrderByDate  end");
-	}
+	}  
 	@RequestMapping("/JSP/getCommentOrderByLikeSum")
 	public void getCommentOrderByLikeSum(HttpServletRequest request,HttpServletResponse response)
 			throws IOException,ServletException{

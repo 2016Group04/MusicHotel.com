@@ -199,13 +199,13 @@ public class MusicServiceImpl implements MusicService {
 	            }  
 	        }
 	
-		
+		  
 		
 	        
 		System.out.println("hotel============"+music);	
 		
 		this.addMusic(music);
-		
+		 
 		int musicId = this.getMusicByPath(music.getPath()).getMusicId();
 		return musicId;
 	}

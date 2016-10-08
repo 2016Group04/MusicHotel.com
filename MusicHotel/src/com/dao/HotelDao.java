@@ -29,7 +29,7 @@ public interface HotelDao {
 	
 	//点收藏后 likeSum+1
 	public void deleteLikeSum(Integer hotelId);
-		
+	  	
 	//得到最大的hotelId
 	public int getMaxHotelId();
 	//得到最小的hotelId
